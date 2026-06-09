@@ -1,33 +1,26 @@
 	
 	if lower(c(username)) == "guillaumedaudin" {
-		global dir "~/Répertoires GIT/slaveprofits data and programs"
-		cd "$dir"
-		global output "~/Répertoires GIT/slaveprofits data and programs/output/"
-		global graphs "$dir/graphs"
+		global dir "~/Répertoires GIT/Further_work_slave_trade_profits"
 	}
 
 	if lower(c(username)) == "xronkl" {
-		global dir "S:\Personal Folders\Forskning - under arbete\Slave trade profits meta-study\GIT\slaveprofits"
-		cd "$dir"
-		global output "$dir\output\"
-		global tastdb "$dir\external data\"
-		global slaves "$dir\do files\script guillaume-claire-judith\slaves\"
-		global graphs "$dir\graphs"
+		global dir "S:\Personal Folders\???"
 	}
 
-*"
+	cd "$dir"
+	global output "~/Répertoires GIT/slaveprofits data and programs/output/"
+	global graphs "$dir/graphs"
+	
 
-	*Preliminary 
-	*IMPORT TSTD DATASET
-	* Currently not used section - if we want to import again, delete the old version of the TSTD.dta
-	*unzipfile "${dir}/external data/tastdb-exp-2020.sav.zip", replace
-	*import spss using "${dir}/external data/tastdb-exp-2020.sav", clear
-	*erase "${dir}/external data/tastdb-exp-2020.sav"
-	*tostring(VOYAGEID), replace
-	*save "tastdb-exp-2020.dta", replace
+
+
+	do "${dir}/do files/Import tstd.do"
+
+	
 
 	*Creating datasets
 	do "${dir}/do files/Port shares computation.do"
+	blif
 	do "${dir}/do files/Import external data.do" 
 	*do "${dir}/do files/Import data.do" /*606 ventures 685 voyages*/ /*606 ventures 685 voyages*/ This used to work for the individual csv files (ie Venture database KR - new.csv, Cash flow database GD.csv)
 	//It is not working anymore because the files have been merged into one single csv file (merged_database.csv)
