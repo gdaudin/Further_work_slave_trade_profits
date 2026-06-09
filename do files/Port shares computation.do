@@ -14,7 +14,7 @@ clear
 	global dir "S:\Personal Folders\Forskning - under arbete\Slave trade profits meta-study\GIT\slaveprofits"
 	cd "$dir"
 	global output "$dir\output\"
-	global tastdb "$dir\external data\"
+	global tastdb "$dir\external data\""
 }
 
 /*
@@ -28,7 +28,7 @@ and SLAXIMP (imputed total slaves embarked)
 */
 
 
-use "${tastdb}tastdb-exp-2020.dta", clear
+use "${tastdb}tastdb-exp-2026.dta", clear
 
 keep YEARAF  MJBYPTIMP SLAXIMP
 collapse (sum) SLAXIMP, by(MJBYPTIMP YEARAF)
