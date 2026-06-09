@@ -52,15 +52,15 @@ There is a contradiction in this definition (208), both coded at 1 and 4. I have
 */
 
 
-gen FATE4 = 1 if inlist (Particularoutcome,"Voyage completed as intended","Sold slaves in Americas - subsequent fate unknown","Sold in the Americas after disembarking slaves")
-replace FATE4 = 1 if inlist (Particularoutcome,"Arrived in Africa, subsequent fate unknown","Crew mutiny; slaves landed in the Americas","Sold prematurely in Europe after disembarking slaves in the Americas")
-replace FATE4 = 1 if inlist (Particularoutcome,"Returned direct to Africa after bringing slaves to the Americas","Vice-Admiralty Court, Tortola, restored","Captured by the British, retaken by original crew, completed voyage")
-replace FATE4 = 1 if inlist (Particularoutcome,"Captured by English, slaves turned loose on Spanish Main","Sold slaves in Africa","Sold slaves in Europe, subsequent fate unknown")
+gen FATE4 = 1 if inlist(Particularoutcome,"Voyage completed as intended","Sold slaves in Americas - subsequent fate unknown","Sold in the Americas after disembarking slaves")
+replace FATE4 = 1 if inlist(Particularoutcome,"Arrived in Africa, subsequent fate unknown","Crew mutiny; slaves landed in the Americas","Sold prematurely in Europe after disembarking slaves in the Americas")
+replace FATE4 = 1 if inlist(Particularoutcome,"Returned direct to Africa after bringing slaves to the Americas","Vice-Admiralty Court, Tortola, restored","Captured by the British, retaken by original crew, completed voyage")
+replace FATE4 = 1 if inlist(Particularoutcome,"Captured by English, slaves turned loose on Spanish Main","Sold slaves in Africa","Sold slaves in Europe, subsequent fate unknown")
 
 rename VoyageID VOYAGEID
 tostring(VOYAGEID), replace
 
-rename Imputedprincipalplaceofcaptivepu MJBYPTIMP
+encode Imputedprincipalplaceofcaptivepu,generate(MJBYPTIMP)
 rename TotalembarkedIMP SLAXIMP
 
 save "tastdb-exp-2026.dta", replace

@@ -8,7 +8,7 @@
 	}
 
 	cd "$dir"
-	global output "~/Répertoires GIT/slaveprofits data and programs/output/"
+	global output "$dir/output/"
 	global graphs "$dir/graphs"
 	
 
