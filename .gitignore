@@ -35,3 +35,13 @@ TSTD_enriched.dta
 /data/~$data_quality_flags.xlsx
 /output/~$ofits_bynatio_baseline.docx
 /external data/tastdb-exp-2020_corr.dta
+/output/Cash flow all.dta
+/output/European wars.dta
+/output/Exchange rates from Denzel.dta
+/output/Exchange rates in silver.dta
+/output/Neutrality.dta
+/output/port_shares.dta
+/output/Prices.dta
+/output/Venture all.dta
+/output/voyages.dta
+/tastdb-exp-2020_corr.dta

@@ -1,25 +1,6 @@
 
 clear
 
- if lower(c(username)) == "guillaumedaudin" {
-	global dir "~/Répertoires GIT/slaveprofits data and programs"
-	cd "$dir"
-	global output "~/Répertoires GIT/slaveprofits data and programs/output/"
-	global tastdb "$dir/external data/"
-}
-
- if lower(c(username)) == "xronkl" {
-	global dir "S:\Personal Folders\Forskning - under arbete\Slave trade profits meta-study\GIT\slaveprofits"
-	cd "$dir"
-	global output "$dir\output\"
-	global tastdb "$dir\external data\"
-}
-
-
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 ////Captains and OUTFITTERs’ career.
@@ -30,7 +11,7 @@ clear
 
 *1. Start wit tstd
 
-use "${tastdb}tastdb-exp-2020.dta", clear
+use "${tastdb}tastdb-exp-2026.dta", clear
 
 //2. Correct owner’s names TSDT
 
@@ -100,7 +81,7 @@ foreach letter in A B C {
 }
 
 
-save "${tastdb}tastdb-exp-2020_corr.dta", replace
+save "${tastdb}tastdb-exp-2026_corr.dta", replace
 
 
 //////3. merge with Venture all to get extra voyages
@@ -110,7 +91,7 @@ use "${output}voyages.dta", clear
 duplicates drop nameofthecaptain nameofoutfitter VOYAGEID, force
 //This is only useful if we know the name of the captain or the outfitter
 drop if nameofthecaptain=="" & nameofoutfitter==""
-merge 1:1 VOYAGEID  using "${tastdb}tastdb-exp-2020_corr.dta"
+merge 1:1 VOYAGEID  using "${tastdb}tastdb-exp-2026_corr.dta"
 drop _merge
 
 
@@ -131,11 +112,11 @@ label var MAJMAJBYIMP "African region of trade"
 
 
 
-save "tastdb-exp-2020+own.dta", replace
+save "tastdb-exp-2026+own.dta", replace
 
 // * 4. PREPARE OUTFITTERS’ AND CAPTAINS’ TRACK RECORD
 
-use "tastdb-exp-2020+own.dta", clear
+use "tastdb-exp-2026+own.dta", clear
 keep CAPTAINA CAPTAINB CAPTAINC YEARAF VOYAGEID MAJMAJBYIMP
 
 capture erase "${output}Captain.dta"
@@ -155,7 +136,7 @@ use "${output}Captain.dta", clear
 duplicates drop CAPTAIN VOYAGEID, force
 save "${output}Captain.dta", replace
  
-use "tastdb-exp-2020+own.dta", clear
+use "tastdb-exp-2026+own.dta", clear
 
  keep OWNERA /*OWNERB OWNERC OWNERD /*
  */ OWNERE OWNERF OWNERG OWNERH OWNERI OWNERJ OWNERK OWNERL OWNERM OWNERN /* 
@@ -243,4 +224,4 @@ drop temp_OUTFITTER_experience
 
 save "${output}OUTFITTER.dta", replace
 
-erase "tastdb-exp-2020+own.dta"
+erase "tastdb-exp-2026+own.dta"

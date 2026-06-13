@@ -1,9 +1,10 @@
 clear all
 
-import delimited "$dir/2026 06 09 tstd from www.slavevoyages.org:voyage:trans-atlantic#voyages.csv", varnames(1) case(preserve) bindquote(strict)
+*import delimited "$dir/2026 06 09 tstd from www.slavevoyages.org:voyage:trans-atlantic#voyages.csv", varnames(1) case(preserve) bindquote(strict)
 
 *import delimited "$dir/2026 03 25 tstd from www.slavevoyages.org:voyage:trans-atlantic#voyages.csv", varnames(1) case(preserve) bindquote(strict)
 
+import delimited "$dir/2026 06 10 tstd from Mulligansbuild.csv", varnames(1) case(preserve) bindquote(strict)
 
 /*///Here are the indications I have about the coding of YEARAF in the original databese
 Below is the syntax section related to the imputation of YEARAF along with a note by the creators of the impute script (David Eltis and Paul Lachance):
@@ -62,6 +63,74 @@ tostring(VOYAGEID), replace
 
 encode Imputedprincipalplaceofcaptivepu,generate(MJBYPTIMP)
 rename TotalembarkedIMP SLAXIMP
+
+
+
+
+*****And now for captains and owners
+
+forvalues k = 1/3  {
+    gen str2045 CAPTAIN`k' = ""
+}
+forvalues k = 1/15 {
+    gen str2045 OWNER`k'   = ""
+}
+
+mata:
+void parse_voyage(string scalar varname) {
+    real scalar    n, i, k_cap, k_own, var_num
+    string scalar  val, piece, role, name
+    string vector  segs
+
+    n = st_nobs()
+    for (i = 1; i <= n; i++) {
+        val  = st_sdata(i, varname)
+        segs = tokens(val, "|")        // split on pipe
+        segs = select(segs, segs :!= "|")  // drop delimiters
+
+        k_cap = 1 ; k_own = 1
+        for (j = 1; j <= length(segs); j++) {
+            piece = strtrim(segs[j])
+            if (substr(piece,1,7) == "Captain" & k_cap <= 3) {
+                name = strtrim(substr(piece, 10, .))
+                ////display(name)
+                var_num = st_varindex("CAPTAIN" + strofreal(k_cap))
+                ////display (strofreal(var_num))
+                st_sstore(i, var_num, name)
+                k_cap++
+            }
+            else if (substr(piece,1,8) == "Investor" & k_own <= 15) {
+                name = strtrim(substr(piece, 11, .))
+                var_num = st_varindex("OWNER" + strofreal(k_own))
+                st_sstore(i, var_num, name)
+                k_own++
+            }
+        }
+    }
+}
+end
+
+mata: parse_voyage("Enslavers")  
+rename CAPTAIN1 CAPTAINA
+rename CAPTAIN2 CAPTAINB
+rename CAPTAIN3 CAPTAINC
+
+rename OWNER1 OWNERA
+rename OWNER2 OWNERB
+rename OWNER3 OWNERC
+rename OWNER4 OWNERD
+rename OWNER5 OWNERE
+rename OWNER6 OWNERF
+rename OWNER7 OWNERG
+rename OWNER8 OWNERH
+rename OWNER9 OWNERI
+rename OWNER10 OWNERJ
+rename OWNER11 OWNERK
+rename OWNER12 OWNERL
+rename OWNER13 OWNERM
+rename OWNER14 OWNERN
+rename OWNER15 OWNERO
+
 
 save "tastdb-exp-2026.dta", replace
 
