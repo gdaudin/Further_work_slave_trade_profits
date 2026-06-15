@@ -13,7 +13,7 @@ clear
 
 use "${tastdb}tastdb-exp-2026.dta", clear
 
-//2. Correct owner’s names TSDT
+//2. Correct owner’s names TSTD
 
 **We make the assumption the first owner is the outfitter in tsdt
 foreach letter in A /*B C D E F G H I J K L M O P*/ {
@@ -48,7 +48,7 @@ foreach letter in A /*B C D E F G H I J K L M O P*/ {
 }
 
 
-////// Correct captain’s names TSDT
+////// Correct captain’s names TSTD
 foreach letter in A B C {
 	replace CAPTAIN`letter' = "Devigne, Et" if strmatch(CAPTAIN`letter', "*Devigne, E*")==1
 	replace CAPTAIN`letter' = "Barkley, John" if strmatch(CAPTAIN`letter', "*Barkley,J*")==1

@@ -65,6 +65,7 @@ rename VoyageID VOYAGEID
 tostring(VOYAGEID), replace
 
 encode Imputedprincipalplaceofcaptivepu,generate(MJBYPTIMP)
+encode ImputedPrincipalregionofcaptivep,generate(MAJBYIMP)
 rename TotalembarkedIMP SLAXIMP
 
 

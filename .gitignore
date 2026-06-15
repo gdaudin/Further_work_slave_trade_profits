@@ -46,3 +46,5 @@ TSTD_enriched.dta
 /output/voyages.dta
 /tastdb-exp-2020_corr.dta
 /tastdb-exp-2026_corr.dta
+/output/Captain.dta
+/output/OUTFITTER.dta
