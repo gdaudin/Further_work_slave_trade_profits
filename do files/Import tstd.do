@@ -4,7 +4,10 @@ clear all
 
 *import delimited "$dir/2026 03 25 tstd from www.slavevoyages.org:voyage:trans-atlantic#voyages.csv", varnames(1) case(preserve) bindquote(strict)
 
-import delimited "$dir/2026 06 10 tstd from Mulligansbuild.csv", varnames(1) case(preserve) bindquote(strict)
+*import delimited "$dir/2026 06 10 tstd from Mulligansbuild.csv", varnames(1) case(preserve) bindquote(strict)
+
+import delimited "$dir/2026 06 15 tstd from www.slavevoyages.org:voyage:trans-atlantic#voyages.csv", varnames(1) case(preserve) bindquote(strict)
+
 
 /*///Here are the indications I have about the coding of YEARAF in the original databese
 Below is the syntax section related to the imputation of YEARAF along with a note by the creators of the impute script (David Eltis and Paul Lachance):
