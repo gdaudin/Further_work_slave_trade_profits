@@ -4,40 +4,6 @@
 
 * 0. PREAMBLE 
 clear
-if lower(c(username)) == "kraemer" {
-	!subst X: /d
-	!subst X:   "C:\Users\Kraemer\Documents"
-	capture cd "X:\slaveprofits\"
-	if _rc != 0 cd  "C:\Users\Kraemer\Documents\slaveprofits"
-	global output "C:\Users\Kraemer\Documents\slaveprofits\script claire\output"
-	global other "C:\Users\Kraemer\Documents\slaveprofits\script claire"
-	global slaves "C:\Users\Kraemer\Documents\slaveprofits\script claire\slaves"
-	global dofile "C:\Users\Kraemer\Documents\slaveprofits\script claire\do"
-
-		}
-
-else if lower(c(username)) == "claire" {
-	!subst X: /d
-	!subst X:   "/Users/claire/"
-	capture cd "X:/slaveprofits/"
-	if _rc != 0 cd  "/Users/claire/slaveprofits/"
-	global output "/Users/claire/Desktop/temp"
-	global other "/Users/claire/slaveprofits/script claire/"
-	global slaves "/Users/claire/slaveprofits/script claire/slaves/"
-	global dofile "/Users/claire/slaveprofits/script claire/do/"
-
-}
-
-else if lower(c(username)) == "guillaumedaudin" {
-	set trace on
-	global dir "~/Répertoires GIT/slaveprofits data and programs"
-	cd "$dir"
-	global output "~/Répertoires GIT/slaveprofits data and programs/output/"
-	global other "$dir/script claire/"
-	global slaves "$dir/script claire/slaves/"
-	global dofile "$dir/script claire/do/"
-
-}
 
 
 qui do "${dofile}Import data do-file.do" 

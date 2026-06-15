@@ -2,21 +2,6 @@
 
 clear
 
-
- if lower(c(username)) == "guillaumedaudin" {
-	global dir "~/Répertoires GIT/slaveprofits data and programs"
-	cd "$dir"
-	global output "~/Répertoires GIT/slaveprofits data and programs/output/"
-	global tastdb "$dir/external data/"
-}
-
- if lower(c(username)) == "xronkl" {
-	global dir "S:\Personal Folders\Forskning - under arbete\Slave trade profits meta-study\GIT\slaveprofits"
-	cd "$dir"
-	global output "$dir\output\"
-	global tastdb "$dir\external data\"
-}
-
 /*
 DATARR43 DATARR44 DATAR45  day / Month / year voyage completed (year missing for 24,708 voyages)
 DATEEND Date when voyage completed 25,654 missing

@@ -1,24 +1,4 @@
-if lower(c(username)) == "kraemer" {
-	!subst X: /d
-	!subst X:   "C:\Users\Kraemer\Documents"
-	capture cd "X:\slaveprofits\"
-	if _rc != 0 cd  "C:\Users\Kraemer\Documents\slaveprofits"
-	global output "C:\Users\Kraemer\Documents\slaveprofits\script guillaume-claire-judith\output"
 
-}
-
-
-else if lower(c(username)) == "guillaumedaudin" {
-	global dir "~/Répertoires GIT/slaveprofits data and programs"
-	cd "$dir"
-	global output "~/Répertoires GIT/slaveprofits data and programs/output/"
-}
-
-else if lower(c(username)) == "xronkl" {
-	global dir "S:\Personal Folders\Forskning - under arbete\Slave trade profits meta-study\GIT\slaveprofits"
-	cd "$dir"
-	global output "$dir\output\"
-}
 clear
 
 
