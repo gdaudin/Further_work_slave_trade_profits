@@ -9,7 +9,7 @@ DATEDEP Date voyage began 13,244 missing (DATEDEPA DATEDEPM DATEDEPC day Month y
 Either DATEEND or DATEDEP is missing for 26,227 voyages
 */
 
-use "${tastdb}tastdb-exp-2020.dta", clear
+use "${tastdb}tastdb-exp-2026.dta", clear
 
 gen length_in_days=(DATEEND-DATEDEP)/1000/60/60/24
 label var length_in_days "Length of voyage in days"
