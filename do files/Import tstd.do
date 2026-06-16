@@ -79,6 +79,19 @@ rename StandardizedTonnageIMP TONMOD
 
 encode Imputedprincipalplaceofcaptivepu,generate(MJBYPTIMP)
 encode ImputedPrincipalregionofcaptivep,generate(MAJBYIMP)
+rename Imputedprincipalplaceofcaptivepu MJBYPTIMP_str
+rename ImputedPrincipalregionofcaptivep MAJBYIMP_str
+
+gen MAJMAJBYIMP = "West" if MAJBYIMP_str=="Senegambia and offshore Atlantic" | MAJBYIMP_str=="Sierra Leone" | MAJBYIMP_str=="Windward Coast"
+replace MAJMAJBYIMP = "Bight of Guinea" if MAJBYIMP_str=="Gold Coast" | MAJBYIMP_str=="Bight of Benin" | MAJBYIMP_str=="Bight of Biafra and Gulf of Guinea islands"
+replace MAJMAJBYIMP = "South" if MAJBYIMP_str=="West Central Africa and St Helena" | MAJBYIMP_str=="East Africa and Indian Ocean islands"
+label var MAJMAJBYIMP "African region of trade"
+encode MAJMAJBYIMP, gen(MAJMAJBYIMP_num)
+label var MAJMAJBYIMP "African region of trade"
+label var MAJMAJBYIMP_num "African region of trade"
+
+**We loose some regions with the 2026 data, but that seems justified
+
 
 
 

@@ -102,13 +102,9 @@ replace CAPTAINA= nameofthecaptain if missing(CAPTAINA)
 replace YEARAF = YEARAF_own if missing(YEARAF)
 /*drop if strmatch(voyageidintstd,"*/*")==1
 **I would like to avoid that line. Issues with DR051, KR014 (and probably not KR016) */
-drop if YEARAF==.
+*"
 
-decode MAJBYIMP, gen(MAJBYIMP_str)
-gen MAJMAJBYIMP = "West" if MAJBYIMP_str==" Senegambia and offshore Atlantic" | MAJBYIMP_str==" Sierra Leone" | MAJBYIMP_str==" Windward Coast"
-replace MAJMAJBYIMP = "Bight of Guinea" if MAJBYIMP_str==" Gold Coast" | MAJBYIMP_str==" Bight of Benin" | MAJBYIMP_str==" Bight of Biafra and Gulf of Guinea islands"
-replace MAJMAJBYIMP = "South" if MAJBYIMP_str==" West Central Africa and St. Helena" | MAJBYIMP_str==" Southeast Africa and Indian Ocean islands "
-label var MAJMAJBYIMP "African region of trade"
+drop if YEARAF==.
 
 
 
