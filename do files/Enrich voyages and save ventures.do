@@ -117,7 +117,7 @@ label define fate 1 "Voyage completed as intended" 2 "Original goal thwarted bef
 label values FATEcol fate
 
 **Compute the length of each voyage (if possible)
-gen length_in_days=(DATEEND-DATEDEP)/1000/60/60/24
+gen length_in_days=DATEEND-DATEDEP
 label var length_in_days "Length of voyage (Europe to Europe) in days"
 *drop DATEEND DATEDEP
 
