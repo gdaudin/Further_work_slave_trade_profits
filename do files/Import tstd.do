@@ -66,10 +66,10 @@ tostring(VOYAGEID), replace
 
 gen YEARDEP = real(substr(Datevoyagebegan, 1, 4))
 
-gen DATEEND = date(Datevoyagecompleted, "YMD")
-format DATEEND %td
-gen DATEDEP = date(Datevoyagebegan, "YMD")
-format DATEDEP %td
+gen DATEEND = date(Datevoyagecompleted, "YMD",1900)
+format DATEEND %tdNN/DD/CCYY
+gen DATEDEP = date(Datevoyagebegan, "YMD",1900)
+format DATEDEP %tdNN/DD/CCYY
 
 rename TotaldisembarkedIMP SLAMIMP
 rename TotalembarkedIMP SLAXIMP
