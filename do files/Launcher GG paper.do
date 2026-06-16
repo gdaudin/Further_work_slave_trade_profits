@@ -26,19 +26,18 @@
 	do "${dir}/do files/Import data python_merge.do" /*606 ventures 685 voyages*/ /*This works from the post-merged csv files*/
 	do "${dir}/do files/Unique voyages db.do" /*This creates a db of voyages in the data*/
 	do "${dir}/do files/For careers.do" /*Work on tsdt, enriched when possible with our data*/
-	blif
+	
 
 
 	
 	*Creating an enriched venture dataset
 	do "${dir}/do files/Enrich voyages and save ventures.do"
 	do "${dir}/do files/Enrich ventures db.do"
-	do "${dir}/do files/Compare and select sample.do" //Table 3 & 4 BB//
 	
 	/*This introduces the cash flows*/
 	do "${dir}/do files/Database for profit and IRR computation.do"
 	do "${dir}/do files/Profit computation.do" /*387 ventures and 446 voyages*/
-
+	blif
 	
 	
 	/*Pour BB

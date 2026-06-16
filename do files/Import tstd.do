@@ -64,9 +64,21 @@ replace FATE4 = 1 if inlist(Particularoutcome,"Captured by English, slaves turne
 rename VoyageID VOYAGEID
 tostring(VOYAGEID), replace
 
+gen YEARDEP = real(substr(Datevoyagebegan, 1, 4))
+
+gen DATEEND = date(Datevoyagecompleted, "YMD")
+format DATEEND %td
+gen DATEDEP = date(Datevoyagebegan, "YMD")
+format DATEDEP %td
+
+rename TotaldisembarkedIMP SLAMIMP
+rename TotalembarkedIMP SLAXIMP
+rename Particularoutcome FATE
+rename StandardizedTonnageIMP TONMOD
+
+
 encode Imputedprincipalplaceofcaptivepu,generate(MJBYPTIMP)
 encode ImputedPrincipalregionofcaptivep,generate(MAJBYIMP)
-rename TotalembarkedIMP SLAXIMP
 
 
 
