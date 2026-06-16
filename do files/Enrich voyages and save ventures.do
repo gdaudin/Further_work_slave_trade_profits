@@ -24,6 +24,7 @@ foreach rank of numlist 1(1)7 {
 	foreach var of varlist DATEEND DATEDEP {
 	capture gen `var'`rank'=.
 	replace `var'`rank'=`var' if voyagenumber==`rank'
+	format `var'`rank' %tdNN/DD/CCYY
 	}
 }
 
