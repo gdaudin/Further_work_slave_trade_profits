@@ -49,3 +49,15 @@ TSTD_enriched.dta
 /output/Captain.dta
 /output/OUTFITTER.dta
 /output/Enriched ventures.dta
+/output/Ventures&profit_Baseline.dta
+/output/Ventures&profit_OR._VSDO1_VSDR1_VSDT0_VSRV1_VSRT0_INV1_INT0.dta
+/output/Ventures&profit_OR._VSDO1_VSDR1_VSDT1_VSRV1_VSRT0_INV1_INT0.dta
+/output/Ventures&profit_OR0_VSDO1_VSDR1_VSDT0_VSRV1_VSRT0_INV1_INT0.dta
+/output/Ventures&profit_OR0.5_VSDO1_VSDR0.83_VSDT0_VSRV1.2_VSRT0_INV1_INT0.dta
+/output/Ventures&profit_OR0.5_VSDO1_VSDR1_VSDT0_VSRV1_VSRT0_INV0_INT0.dta
+/output/Ventures&profit_OR0.5_VSDO1_VSDR1_VSDT0_VSRV1_VSRT0_INV1_INT0.dta
+/output/Ventures&profit_OR0.5_VSDO1_VSDR1_VSDT0_VSRV1_VSRT0_INV1_INT1.dta
+/output/Ventures&profit_OR0.5_VSDO1_VSDR1_VSDT1_VSRV1_VSRT1_INV1_INT0.dta
+/output/Ventures&profit_OR0.5_VSDO1_VSDR1_VSDT1_VSRV1_VSRT1_INV1_INT1.dta
+/output/Ventures&profit_OR0.5_VSDO1.5_VSDR1_VSDT0_VSRV1_VSRT0_INV1_INT0.dta
+/output/Ventures&profit_OR1_VSDO1_VSDR1_VSDT0_VSRV1_VSRT0_INV1_INT0.dta
