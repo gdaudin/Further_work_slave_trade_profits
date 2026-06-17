@@ -3,20 +3,20 @@
                                                              |  Danish   Dutch   English   French   Spanish   Total
 -------------------------------------------------------------+-----------------------------------------------------
 Period                                                       |                                                     
-  pre-1750                                                   |              11        12                         23
-  1751-1775                                                  |              71       146       27               244
-  1776-1800                                                  |       5      19        50       22                96
+  pre-1750                                                   |              11        14                         25
+  1751-1775                                                  |              71       147       27               245
+  1776-1800                                                  |       5      19        47       22                93
   post-1800                                                  |                         6        1        17      24
   Total                                                      |       5     101       214       50        17     387
 African region of trade                                      |                                                     
-  Bight of Guinea                                            |       5      16       131       19         2     173
+  Bight of Guinea                                            |       5      16       128       19         2     170
   South                                                      |              28        20       13         1      62
   West                                                       |              53        39        1         1      94
-  Total                                                      |       5      97       190       33         4     329
+  Total                                                      |       5      97       187       33         4     326
 Fate of venture                                              |                                                     
-  Voyage completed as intended                               |              94       168       35         6     303
-  Original goal thwarted before disembarking enslaved people |                         4        2                 6
-  Original goal thwarted after disembarking enslaved people  |               5        13        3                21
-  Unspecified/unknown                                        |       5                 4        6        10      25
-  Total                                                      |       5      99       189       46        16     355
+  Voyage completed as intended                               |              97       180       34         6     317
+  Original goal thwarted before disembarking enslaved people |                        12        1                13
+  Original goal thwarted after disembarking enslaved people  |               4         7        1         1      13
+  Unknown                                                    |       5                15       14        10      44
+  Total                                                      |       5     101       214       50        17     387
 -------------------------------------------------------------------------------------------------------------------
