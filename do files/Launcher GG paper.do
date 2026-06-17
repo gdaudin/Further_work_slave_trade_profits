@@ -37,7 +37,7 @@
 	/*This introduces the cash flows*/
 	do "${dir}/do files/Database for profit and IRR computation.do"
 	do "${dir}/do files/Profit computation.do" /*387 ventures and 446 voyages*/
-	blif
+	
 	
 	
 	/*Pour BB
@@ -45,12 +45,12 @@
 	do "${dir}/do files/Profit analysis - synchronisation.do" 
 		********
 	do "${dir}/do files/Descriptive statistics of profit.do" /*Small table 2 BB Profit by flag for all sample.*/
-	do "${dir}/do files/Profit graphs.do" /*Figures 2 and 3 and 4 in BB*/
+	*do "${dir}/do files/Profit graphs.do" /*Figures 2 and 3 and 4 in BB*/
 	
 	*/
 
 	do "${dir}/do files/Descriptive statistics of explaining variables.do"
-	
+	blif
 	
 
 	
