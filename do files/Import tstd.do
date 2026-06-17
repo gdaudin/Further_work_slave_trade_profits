@@ -75,6 +75,7 @@ rename TotaldisembarkedIMP SLAMIMP
 rename TotalembarkedIMP SLAXIMP
 rename Particularoutcome FATE
 rename StandardizedTonnageIMP TONMOD
+replace TONMOD = . if TONMOD==0
 
 
 encode Imputedprincipalplaceofcaptivepu,generate(MJBYPTIMP)
@@ -159,6 +160,8 @@ rename OWNER12 OWNERL
 rename OWNER13 OWNERM
 rename OWNER14 OWNERN
 rename OWNER15 OWNERO
+
+
 
 
 save "tastdb-exp-2026.dta", replace

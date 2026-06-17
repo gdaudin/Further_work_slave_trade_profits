@@ -25,12 +25,12 @@ Total net expenditure in kg of silver for the whole ship |
   Maximum value                                          |     967   1,383     3,492    2,306     2,446   3,492
   Number of nonmissing values                            |       5     101       214       50        17     387
 Tonnage standardized on British measured tons, 1773-1835 |                                                     
-  Mean                                                   |       0     307       179      148         0     199
-  Median                                                 |       0     312       182      169         0     182
-  Standard deviation                                     |       0     110        72      134         0     120
-  Minimum value                                          |       0       0         0        0         0       0
-  Maximum value                                          |       0     497       501      365         0     501
-  Number of nonmissing values                            |       5     101       204       46        17     373
+  Mean                                                   |       .     326       181      244         .     229
+  Median                                                 |             316       182      254               218
+  Standard deviation                                     |       .      80        69       75         .      97
+  Minimum value                                          |       .     192        44       60         .      44
+  Maximum value                                          |       .     497       501      365         .     501
+  Number of nonmissing values                            |       0      95       201       28         0     324
 Number of embarked enslaved people per ton               |                                                     
   Mean                                                   |       .    0.88      1.51     1.58         .    1.33
   Median                                                 |            0.82      1.45     1.53              1.25
