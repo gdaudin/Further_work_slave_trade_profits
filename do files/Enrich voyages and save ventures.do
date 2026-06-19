@@ -194,6 +194,8 @@ label var TONMOD "Tonnage standardized on British measured tons, 1773-1835"
 label var crowd "Number of embarked enslaved people per ton"
 label var pricemarkup "Enslaved people price markup between America and Africa"
 label var SLAXIMP "Imputed number of enslaved people embarked"
+label var OUTFITTER_total_career "Total number of voyages of the outfitter"
+label var captain_total_career "Total number of voyages of the captain"
 
 
 

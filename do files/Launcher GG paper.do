@@ -38,22 +38,9 @@
 	do "${dir}/do files/Database for profit and IRR computation.do"
 	do "${dir}/do files/Profit computation.do" /*387 ventures and 446 voyages*/
 	
-	
-	
-	/*Pour BB
-	do "${dir}/do files/Profit analysis - survey method.do" /// Appendix table
-	do "${dir}/do files/Profit analysis - synchronisation.do" 
-		********
-	do "${dir}/do files/Descriptive statistics of profit.do" /*Small table 2 BB Profit by flag for all sample.*/
-	*do "${dir}/do files/Profit graphs.do" /*Figures 2 and 3 and 4 in BB*/
-	
-	*/
 
 	do "${dir}/do files/Descriptive statistics of explaining variables.do"
-	blif
-	
 
-	
 	*do "${dir}/do files/Profit analysis.do" ///***Explaining profits : GG but outdated**///
 
 	do "${dir}/do files/Profit two parts regressions.do"

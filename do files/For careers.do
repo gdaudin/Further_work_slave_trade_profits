@@ -174,7 +174,9 @@ replace homonyme = `nbr' if CAPTAIN==CAPTAIN[_n-1] & homonyme[_n-1] ==`nbr'
 
 sort CAPTAIN homonyme YEARAF 
 bys CAPTAIN homonyme: generate captain_total_career = _N
+label var captain_total_career "Total number of voyages of the captain"
 bys CAPTAIN homonyme: generate captain_experience= _n-1
+label var captain_experience "Number of previous voyages of the captain"
 
 sort CAPTAIN homonyme  MAJMAJBYIMP YEARAF
 bys CAPTAIN homonyme MAJMAJBYIMP : generate captain_regional_experience= _n-1 if MAJMAJBYIMP!=""
@@ -206,7 +208,9 @@ replace homonyme = `nbr' if OUTFITTER==OUTFITTER[_n-1] & homonyme[_n-1] ==`nbr'
 
 sort OUTFITTER homonyme OUTFITTER 
 bys OUTFITTER homonyme: generate OUTFITTER_total_career = _N
+label var OUTFITTER_total_career "Total number of voyages of the outfitter"
 bys OUTFITTER homonyme: generate OUTFITTER_experience= _n-1
+label var OUTFITTER_experience "Number of previous voyages of the outfitter"
 
 sort OUTFITTER homonyme MAJMAJBYIMP YEARAF 
 bys OUTFITTER homonyme MAJMAJBYIMP: generate OUTFITTER_regional_experience= _n-1 if MAJMAJBYIMP!=""
