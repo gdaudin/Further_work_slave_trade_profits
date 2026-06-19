@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------
+Enslaved persons emparked (ln)                              |    0.13***   
+                                                            |  [0.04,0.22] 
+Enslaved people mortality rate                              |    -1.15***  
+                                                            | [-1.51,-0.79]
+Total net expenditure in kg of silver per enslaved person   |    -0.04**   
+                                                            | [-0.08,-0.00]
+Enslaved people price markup between America and Africa     |     -0.02    
+                                                            |  [-0.06,0.02]
+Length of the voyage (ln)                                   |    -0.24***  
+                                                            | [-0.36,-0.12]
+Fate of venture                                             |              
+  Original goal thwarted after disembarking enslaved people |      0.10    
+                                                            |  [-0.09,0.30]
+Intercept                                                   |     1.09**   
+                                                            |  [0.23,1.96] 
+Number of observations                                      |      258     
+R-squared                                                   |      0.24    
+Adjusted R-squared                                          |      0.22    
+---------------------------------------------------------------------------

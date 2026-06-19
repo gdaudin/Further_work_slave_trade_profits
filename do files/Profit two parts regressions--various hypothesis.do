@@ -4,23 +4,14 @@ clear
 *ssc install outreg2, replace
 
 
-if lower(c(username)) == "guillaumedaudin" {
-	global dir "~/Répertoires GIT/slaveprofits data and programs"
-	cd "$dir"
-	global output "~/Répertoires GIT/slaveprofits data and programs/output/"
-	global tastdb "$dir/script guillaume-claire-judith/"
-	global slaves "$dir/script guillaume-claire-judith/slaves/"
-	global graphs "$dir/graphs"
-}
 
- if lower(c(username)) == "xronkl" {
-	global dir "S:\Personal Folders\Forskning - under arbete\Slave trade profits meta-study\GIT\slaveprofits"
-	cd "$dir"
-	global output "$dir\output\"
-	global tastdb "$dir\external data\"
-	global slaves "$dir\do files\script guillaume-claire-judith\slaves\"
-	global graphs "$dir\graphs"
-}
+///////Regression on BB sample
+
+
+
+
+
+
 
 
 global hyp_list 	OR0.5_VSDO1_VSDR1_VSDT0_VSRV1_VSRT0_INV1_INT0 ///

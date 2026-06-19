@@ -6,21 +6,31 @@ clear
 
 capture program drop profit_regv2
 program define profit_regv2
-args OR VSDO VSDR VSDT VSRV VSRT INV INT IMP
+args OR VSDO VSDR VSDT VSRV VSRT INV INT sample
 *eg profit_analysis 0.5 1 1 0 1 0 1 0 for the baseline
 * eg profit_analysis 0.5 1 1 0 1 0 1 0 IMP for the baseline + imputed
 
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0" ///
+local hyp "OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`sample'"
+
+if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0" ///
 	local hyp="Baseline"
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0 IMP" ///
+if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0BB" {
+	local hyp="Baseline_BBsample"
+	local sample=""
+}
+if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0 IMP" ///
 	local hyp="Imputed"
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0 onlyIMP" ///
+if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0 onlyIMP" ///
 	local hyp="Only imputed"
 
 
 
 
-use "${output}/Ventures&profit_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.dta", clear
+use "${output}/Ventures&profit_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`sample'.dta", clear
+if "`hyp'"=="Baseline_BBsample" {
+	keep if nationality == "English" | nationality == "French" | nationality == "Dutch" 
+	keep if YEARAF>=1750 & YEARAF<=1795
+}
 
 drop if completedataonoutlays=="no" & completedataonreturns=="no"
 drop if profit ==.
@@ -109,7 +119,7 @@ collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a])
 collect export "$output/regv2proxy_`hyp'.txt", replace
 collect export "$output/regv2proxy_`hyp'.docx", replace
 
-blif
+
 
 
 
@@ -415,7 +425,8 @@ capture erase "$output/TableBaseline-Imputed.txt"
 
 
 profit_regv2 0.5 1 1 0 1 0 1 0
+profit_regv2 0.5 1 1 0 1 0 1 0 BB
 
-capture erase "Comparison between different assumptions.csv"
+*capture erase "Comparison between different assumptions.csv"
 capture _renamefile "Comparison between different assumptions.txt" "Comparison between different assumptions.csv"
 
