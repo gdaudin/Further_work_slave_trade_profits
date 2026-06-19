@@ -73,6 +73,10 @@ gen big_port=0
 replace big_port=1 if port_share>0.01 & !missing(port_share)
 label var big_port "Big African slave-trading port"
 
+
+gen ln_length_in_days=ln(length_in_days)
+label var ln_length_in_days "Length of the voyage (ln)"
+
 save "${output}Enriched ventures.dta", replace
 erase "${output}Ventures+TSTD variables.dta"
 

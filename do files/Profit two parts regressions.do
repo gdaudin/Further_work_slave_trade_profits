@@ -70,27 +70,13 @@ collect style cell cell_type[row-header], halign(left)
 
 collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model)
 collect style showbase off
+collect style save "profit_regressionv2.collectstyle", replace
+
+
 collect preview
 
 collect export "$output/regv2_`hyp'.txt", replace
 collect export "$output/regv2_`hyp'.docx", replace
-
-blif
-
-outreg2 using "$output/regv2exp_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt", label text auto(2) /*
-*/  keep("$explaining")
-outreg2 using "$output/regv2exp_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.doc", label word auto(2) /*
-*/  keep("$explaining")
-copy "$output/regv2exp_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt" "$output/regv2exp_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.csv", replace
-erase "$output/regv2exp_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt"
-
-
-// reg profit $explaining [weight=frak_post_wt], vce(robust)
-// outreg2 using "$output/regv2exp_wt_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.xls", label excel auto(2)
-// reg profit $explaining if frak_post_wt !=., vce(robust)
-// outreg2 using "$output/regv2exp_sample_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.xls", label excel auto(2)
-
-
 
 
 test OUTFITTER_experience_d  OUTFITTER_regional_experience_d OUTFITTER_total_career
@@ -100,21 +86,30 @@ test war neutral
 
 ////////Proxy regressions
 
-global proxy "ln_SLAXIMP MORTALITY investment_per_slave pricemarkup ln_length_in_days FATEcol"
+collect clear
+
+global proxy "ln_SLAXIMP MORTALITY investment_per_slavekg pricemarkup ln_length_in_days FATEcol"
 global proxy =subinstr("$proxy","FATEcol","i.FATEcol",.)
-reg profit $proxy, vce(robust) 
-*outreg2 using "$output/regv2prox_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.xls", label excel auto(2) replace 
-outreg2 using "$output/regv2prox_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.doc", label word auto(2) replace 
-outreg2 using "$output/regv2prox_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt", label text auto(2) replace 
+collect:reg profit $proxy, vce(robust) 
 
+collect style use "profit_regressionv2.collectstyle"
 
-copy "$output/regv2prox_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt" "$output/regv2prox_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.csv", replace
-erase "$output/regv2prox_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt"
+collect style cell result, nformat(%3.2fc)  halign(center)
+collect style cell result[_r_ci], sformat("[%s]") cidelimiter(,) nformat(%3.2f)
 
-// reg profit $proxy [weight=frak_post_wt], vce(robust)
-// outreg2 using "$output/regv2prox_wt_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.xls", label excel auto(2) replace
-// reg profit $proxy if frak_post_wt !=., vce(robust)
-// outreg2 using "$output/regv2prox_sample_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.xls", label excel auto(2) replace
+collect style cell result[N], nformat(%5.0f) 
+collect stars _r_p 0.01 "***" 0.05 "**" 0.1 "*", attach(_r_b)
+
+collect style row stack, nobinder
+collect style header result[_r_b _r_ci], level(hide)
+collect style cell cell_type[row-header], halign(left)
+
+collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a])
+
+collect export "$output/regv2proxy_`hyp'.txt", replace
+collect export "$output/regv2proxy_`hyp'.docx", replace
+
+blif
 
 
 

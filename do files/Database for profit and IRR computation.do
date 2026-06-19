@@ -174,6 +174,20 @@ gen totalnetexp_silver=totalgrossexp_silver-totaldisc_silver
 gen totalnetreturn_silver=totalgrossreturn_silver-totalcostonreturn_silver
 
 
+**Compute the silver value of the total investment
+
+
+gen totalnetexp_silver_ship = totalnetexp_silver / shareoftheship / numberofvoyages / 1000
+label var totalnetexp_silver_ship "Total net expenditure in kg of silver for the whole ship"
+gen ln_totalnetexp_silver_ship = ln(totalnetexp_silver_ship)
+label var ln_totalnetexp_silver_ship "Net expenditure on venture (ln(silver grams))"
+
+gen totalnetexpperton=totalnetexp_silver_ship/TONMOD
+gen investment_per_slave = totalnetexp_silver_ship/SLAXIMP*1000
+label var investment_per_slave "Total net expenditure in g. of silver per enslaved person"
+gen investment_per_slavekg = investment_per_slave/1000
+label var investment_per_slavekg "Total net expenditure in kg of silver per enslaved person"
+
 
 drop transactionid typeofcashflow-nbr_INT conv_in_silver-costonreturn_silver
 *Move from a database by cashflow to database by venture
