@@ -49,23 +49,18 @@ collect, tag(model[1]): reg profit $explaining, vce(robust)
 global explaining "$explaining i.MAJMAJBYIMP_num big_port"
 collect, tag(model[2]): reg profit $explaining, vce(robust)
 
+collect, tag(model[3]): reg profit $explaining ln_totalnetexp_silver_ship, vce(robust)
 
-global explaining "$explaining ln_totalnetexp_silver_ship crowd OUTFITTER_experience_d captain_experience_d"
-collect, tag(model[3]): reg profit $explaining, vce(robust)
+collect, tag(model[4]): reg profit $explaining TONMOD, vce(robust)
 
-global explaining "ib3.nationality_num war neutral ib2.period"
-global explaining "$explaining i.MAJMAJBYIMP_num big_port"
-global explaining "$explaining TONMOD crowd OUTFITTER_experience_d captain_experience_d"
-collect, tag(model[4]): reg profit $explaining, vce(robust)
-
-
-global explaining "$explaining ln_totalnetexp_silver_ship"
+global explaining "$explaining ln_totalnetexp_silver_ship TONMOD"
 collect, tag(model[5]): reg profit $explaining, vce(robust)
 
+*collect, tag(model[6]): reg profit $explaining OUTFITTER_experience_d captain_experience_d, vce(robust)
 
+collect, tag(model[6]): reg profit $explaining OUTFITTER_experience_d captain_experience_d either_experience_d, vce(robust)
 
-global explaining "$explaining OUTFITTER_total_career captain_total_career OUTFITTER_regional_experience_d captain_regional_experience_d "
-collect, tag(model[6]): reg profit $explaining, vce(robust)
+//The product of experiences is not significant. Regional experience drops a lot of voyages
 
 
 collect style cell result, nformat(%3.2fc)  halign(center)
@@ -90,16 +85,16 @@ collect export "$output/regv2_`hyp'.txt", replace
 collect export "$output/regv2_`hyp'.docx", replace
 
 
-test OUTFITTER_experience_d  OUTFITTER_regional_experience_d OUTFITTER_total_career
-test captain_experience_d  captain_regional_experience_d captain_total_career
-test war neutral
+*test OUTFITTER_experience_d  OUTFITTER_regional_experience_d OUTFITTER_total_career
+*test captain_experience_d  captain_regional_experience_d captain_total_career
+*test war neutral
 *test YEARAF yearsq
 
 ////////Proxy regressions
 
 collect clear
 
-global proxy "ln_SLAXIMP MORTALITY investment_per_slavekg pricemarkup ln_length_in_days FATEbin"
+global proxy "ln_SLAXIMP MORTALITY ln_investment_per_slave pricemarkup ln_length_in_days FATEbin"
 global proxy =subinstr("$proxy","FATEbin","i.FATEbin",.)
 collect:reg profit $proxy, vce(robust) 
 

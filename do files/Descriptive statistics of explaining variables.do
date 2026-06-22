@@ -36,7 +36,8 @@ table (var) (nationality_num), ///
 	statistic(count $varlist_o) ///
 	name(DS_others) replace
 
-global varlist_d war neutral big_port OUTFITTER_experience_d captain_experience_d
+global varlist_d war neutral big_port OUTFITTER_experience_d captain_experience_d either_experience_d /*
+	*/ either_regional_experience_d 
 
 table (var) (nationality_num), ///
 	statistic(mean $varlist_d)  ///
@@ -121,8 +122,8 @@ end
 
 
 descriptive_stat 0.5 1 1 0 1 0 1 0
-descriptive_stat 0.5 1 1 0 1 0 1 0 IMP
-descriptive_stat 0.5 1 1 0 1 0 1 0 onlyIMP
+*descriptive_stat 0.5 1 1 0 1 0 1 0 IMP
+*descriptive_stat 0.5 1 1 0 1 0 1 0 onlyIMP
 
 
 

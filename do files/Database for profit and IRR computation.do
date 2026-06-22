@@ -187,6 +187,9 @@ gen investment_per_slave = totalnetexp_silver_ship/SLAXIMP*1000
 label var investment_per_slave "Total net expenditure in g. of silver per enslaved person"
 gen investment_per_slavekg = investment_per_slave/1000
 label var investment_per_slavekg "Total net expenditure in kg of silver per enslaved person"
+gen ln_investment_per_slave=ln(investment_per_slave)
+label var ln_investment_per_slave "Total net expenditure per enslaved person (ln(silver grams))"
+
 
 
 drop transactionid typeofcashflow-nbr_INT conv_in_silver-costonreturn_silver

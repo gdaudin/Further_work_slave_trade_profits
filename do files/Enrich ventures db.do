@@ -19,7 +19,7 @@ drop _merge
 
 encode nationality, generate(nationality_num)
 gen ln_SLAXIMP = ln(SLAXIMP)
-label var ln_SLAXIMP "Enslaved persons emparked (ln)"
+label var ln_SLAXIMP "Enslaved persons embarked (ln)"
 
 gen MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP
 replace MORTALITY=VYMRTRAT if missing(MORTALITY) | MORTALITY<=0
@@ -53,6 +53,12 @@ label var OUTFITTER_regional_experience_d "Not the first voyage of the outfitter
 
 gen OUTFITTER_total_career_d=0 if !missing(OUTFITTER_total_career)
 replace OUTFITTER_total_career_d=1 if OUTFITTER_total_career>1 & !missing(OUTFITTER_total_career)
+
+gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
+label var either_experience_d "Not the first voyage of both the captain and the outfitter"
+
+gen either_regional_experience_d = max(OUTFITTER_regional_experience_d, captain_regional_experience_d)
+label var either_regional_experience_d "Not the first voyage of both the captain and the outfitter"
 
 encode perspectiveofsource, generate(perspective)
 
