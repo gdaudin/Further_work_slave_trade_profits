@@ -37,6 +37,7 @@ drop if profit ==.
 
 label var nationality_num "Nationality (English omitted)"
 label var period "Period (1751-1775 omitted)"
+label var MAJMAJBYIMP_num "African region of trade (Bight of Guinea omitted)"
 
 
 collect clear
@@ -98,8 +99,8 @@ test war neutral
 
 collect clear
 
-global proxy "ln_SLAXIMP MORTALITY investment_per_slavekg pricemarkup ln_length_in_days FATEcol"
-global proxy =subinstr("$proxy","FATEcol","i.FATEcol",.)
+global proxy "ln_SLAXIMP MORTALITY investment_per_slavekg pricemarkup ln_length_in_days FATEbin"
+global proxy =subinstr("$proxy","FATEbin","i.FATEbin",.)
 collect:reg profit $proxy, vce(robust) 
 
 collect style use "profit_regressionv2.collectstyle"

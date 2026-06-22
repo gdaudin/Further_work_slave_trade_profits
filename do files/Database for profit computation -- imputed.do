@@ -62,7 +62,7 @@ generate totalnetreturn_silver_pers_imp = .
 foreach nat in English French Dutch Danish {
 	reg totalnetreturn_silver gross_slaves_sale_silver /*totalgrossexp_silver*/ if completedataonreturns!="no" & nationality == "`nat'" & SLAMIMP !=., noconstant
 	***Restricting to "successful" voyages does not improve the situation much
-	*reg totalnetreturn_silver gross_slaves_sale_silver if completedataonreturns!="no" & nationality == "English" & SLAMIMP !=. & FATE4==1
+	*reg totalnetreturn_silver gross_slaves_sale_silver if completedataonreturns!="no" & nationality == "English" & SLAMIMP !=. & FATEcol==1
 	predict blif if nationality == "`nat'" & SLAMIMP !=.
 	replace totalneturn_silver_imp= blif if nationality == "`nat'" & SLAMIMP !=.
 	drop blif

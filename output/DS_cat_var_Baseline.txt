@@ -13,10 +13,10 @@ African region of trade                                      |
   South                                                      |              28        20       13         1      62
   West                                                       |              53        39        1         1      94
   Total                                                      |       5      97       187       33         4     326
-Fate of venture                                              |                                                     
-  Voyage completed as intended                               |              97       180       34         6     317
-  Original goal thwarted before disembarking enslaved people |                        12        1                13
+Fate of venture (4 outcomes)                                 |                                                     
+  Voyage completed as intended                               |              97       181       37         6     321
+  Original goal thwarted before disembarking enslaved people |                        12        2                14
   Original goal thwarted after disembarking enslaved people  |               4         7        1         1      13
-  Unknown                                                    |       5                15       14        10      44
+  Unknown                                                    |       5                14       10        10      39
   Total                                                      |       5     101       214       50        17     387
 -------------------------------------------------------------------------------------------------------------------

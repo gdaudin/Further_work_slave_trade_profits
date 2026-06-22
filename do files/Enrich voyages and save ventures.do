@@ -16,7 +16,7 @@ drop if ventureid==""
 sort ventureid VOYAGEID
 
 keep ventureid numberofvoyages voyagenumber VOYAGEID YEARAF MAJBYIMP MAJBYIMP_str MJBYPTIMP MJBYPTIMP_str MAJMAJBYIMP MAJMAJBYIMP_num   /*
-*/ SLAXIMP SLAMIMP CAPTAINA OWNERA DATEEND DATEDEP FATE FATE4 data nameofoutfitter/*
+*/ SLAXIMP SLAMIMP CAPTAINA OWNERA DATEEND DATEDEP FATE FATEcol FATEbin FATEdum* data nameofoutfitter/*
 */ nameofthecaptain YEARAF_own TONMOD nationality YEARDEP
 sort ventureid DATEDEP
 
@@ -61,60 +61,6 @@ merge m:1 YEARAF nationality using  "${output}Neutrality.dta"
 drop if _merge==2
 drop _merge
 
-
-*** COLLAPSE FATE-VARIABLE INTO FOUR CATEGORIES, DEPENDING ON WHETHER/WHEN SHIP WAS LOST, THEN GENERATE DUMMY-VARS TO CAPTURE DIFFERENT OUTCOMES
-
-gen FATEcol=1 if FATE=="Voyage completed as intended"
-
-///The following are changes compared to BB paper
-replace FATEcol=1 if FATE=="Sold in the Americas after disembarking slaves"
-replace FATEcol=1 if FATE=="Laid up (disarmed) or broken up in the Americas"
-replace FATEcol=1 if FATE=="Sold"
-replace FATEcol=1 if FATE=="Captured and recaptured after disembarking slaves"
-replace FATEcol=1 if FATE=="Returned direct to Africa after bringing slaves to the Americas"
-replace FATEcol=1 if FATE=="Captured before disembarking slaves; vessel recaptured or released subsequently"
-
-
-
-replace FATEcol=2 if FATE=="Shipwrecked or destroyed, before slaves embarked"
-replace FATEcol=2 if FATE=="Shipwrecked or destroyed, after embarkation of slaves or during slaving"
-replace FATEcol=2 if FATE=="Captured by crew, did not land slaves in the Americas"
-replace FATEcol=2 if FATE=="Cut off by Africans from shore, ship did not reach the Americas"
-replace FATEcol=2 if FATE=="Captured by the French - after embarkation of slaves"
-replace FATEcol=2 if FATE=="Captured by Portuguese - after embarkation of slaves"
-replace FATEcol=2 if FATE=="Captured by United States with slaves"
-replace FATEcol=2 if FATE=="Some slaves removed by pirates/privateers"
-replace FATEcol=2 if FATE=="Captured by the French - before slaves embarked"
-replace FATEcol=2 if FATE=="Abandoned and/or sold off Africa"
-replace FATEcol=3 if FATE=="Court of Mixed Commission, Havana, condemned"
-
-replace FATEcol=3 if FATE=="Shipwrecked or destroyed, after disembarkation"
-replace FATEcol=3 if FATE=="Condemned - Americas after disembarkation"
-replace FATEcol=3 if FATE=="Captured by United States after slaves disembarked"
-replace FATEcol=3 if FATE=="Captured by British - after disembarkation"
-replace FATEcol=3 if FATE=="Condemned in the Americas by British after slaves disembarked"
-replace FATEcol=1 if FATE=="Abandoned or condemned for un-seaworthiness in the Americas"
-replace FATEcol=1 if FATE=="Abandoned or condemned for unseaworthiness in the Americas"
-
-replace FATEcol=4 if FATE=="Sold slaves in Americas - subsequent fate unknown"
-replace FATEcol=4 if FATE=="Arrived in Africa, subsequent fate unknown"
-replace FATEcol=4 if FATE=="Left home port, no further record"
-replace FATEcol=4 if FATE==""
-replace FATEcol=4 if FATE=="Bought at least one slave in Africa - subsequent fate unknown"
-replace FATEcol=4 if FATE=="Sold in the Americas - not known whether ship brought slaves"
-
-label define fate 1 "Voyage completed as intended" 2 "Original goal thwarted before disembarking enslaved people" 3 "Original goal thwarted after disembarking enslaved people" 4 "Unknown", replace
-label values FATEcol fate
-
-gen FATEdum1=1 if FATEcol==1
-gen FATEdum2=1 if FATEcol==2
-gen FATEdum3=1 if FATEcol==3
-gen FATEdum4=1 if FATEcol==4
-
-assert FATEcol!=.
-
-label define fate 1 "Voyage completed as intended" 2 "Original goal thwarted before disembarking enslaved people" 3 "Original goal thwarted after disembarking enslaved people" 4 "Unknown", replace
-label values FATEcol fate
 
 **Compute the length of each voyage (if possible)
 gen length_in_days=DATEEND-DATEDEP
@@ -214,10 +160,16 @@ gen FATEcol=1 if FATEdum1==1
 replace FATEcol=3 if FATEdum3==1
 replace FATEcol=2 if FATEdum2==1
 replace FATEcol=4 if FATEdum4==1
+replace FATEcol=4 if FATEcol==.
+gen FATEbin=1 if FATEdum1==1
 drop FATEdum*
 
-label values FATEcol fate //label fate is defined earlier
-label var FATEcol "Fate of venture"
+label values FATEcol fate
+label values FATEbin fatebin
+
+//labels defined at tstd import
+label var FATEcol "Fate of venture (4 outcomes)"
+label var FATEbin "Fate of venture (binary)"
 
 
 

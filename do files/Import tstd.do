@@ -55,11 +55,71 @@ There is a contradiction in this definition (208), both coded at 1 and 4. I have
 
 */
 
+////Travail fate
+rename Particularoutcome FATE
 
-gen FATE4 = 1 if inlist(Particularoutcome,"Voyage completed as intended","Sold slaves in Americas - subsequent fate unknown","Sold in the Americas after disembarking slaves")
-replace FATE4 = 1 if inlist(Particularoutcome,"Arrived in Africa, subsequent fate unknown","Crew mutiny; slaves landed in the Americas","Sold prematurely in Europe after disembarking slaves in the Americas")
-replace FATE4 = 1 if inlist(Particularoutcome,"Returned direct to Africa after bringing slaves to the Americas","Vice-Admiralty Court, Tortola, restored","Captured by the British, retaken by original crew, completed voyage")
-replace FATE4 = 1 if inlist(Particularoutcome,"Captured by English, slaves turned loose on Spanish Main","Sold slaves in Africa","Sold slaves in Europe, subsequent fate unknown")
+
+*** COLLAPSE FATE-VARIABLE INTO FOUR CATEGORIES, DEPENDING ON WHETHER/WHEN SHIP WAS LOST, THEN GENERATE DUMMY-VARS TO CAPTURE DIFFERENT OUTCOMES
+
+
+gen FATEcol=1 if FATE=="Voyage completed as intended"
+
+///The following are changes compared to BB paper
+replace FATEcol=1 if FATE=="Sold in the Americas after disembarking slaves"
+replace FATEcol=1 if FATE=="Laid up (disarmed) or broken up in the Americas"
+replace FATEcol=1 if FATE=="Sold"
+replace FATEcol=1 if FATE=="Captured and recaptured after disembarking slaves"
+replace FATEcol=1 if FATE=="Returned direct to Africa after bringing slaves to the Americas"
+replace FATEcol=1 if FATE=="Captured before disembarking slaves; vessel recaptured or released subsequently"
+
+
+
+replace FATEcol=2 if FATE=="Shipwrecked or destroyed, before slaves embarked"
+replace FATEcol=2 if FATE=="Shipwrecked or destroyed, after embarkation of slaves or during slaving"
+replace FATEcol=2 if FATE=="Captured by crew, did not land slaves in the Americas"
+replace FATEcol=2 if FATE=="Cut off by Africans from shore, ship did not reach the Americas"
+replace FATEcol=2 if FATE=="Captured by the French - after embarkation of slaves"
+replace FATEcol=2 if FATE=="Captured by Portuguese - after embarkation of slaves"
+replace FATEcol=2 if FATE=="Captured by United States with slaves"
+replace FATEcol=2 if FATE=="Some slaves removed by pirates/privateers"
+replace FATEcol=2 if FATE=="Captured by the French - before slaves embarked"
+replace FATEcol=2 if FATE=="Abandoned and/or sold off Africa"
+replace FATEcol=3 if FATE=="Court of Mixed Commission, Havana, condemned"
+
+replace FATEcol=3 if FATE=="Shipwrecked or destroyed, after disembarkation"
+replace FATEcol=3 if FATE=="Condemned - Americas after disembarkation"
+replace FATEcol=3 if FATE=="Captured by United States after slaves disembarked"
+replace FATEcol=3 if FATE=="Captured by British - after disembarkation"
+replace FATEcol=3 if FATE=="Condemned in the Americas by British after slaves disembarked"
+replace FATEcol=1 if FATE=="Abandoned or condemned for un-seaworthiness in the Americas"
+replace FATEcol=1 if FATE=="Abandoned or condemned for unseaworthiness in the Americas"
+
+replace FATEcol=4 if FATE=="Sold slaves in Americas - subsequent fate unknown"
+replace FATEcol=4 if FATE=="Arrived in Africa, subsequent fate unknown"
+replace FATEcol=4 if FATE=="Left home port, no further record"
+replace FATEcol=4 if FATE==""
+replace FATEcol=4 if FATE=="Bought at least one slave in Africa - subsequent fate unknown"
+replace FATEcol=4 if FATE=="Sold in the Americas - not known whether ship brought slaves"
+
+label define fate 1 "Voyage completed as intended" 2 "Original goal thwarted before disembarking enslaved people" 3 "Original goal thwarted after disembarking enslaved people" 4 "Unknown", replace
+label values FATEcol fate
+
+gen FATEdum1=1 if FATEcol==1
+gen FATEdum2=1 if FATEcol==2
+gen FATEdum3=1 if FATEcol==3
+gen FATEdum4=1 if FATEcol==4
+
+*assert FATEcol!=. There are manymissing values left
+
+label define fate 1 "Voyage completed as intended" 2 "Original goal thwarted before disembarking enslaved people" 3 "Original goal thwarted after disembarking enslaved people" 4 "Unknown", replace
+label values FATEcol fate
+
+gen FATEbin=1 if FATEcol==1
+replace FATEbin=0 if FATEcol==2 | FATEcol==3 | FATEcol==4
+label define fatebin 1 "Voyage completed as intended" 0 "Original goal thwarted or unknown", replace
+label values FATEbin fatebin
+
+
 
 rename VoyageID VOYAGEID
 tostring(VOYAGEID), replace
@@ -73,7 +133,6 @@ format DATEDEP %tdNN/DD/CCYY
 
 rename TotaldisembarkedIMP SLAMIMP
 rename TotalembarkedIMP SLAXIMP
-rename Particularoutcome FATE
 rename StandardizedTonnageIMP TONMOD
 replace TONMOD = . if TONMOD==0
 
