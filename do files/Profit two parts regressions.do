@@ -94,9 +94,10 @@ collect export "$output/regv2_`hyp'.docx", replace
 
 collect clear
 
-global proxy "ln_SLAXIMP MORTALITY ln_investment_per_slave pricemarkup ln_length_in_days FATEbin"
-global proxy =subinstr("$proxy","FATEbin","i.FATEbin",.)
-collect:reg profit $proxy, vce(robust) 
+global proxy "ln_SLAXIMP MORTALITY ln_investment_per_slave pricemarkup ln_length_in_days i.FATEbin"
+collect, tag(model[1]):reg profit $proxy, vce(robust) 
+
+collect, tag(model[2]):reg profit $proxy crowd, vce(robust) 
 
 collect style use "profit_regressionv2.collectstyle"
 
@@ -110,7 +111,7 @@ collect style row stack, nobinder
 collect style header result[_r_b _r_ci], level(hide)
 collect style cell cell_type[row-header], halign(left)
 
-collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a])
+collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[2 1])
 
 collect export "$output/regv2proxy_`hyp'.txt", replace
 collect export "$output/regv2proxy_`hyp'.docx", replace

@@ -1,19 +1,24 @@
-----------------------------------------------------------------------------
-Enslaved persons embarked (ln)                               |    0.12***   
-                                                             |  [0.03,0.22] 
-Enslaved people mortality rate                               |    -1.20***  
-                                                             | [-1.57,-0.83]
-Total net expenditure per enslaved person (ln(silver grams)) |    -0.19***  
-                                                             | [-0.31,-0.08]
-Enslaved people price markup between America and Africa      |     -0.02    
-                                                             |  [-0.06,0.02]
-Length of the voyage (ln)                                    |    -0.19***  
-                                                             | [-0.31,-0.07]
-Fate of venture (binary)                                     |              
-  Voyage completed as intended                               |      0.00    
-Intercept                                                    |    2.29***   
-                                                             |  [1.12,3.46] 
-Number of observations                                       |      254     
-R-squared                                                    |      0.25    
-Adjusted R-squared                                           |      0.24    
-----------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+                                                             |             2             1
+-------------------------------------------------------------+----------------------------
+Enslaved persons embarked (ln)                               |    0.14***       0.12***   
+                                                             |  [0.04,0.24]   [0.03,0.22] 
+Enslaved people mortality rate                               |    -1.16***      -1.19***  
+                                                             | [-1.56,-0.75] [-1.56,-0.82]
+Total net expenditure per enslaved person (ln(silver grams)) |    -0.27***      -0.19***  
+                                                             | [-0.42,-0.13] [-0.30,-0.08]
+Enslaved people price markup between America and Africa      |     -0.02         -0.02    
+                                                             |  [-0.06,0.02]  [-0.06,0.02]
+Length of the voyage (ln)                                    |    -0.27***      -0.21***  
+                                                             | [-0.42,-0.13] [-0.32,-0.09]
+Fate of venture (binary)                                     |                            
+  Voyage completed as intended                               |     -0.07         -0.02    
+                                                             |  [-0.31,0.17]  [-0.23,0.18]
+Number of embarked enslaved people per ton                   |    -0.10**                 
+                                                             | [-0.20,-0.01]              
+Intercept                                                    |    3.49***       2.36***   
+                                                             |  [1.82,5.16]   [1.16,3.56] 
+Number of observations                                       |      242           258     
+R-squared                                                    |      0.28          0.25    
+Adjusted R-squared                                           |      0.26          0.24    
+------------------------------------------------------------------------------------------
