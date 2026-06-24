@@ -161,7 +161,8 @@ replace FATEcol=3 if FATEdum3==1
 replace FATEcol=2 if FATEdum2==1
 replace FATEcol=4 if FATEdum4==1
 replace FATEcol=4 if FATEcol==.
-gen FATEbin=1 if FATEdum1==1
+gen FATEbin=0
+replace FATEbin=1 if FATEdum1==1
 drop FATEdum*
 
 label values FATEcol fate
