@@ -44,8 +44,9 @@
 	*do "${dir}/do files/Profit analysis.do" ///***Explaining profits : GG but outdated**///
 
 	do "${dir}/do files/Profit two parts regressions.do"
-	blif
+	
 	do "${dir}/do files/Profit two parts regressions--various hypothesis.do"
+	blif
 
 	
 
@@ -58,24 +59,6 @@
 	profit_analysis 0.5 1 1 0 1 0 1 0 onlyIMP
 
 	**Descriptive statistics, comparing different hypothesis
-
-
-	
-	
-
-*/
-	**For IRR computations
-	do "${dir}/do files/IRR computation.do"  /*uses do "${dir}/do files/irrGD.do"*/ 
-	**To transform profits into IRR (this is long)
-	***previous solution if you want to work with a limited number of ventures
-	*do "${dir}/do files/Transforming profit into IRR.do" /*uses do "${dir}/do files/irrGD.do"*/ 
-	*I think the idea of that program is to compute a typical chronolgy of returns and apply it to the profits of the ventures.
-	*Maybe too complicated and not done finaly.?
-
-/*
-	****Robustess	
-	do "${dir}/do files/DS -- profit graphs -- profit analysis  -- Robustness.do" /*only calls different programs, but long*/
-	**We are not using these tables (which fully reproduce the main analysis for each hypothesis)
 
 	**Various 
 
