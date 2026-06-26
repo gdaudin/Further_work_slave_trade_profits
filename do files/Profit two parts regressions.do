@@ -51,9 +51,9 @@ collect, tag(model[2]): reg profit $explaining, vce(robust)
 
 collect, tag(model[3]): reg profit $explaining ln_totalnetexp_silver_ship, vce(robust)
 
-collect, tag(model[4]): reg profit $explaining TONMOD, vce(robust)
+collect, tag(model[4]): reg profit $explaining lnTONMOD, vce(robust)
 
-global explaining "$explaining ln_totalnetexp_silver_ship TONMOD"
+global explaining "$explaining ln_totalnetexp_silver_ship lnTONMOD"
 collect, tag(model[5]): reg profit $explaining, vce(robust)
 
 *collect, tag(model[6]): reg profit $explaining OUTFITTER_experience_d captain_experience_d, vce(robust)
@@ -65,7 +65,7 @@ collect, tag(model[6]): reg profit $explaining OUTFITTER_experience_d captain_ex
 
 collect style cell result, nformat(%3.2fc)  halign(center)
 collect style cell result[_r_ci], sformat("[%s]") cidelimiter(,) nformat(%3.2f)
-collect style cell result[_r_b]#colname[TONMOD], nformat(%5.4fc)
+collect style cell result[_r_b]#colname[lnTONMOD], nformat(%5.4fc)
 
 collect style cell result[N], nformat(%5.0f) 
 collect stars _r_p 0.01 "***" 0.05 "**" 0.1 "*", attach(_r_b)

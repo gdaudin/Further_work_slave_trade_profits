@@ -26,6 +26,9 @@ replace MORTALITY=VYMRTRAT if missing(MORTALITY) | MORTALITY<=0
 replace MORTALITY=0 if MORTALITY<0
 label var MORTALITY "Enslaved people mortality rate"
 
+gen lnTONMOD=ln(TONMOD)
+label var lnTONMOD "Tonnage standardized on British measured tons, 1773-1835 (ln)"
+
 
 
 gen captain_experience_d=0 if !missing(captain_experience)

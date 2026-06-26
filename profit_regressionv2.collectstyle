@@ -162,7 +162,7 @@
           }
         ],
         [
-          "result[_r_b]#colname[TONMOD]",
+          "result[_r_b]#colname[lnTONMOD]",
           {
             "nformat": "%5.4fc"
           }
