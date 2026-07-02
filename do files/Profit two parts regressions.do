@@ -75,6 +75,8 @@ collect style save "profit_regressionv2.collectstyle", replace
 
 collect preview
 
+
+
 if "`hyp'"=="Baseline" | "`hyp'"=="Baseline_BBsample" {
 	collect export "$output/regv2_`hyp'.txt", replace
 	collect export "$output/regv2_`hyp'.docx", replace
@@ -83,6 +85,8 @@ else {
 	collect export "$output/Robustness/regv2_`hyp'.txt", replace
 	collect export "$output/Robustness/regv2_`hyp'.docx", replace
 }
+
+*if "`hyp'"=="Baseline" blif
 
 *test OUTFITTER_experience_d  OUTFITTER_regional_experience_d OUTFITTER_total_career
 *test captain_experience_d  captain_regional_experience_d captain_total_career
@@ -427,7 +431,7 @@ capture erase "$output/TableBaseline-Imputed.txt"
 
 collect clear
 
-profit_regv2 0.5 1 1 0 1 0 1 0
+*profit_regv2 0.5 1 1 0 1 0 1 0
 
 *capture erase "Comparison between different assumptions.csv"
 capture _renamefile "Comparison between different assumptions.txt" "Comparison between different assumptions.csv"
