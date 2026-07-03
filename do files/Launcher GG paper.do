@@ -21,9 +21,7 @@
 	*Creating datasets
 	do "${dir}/do files/Port shares computation.do"
 	do "${dir}/do files/Import external data.do" 
-	*do "${dir}/do files/Import data.do" /*606 ventures 685 voyages*/ /*606 ventures 685 voyages*/ This used to work for the individual csv files (ie Venture database KR - new.csv, Cash flow database GD.csv)
-	//It is not working anymore because the files have been merged into one single csv file (merged_database.csv)
-	do "${dir}/do files/Import data python_merge.do" /*606 ventures 685 voyages*/ /*This works from the post-merged csv files*/
+	do "${dir}/do files/Import data python_merge.do" /*606 ventures 685 voyages*/
 	do "${dir}/do files/Unique voyages db.do" /*This creates a db of voyages in the data*/
 	do "${dir}/do files/For careers.do" /*Work on tsdt, enriched when possible with our data*/
 	
@@ -47,7 +45,9 @@
 	
 
 	do "${dir}/do files/Profit one part regressions.do"
-blif
+
+	do "${dir}/do files/Compare support and population.do"
+
 
 	**Descriptive statistics, comparing different hypothesis
 
