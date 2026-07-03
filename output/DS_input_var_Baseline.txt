@@ -38,12 +38,12 @@ Number of embarked enslaved people per ton               |
   Minimum value                                          |       .    0.17      0.00     0.87         .    0.00
   Maximum value                                          |       .    1.66      3.19     3.19         .    3.19
   Number of nonmissing values                            |       0      95       201       28         0     324
-Not the first voyage of the outfitter                    |                                                     
+Not the first voyage of the outfitter (min)              |                                                     
   Mean                                                   |       .    0.97      0.86     0.71      0.83    0.87
   Median                                                 |            1.00      1.00     1.00      1.00    1.00
   Standard deviation                                     |       .    0.17      0.35     0.46      0.39    0.34
   Number of nonmissing values                            |       0     101       203       49        12     365
-Not the first voyage of the captain                      |                                                     
+Not the first voyage of the captain (min)                |                                                     
   Mean                                                   |    0.00    0.70      0.87     0.41      0.56    0.75
   Median                                                 |    0.00    1.00      1.00     0.00      1.00    1.00
   Standard deviation                                     |       .    0.46      0.34     0.50      0.51    0.44

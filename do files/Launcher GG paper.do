@@ -47,6 +47,7 @@
 	do "${dir}/do files/Profit one part regressions.do"
 
 	do "${dir}/do files/Compare support and population.do"
+	blif
 
 
 	**Descriptive statistics, comparing different hypothesis

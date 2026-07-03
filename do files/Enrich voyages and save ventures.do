@@ -126,8 +126,8 @@ sort ventureid YEARAF, stable
 
 ******move back to ventures
 collapse (first)  MAJMAJBYIMP data (mean) YEARDEP YEARAF SLAXIMP SLAMIMP length_in_days (max) numberofvoyages FATEdum1 FATEdum2 FATEdum3 FATEdum4 DATEDEP* DATEEND* /*
-			*/ (min) OUTFITTER_experience OUTFITTER_regional_experience captain_experience captain_regional_experience /*
-			*/ (mean) OUTFITTER_total_career captain_total_career priceamerica/*
+			*/ (min) OUTFITTER_experience* OUTFITTER_regional_experience* captain_experience* captain_regional_experience* /*
+			*/ (mean) OUTFITTER_total_career* captain_total_career* priceamerica/*
 			*/ (mean) port_share crowd pricemarkup war neutral TONMOD/*
 			*/, by(ventureid)
 
@@ -140,8 +140,10 @@ label var TONMOD "Tonnage standardized on British measured tons, 1773-1835"
 label var crowd "Number of embarked enslaved people per ton"
 label var pricemarkup "Enslaved people price markup between America and Africa"
 label var SLAXIMP "Imputed number of enslaved people embarked"
-label var OUTFITTER_total_career "Total number of voyages of the outfitter"
-label var captain_total_career "Total number of voyages of the captain"
+label var OUTFITTER_total_career "Total number of voyages of the outfitter (mean)"
+label var captain_total_career "Total number of voyages of the captain (mean)"
+label var OUTFITTER_experience_d "Not the first voyage of the outfitter (min)"
+label var captain_experience_d "Not the first voyage of the captain (min)"
 
 
 

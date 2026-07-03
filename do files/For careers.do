@@ -187,6 +187,19 @@ collapse (min) captain_experience captain_total_career captain_regional_experien
 egen temp_captain_experience = min(captain_experience), by(CAPTAIN YEARAF homonyme)
 replace captain_experience=temp_captain_experience if captain_experience!=temp_captain_experience
 drop temp_captain_experience
+
+**Dummy creation
+gen captain_experience_d=0 if !missing(captain_experience)
+replace captain_experience_d=1 if captain_experience>0 & !missing(captain_experience)
+label var captain_experience_d "Not the first voyage of the captain"
+
+gen captain_regional_experience_d=0 if !missing(captain_regional_experience)
+replace captain_regional_experience_d=1 if captain_regional_experience>0 & !missing(captain_regional_experience)
+label var captain_regional_experience_d "Not the first voyage of the captain in the region"
+
+gen captain_total_career_d=0 if !missing(captain_total_career)
+replace captain_total_career_d=1 if captain_total_career>1 & !missing(captain_total_career)
+
 save "${output}Captain.dta", replace
 
 
@@ -221,6 +234,19 @@ collapse (min) OUTFITTER_experience OUTFITTER_total_career OUTFITTER_regional_ex
 egen temp_OUTFITTER_experience = min(OUTFITTER_experience), by(OUTFITTER YEARAF homonyme)
 replace OUTFITTER_experience=temp_OUTFITTER_experience if OUTFITTER_experience!=temp_OUTFITTER_experience
 drop temp_OUTFITTER_experience
+
+
+**Dummy creation
+gen OUTFITTER_experience_d=0 if !missing(OUTFITTER_experience)
+replace OUTFITTER_experience_d=1 if OUTFITTER_experience>0 & !missing(OUTFITTER_experience)
+label var OUTFITTER_experience_d "Not the first voyage of the outfitter"
+
+gen OUTFITTER_regional_experience_d=0 if !missing(OUTFITTER_regional_experience)
+replace OUTFITTER_regional_experience_d=1 if OUTFITTER_regional_experience>0 & !missing(OUTFITTER_regional_experience)
+label var OUTFITTER_regional_experience_d "Not the first voyage of the outfitter in the region"
+
+gen OUTFITTER_total_career_d=0 if !missing(OUTFITTER_total_career)
+replace OUTFITTER_total_career_d=1 if OUTFITTER_total_career>1 & !missing(OUTFITTER_total_career)
 
 save "${output}OUTFITTER.dta", replace
 

@@ -1,13 +1,71 @@
 clear
 
-use "${output}Venture all", clear
-gen sample =  1 if completedataonoutlays!="no" & completedataonreturns!="no"
-table nationality if sample==1
+cd "$dir"
 
-use "${output}voyages", clear
+use "${output}voyages.dta", clear
 
-merge 1:1 VOYAGEID using "${tstddb}tstddb-exp-2020.dta"
+merge 1:1 VOYAGEID  using "tastdb-exp-2026_corr.dta" /*607 matches, 45 in our own but not in TSTD */
+drop _merge 
+
+
+label define data 0 "No computation possible" 1 "With estimates" 2 "Without estimates"
+
+//Here, we assume our data on outfitter is correct
+replace OWNERA= nameofoutfitter if nameofoutfitter!=""
+//Here, we assume stdt on captain is correct
+replace CAPTAINA= nameofthecaptain if missing(CAPTAINA)
+replace YEARAF = YEARAF_own if missing(YEARAF)
+
+
+
+*****Merge voyages with careers
+
+
+* MERGE WITH Career DATASET (CAPTAIN)
+generate CAPTAIN = ""
+replace CAPTAIN = CAPTAINA
+merge m:1 CAPTAIN YEARAF MAJMAJBYIMP using "${output}Captain.dta", keep(1 3)
+assert (CAPTAIN=="" | YEARAF ==.) if _merge==1
 drop _merge
+
+generate OUTFITTER = ""
+replace OUTFITTER = OWNERA if OUTFITTER==""
+replace OUTFITTER="" if OUTFITTER=="."
+merge m:1 OUTFITTER YEARAF MAJMAJBYIMP using "${output}OUTFITTER.dta", keep (1 3)
+assert (OUTFITTER=="" | YEARAF ==.) if _merge==1 
+
+
+gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
+label var either_experience_d "Not the first voyage of both the captain and the outfitter"
+
+global varlist_o  YEARAF, TONMOD, crowd, SLAXIMP, MORTALITY, pricemarkup
+global varlist_d war neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d
+
+gen support=!missing($varlist_o $varlist_d) & data!=0
+
+blif
+
+table (var) (nationality_num), ///
+	statistic(mean $varlist_o)  ///
+	statistic(median $varlist_o)  ///
+	statistic(sd $varlist_o)  ///
+	statistic(max $varlist_o) ///
+	statistic(min $varlist_o) ///
+	statistic(count $varlist_o) ///
+	name(DS_others) replace
+
+
+
+table (var) (nationality_num), ///
+	statistic(mean $varlist_d)  ///
+	statistic(median $varlist_d)  ///
+	statistic(sd $varlist_d)  ///
+	statistic(count $varlist_d) ///
+	name(DS_dummies) replace
+
+
+
+
 replace FATE4=4 if FATE4==.
 
 codebook NATINIMP

@@ -30,33 +30,6 @@ gen lnTONMOD=ln(TONMOD)
 label var lnTONMOD "Tonnage standardized on British measured tons, 1773-1835 (ln)"
 
 
-
-gen captain_experience_d=0 if !missing(captain_experience)
-replace captain_experience_d=1 if captain_experience>0 & !missing(captain_experience)
-label var captain_experience_d "Not the first voyage of the captain"
-
-
-gen captain_regional_experience_d=0 if !missing(captain_regional_experience)
-replace captain_regional_experience_d=1 if captain_regional_experience>0 & !missing(captain_regional_experience)
-label var captain_regional_experience_d "Not the first voyage of the captain in the region"
-
-
-
-gen captain_total_career_d=0 if !missing(captain_total_career)
-replace captain_total_career_d=1 if captain_total_career>1 & !missing(captain_total_career)
-
-
-gen OUTFITTER_experience_d=0 if !missing(OUTFITTER_experience)
-replace OUTFITTER_experience_d=1 if OUTFITTER_experience>0 & !missing(OUTFITTER_experience)
-label var OUTFITTER_experience_d "Not the first voyage of the outfitter"
-
-gen OUTFITTER_regional_experience_d=0 if !missing(OUTFITTER_regional_experience)
-replace OUTFITTER_regional_experience_d=1 if OUTFITTER_regional_experience>0 & !missing(OUTFITTER_regional_experience)
-label var OUTFITTER_regional_experience_d "Not the first voyage of the outfitter in the region"
-
-gen OUTFITTER_total_career_d=0 if !missing(OUTFITTER_total_career)
-replace OUTFITTER_total_career_d=1 if OUTFITTER_total_career>1 & !missing(OUTFITTER_total_career)
-
 gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
 label var either_experience_d "Not the first voyage of both the captain and the outfitter"
 

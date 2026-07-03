@@ -30,9 +30,9 @@ Big African slave-trading port                                |                 
                                                               |              [-0.17,0.03] [-0.20,0.02] [-0.21,0.01] [-0.19,-0.03] [-0.19,-0.04]
 Tonnage standardized on British measured tons, 1773-1835 (ln) |                               -0.03        -0.03       0.20***       0.23***   
                                                               |                           [-0.19,0.13] [-0.20,0.14]  [0.07,0.33]   [0.11,0.36] 
-Not the first voyage of the outfitter                         |                                            -0.03        -0.08         -0.07    
+Not the first voyage of the outfitter (min)                   |                                            -0.03        -0.08         -0.07    
                                                               |                                        [-0.14,0.09]  [-0.20,0.05]  [-0.19,0.05]
-Not the first voyage of the captain                           |                                            -0.04        -0.04         -0.04    
+Not the first voyage of the captain (min)                     |                                            -0.04        -0.04         -0.04    
                                                               |                                        [-0.15,0.07]  [-0.14,0.06]  [-0.14,0.06]
 Not the first voyage of both the captain and the outfitter    |                                            0.34*        0.25*         0.25*    
                                                               |                                        [-0.00,0.68]  [-0.04,0.53]  [-0.04,0.53]
