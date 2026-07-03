@@ -9,15 +9,13 @@ use "${output}voyages.dta", clear
 merge m:1 VOYAGEID using "${tastdb}tastdb-exp-2026_corr.dta"
 drop _merge
 
-****We work only on the voyages in the profit database
-**we need to keep the voyages without full data to be able to impute latter
-drop if ventureid==""
+
 
 sort ventureid VOYAGEID
 
 keep ventureid numberofvoyages voyagenumber VOYAGEID YEARAF MAJBYIMP MAJBYIMP_str MJBYPTIMP MJBYPTIMP_str MAJMAJBYIMP MAJMAJBYIMP_num   /*
 */ SLAXIMP SLAMIMP CAPTAINA OWNERA DATEEND DATEDEP FATE FATEcol FATEbin FATEdum* data nameofoutfitter/*
-*/ nameofthecaptain YEARAF_own TONMOD nationality YEARDEP
+*/ nameofthecaptain YEARAF_own TONMOD nationality YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP
 sort ventureid DATEDEP
 
 foreach rank of numlist 1(1)7 {
@@ -36,9 +34,14 @@ replace YEARAF = YEARAF_own if missing(YEARAF)
 drop nameofoutfitter nameofthecaptain YEARAF_own
 
 
+
 ****add port shares
 merge m:1 YEARAF MJBYPTIMP using "${output}port_shares.dta", keep(1 3)
 drop _merge
+////Big ports
+gen big_port=0
+replace big_port=1 if port_share>0.01 & !missing(port_share)
+label var big_port "Big African slave-trading port"
 
 **Crowding
 gen crowd=SLAXIMP/TONMOD
@@ -106,13 +109,20 @@ drop if _merge==2
 *For debugging
 *br OUTFITTER YEARAF ventureid VOYAGEID if _merge==1 & (OUTFITTER!="" & YEARAF !=.)
 assert (OUTFITTER=="" | YEARAF ==.) if _merge==1 &  data >=1
-
-
-
-
 drop _merge
 
 
+gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
+label var either_experience_d "Not the first voyage of both the captain and the outfitter"
+
+
+********* save voyages with enriched data
+save "tastdb-exp-2026_corr+own+various.dta", replace
+
+
+****We work only on the voyages in the profit database
+
+drop if ventureid==""
 **** only keep region if it is constant inside each ventureid
 
 foreach var of varlist MAJMAJBYIMP {
@@ -124,14 +134,16 @@ gsort - SLAXIMP
 sort ventureid YEARAF, stable
 
 
+
+
 ******move back to ventures
 collapse (first)  MAJMAJBYIMP data (mean) YEARDEP YEARAF SLAXIMP SLAMIMP length_in_days (max) numberofvoyages FATEdum1 FATEdum2 FATEdum3 FATEdum4 DATEDEP* DATEEND* /*
 			*/ (min) OUTFITTER_experience* OUTFITTER_regional_experience* captain_experience* captain_regional_experience* /*
 			*/ (mean) OUTFITTER_total_career* captain_total_career* priceamerica/*
-			*/ (mean) port_share crowd pricemarkup war neutral TONMOD/*
+			*/ (mean) big_port crowd pricemarkup war neutral TONMOD Percentageofcaptiveswhodieddurin/*
 			*/, by(ventureid)
 
-generate VYMRTRAT=(SLAXIMP-SLAMIMP)/SLAXIMP
+
 
 label var MAJMAJBYIMP "African region of trade"
 label var neutral "Neutrality of own nation"
@@ -144,6 +156,8 @@ label var OUTFITTER_total_career "Total number of voyages of the outfitter (mean
 label var captain_total_career "Total number of voyages of the captain (mean)"
 label var OUTFITTER_experience_d "Not the first voyage of the outfitter (min)"
 label var captain_experience_d "Not the first voyage of the captain (min)"
+label var big_port "Big African slave-trading port"
+
 
 
 

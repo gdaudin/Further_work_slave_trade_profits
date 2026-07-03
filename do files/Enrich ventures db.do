@@ -18,13 +18,18 @@ drop _merge
 
 
 encode nationality, generate(nationality_num)
+
+
+**Mortality (weighted mean)
+gen MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP
+replace MORTALITY=Percentageofcaptiveswhodieddurin if missing(MORTALITY) | MORTALITY<=0 
+replace MORTALITY=0 if MORTALITY<0
+label var MORTALITY "Enslaved people mortality rate"
+
 gen ln_SLAXIMP = ln(SLAXIMP)
 label var ln_SLAXIMP "Enslaved persons embarked (ln)"
 
-gen MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP
-replace MORTALITY=VYMRTRAT if missing(MORTALITY) | MORTALITY<=0
-replace MORTALITY=0 if MORTALITY<0
-label var MORTALITY "Enslaved people mortality rate"
+
 
 gen lnTONMOD=ln(TONMOD)
 label var lnTONMOD "Tonnage standardized on British measured tons, 1773-1835 (ln)"
@@ -50,10 +55,6 @@ label values period lab_period
 label var period "Period"
 
 encode MAJMAJBYIMP, gen(MAJMAJBYIMP_num)
-
-gen big_port=0
-replace big_port=1 if port_share>0.01 & !missing(port_share)
-label var big_port "Big African slave-trading port"
 
 
 gen ln_length_in_days=ln(length_in_days)
