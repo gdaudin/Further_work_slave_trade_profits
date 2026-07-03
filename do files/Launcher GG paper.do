@@ -41,22 +41,13 @@
 
 	do "${dir}/do files/Descriptive statistics of explaining variables.do"
 
-	*do "${dir}/do files/Profit analysis.do" ///***Explaining profits : GG but outdated**///
-
 	do "${dir}/do files/Profit two parts regressions.do"
 	
 	do "${dir}/do files/Profit two parts regressions--various hypothesis.do"
-	blif
-
 	
 
-	**For imputation
-	do "${dir}/do files/Database for profit computation -- imputed.do"
-	profit_computation 0.5 1 1 0 1 0 1 0 IMP 
-	profit_computation 0.5 1 1 0 1 0 1 0 onlyIMP 
+	do "${dir}/do files/Profit two parts regressions.do"
 
-	profit_analysis 0.5 1 1 0 1 0 1 0 IMP
-	profit_analysis 0.5 1 1 0 1 0 1 0 onlyIMP
 
 	**Descriptive statistics, comparing different hypothesis
 
