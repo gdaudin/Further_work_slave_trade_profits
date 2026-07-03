@@ -18,11 +18,6 @@ local hyp "OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV
 
 if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0" ///
 	local hyp="Baseline"
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0 IMP" ///
-	local hyp="Imputed"
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0 onlyIMP" ///
-	local hyp="Only imputed"
-
 
 
 global varlist_o  YEARAF totalnetexp_silver_ship TONMOD crowd SLAXIMP MORTALITY investment_per_slave pricemarkup
@@ -63,34 +58,29 @@ collect layout (var[war neutral big_port] # result[mean median sd count] ///
 	var[totalnetexp_silver_ship TONMOD crowd] # result[mean median sd min max count] ///
 	var[OUTFITTER_experience_d captain_experience_d] # result[mean median sd count]) (nationality_num) 
 
-collect export "${output}DS_input_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt", as(txt) replace
-collect style putdocx, layout(autofitcontents) title ("OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'")
-collect export "${output}DS_input_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.docx", as(docx) replace
-collect style putpdf, title ("OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'")
-collect export "${output}DS_input_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.pdf", as(pdf) replace
+if "`hyp'"!="Baseline"  {
+	collect export "${output}/Robustness/DS_input_var_`hyp'.txt", as(txt) replace
+	collect style putdocx, layout(autofitcontents) title ("`hyp'")
+	collect export "${output}/Robustness/DS_input_var_`hyp'.docx", as(docx) replace
+}
 
-if "`hyp'"=="Baseline"  | "`hyp'"=="Imputed"{
+if "`hyp'"=="Baseline"  {
 	collect export "${output}DS_input_var_`hyp'.txt", as(txt) replace
 	collect style putdocx, layout(autofitcontents) title ("`hyp'")
 	collect export "${output}DS_input_var_`hyp'.docx", as(docx) replace
-	collect style putpdf, title ("`hyp'")
-	collect export "${output}DS_input_var_`hyp'.pdf", as(pdf) replace
 }
 
 collect layout (var[SLAXIMP MORTALITY investment_per_slave pricemarkup] # result[mean median sd min max count]) (nationality_num) 
 
-collect export "${output}DS_proxy_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt", as(txt) replace
-collect style putdocx, layout(autofitcontents) title ("OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'")
-collect export "${output}DS_proxy_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.docx", as(docx) replace
-collect style putpdf, title ("OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'")
-collect export "${output}DS_proxy_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.pdf", as(pdf) replace
+if "`hyp'"!="Baseline"  {
+	collect export "${output}/Robustness/DS_proxy_var_`hyp'.txt", as(txt) replace
+	collect style putdocx, layout(autofitcontents) title ("`hyp'")
+	collect export "${output}/Robustness/DS_proxy_var_`hyp'.docx", as(docx) replace
+}
 
-if "`hyp'"=="Baseline"  | "`hyp'"=="Imputed"{
+if "`hyp'"=="Baseline" {
 	collect export "${output}DS_proxy_var_`hyp'.txt", as(txt) replace
 	collect style putdocx, layout(autofitcontents) title ("`hyp'")
-	collect export "${output}DS_proxy_var_`hyp'.docx", as(docx) replace
-	collect style putpdf, title ("`hyp'")
-	collect export "${output}DS_proxy_var_`hyp'.pdf", as(pdf) replace
 }
 
 collect clear
@@ -101,18 +91,17 @@ table (FATEcol) (nationality_num), append
 
 collect layout (period MAJMAJBYIMP FATEcol) (nationality_num) 
 
-collect export "${output}DS_cat_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.txt", as(txt) replace
-collect style putdocx, layout(autofitcontents) title ("OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'")
-collect export "${output}DS_cat_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.docx", as(docx) replace
-collect style putpdf, title ("OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'")
-collect export "${output}DS_cat_var_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.pdf", as(pdf) replace
+if "`hyp'"!="Baseline"  {
+	collect export "${output}/Robustness/DS_cat_var_`hyp'.txt", as(txt) replace
+	collect style putdocx, layout(autofitcontents) title ("`hyp'")
+	collect export "${output}/Robustness/DS_cat_var_`hyp'.docx", as(docx) replace
 
-if "`hyp'"=="Baseline"  | "`hyp'"=="Imputed"{
+}
+
+if "`hyp'"=="Baseline" {
 	collect export "${output}DS_cat_var_`hyp'.txt", as(txt) replace
 	collect style putdocx, layout(autofitcontents) title ("`hyp'")
 	collect export "${output}DS_cat_var_`hyp'.docx", as(docx) replace
-	collect style putpdf, title ("`hyp'")
-	collect export "${output}DS_cat_var_`hyp'.pdf", as(pdf) replace
 }
 
 
@@ -122,8 +111,7 @@ end
 
 
 descriptive_stat 0.5 1 1 0 1 0 1 0
-*descriptive_stat 0.5 1 1 0 1 0 1 0 IMP
-*descriptive_stat 0.5 1 1 0 1 0 1 0 onlyIMP
+
 
 
 
