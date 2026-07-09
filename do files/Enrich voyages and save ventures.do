@@ -34,6 +34,17 @@ replace YEARAF = YEARAF_own if missing(YEARAF)
 drop nameofoutfitter nameofthecaptain YEARAF_own
 
 
+***Fate
+replace FATEbin=0 if FATEbin==.
+replace FATEbin=1 if FATEdum1==1
+
+label values FATEcol fate
+label values FATEbin fatebin
+
+//labels defined at tstd import
+label var FATEcol "Fate of venture (4 outcomes)"
+label var FATEbin "Fate of venture (binary)"
+
 
 ****add port shares
 merge m:1 YEARAF MJBYPTIMP using "${output}port_shares.dta", keep(1 3)
@@ -149,7 +160,7 @@ sort ventureid YEARAF, stable
 
 
 ******move back to ventures
-collapse (first)  MAJMAJBYIMP data (mean) YEARDEP YEARAF SLAXIMP SLAMIMP length_in_days (max) numberofvoyages FATEdum1 FATEdum2 FATEdum3 FATEdum4 DATEDEP* DATEEND* /*
+collapse (first)  MAJMAJBYIMP data (mean) YEARDEP YEARAF SLAXIMP SLAMIMP length_in_days (max) numberofvoyages  FATEdum* DATEDEP* DATEEND* /*
 			*/ (min) OUTFITTER_experience* OUTFITTER_regional_experience* captain_experience* captain_regional_experience* /*
 			*/ (mean) OUTFITTER_total_career* captain_total_career* priceamerica/*
 			*/ (mean) big_port crowd pricemarkup war neutral TONMOD Percentageofcaptiveswhodieddurin/*

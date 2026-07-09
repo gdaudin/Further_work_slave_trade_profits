@@ -15,7 +15,7 @@ label define data 0 "No computation possible" 1 "With estimates" 2 "Without esti
 
 
 global varlist_o  YEARAF, TONMOD, crowd, SLAXIMP, MORTALITY, pricemarkup
-global varlist_d war, neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d, MAJMAJBYIMP_num
+global varlist_d war, neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d, MAJMAJBYIMP_num, FATEbin
 
 
 
@@ -67,7 +67,7 @@ collect preview
 collect export "${output}Support_African_Precise_Geography.txt", as(txt) replace
 collect export "${output}Support_African_Precise_Geography.docx", as(docx) replace
 
-table (var) (sample), statistic(fvfrequency OUTFITTER_experience_d, captain_experience_d, either_experience_d) statistic(fvproportion  OUTFITTER_experience_d, captain_experience_d, either_experience_d) nototals name(experience) replace
+table (var) (sample), statistic(fvfrequency OUTFITTER_experience_d captain_experience_d either_experience_d) statistic(fvproportion  OUTFITTER_experience_d captain_experience_d either_experience_d) nototals name(experience) replace
 
 collect style cell result[fvfrequency],nformat (%5.0fc)
 collect style cell result[fvproportion],nformat (%3.2fc)
@@ -78,6 +78,58 @@ collect preview
 collect export "${output}Support_Experience.txt", as(txt) replace
 collect export "${output}Support_Experience.docx", as(docx) replace
 
+table (var) (sample), statistic(fvfrequency OUTFITTER_experience_d captain_experience_d either_experience_d) statistic(fvproportion  OUTFITTER_experience_d captain_experience_d either_experience_d) nototals name(experience) replace
+
+collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect style header result, level(hide)
+collect style row stack, nobinder
+collect preview
+
+collect export "${output}Support_Experience.txt", as(txt) replace
+collect export "${output}Support_Experience.docx", as(docx) replace
+
+table (var) (sample), statistic(fvfrequency FATEbin) statistic(fvproportion  FATEbin) nototals name(experience) replace
+
+collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect style header result, level(hide)
+collect style row stack, nobinder
+collect preview
+
+collect export "${output}Support_Fate.txt", as(txt) replace
+collect export "${output}Support_Fate.docx", as(docx) replace
+
+
+***Fate dum n’est pas faite pour le STDT, car nous n’avons pas codé tous outcomes, mais seulement ceux dans le sample
+
+table (var) (sample), statistic(fvfrequency FATEcol) statistic(fvproportion  FATEcol) nototals name(experience) replace
+
+collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect style header result, level(hide)
+collect style row stack, nobinder
+collect preview
+
+collect export "${output}Support_Fate_precise.txt", as(txt) replace
+collect export "${output}Support_Fate_precise.docx", as(docx) replace
+
+*******Histograms for quantitative variables
+
+twoway (histogram MORTALITY if sample==1, fraction width(0.05) start(-0.025) color(black%15)) ///
+	(histogram MORTALITY if sample==0, fraction width(0.05) start(-0.025) color(black%30)),  ///
+	legend(order(1 "TSDT" 2 "Sample") position(6) row(1)) name(full, replace) 
+twoway (histogram MORTALITY if sample==1 & MORTALITY<=.4, fraction width(0.025) start(-0.0125) color(black%15)) ///
+	(histogram MORTALITY if sample==0 & MORTALITY<=.4, fraction width(0.025) start(-0.0125) color(black%30)),  ///
+	legend(order(1 "TSDT" 2 "Sample") position(6) row(1)) name(zoom, replace) 
+
+graph combine full zoom
+graph export "$graphs/hist_mortality_.png",as(png) replace
+blif
+
+
+by sample : histogram YEARAF , freq scheme(s1color) start(1750) width(5) xtitle(Year departed Africa)
+graph export "$graphs/hist_voyage_by_year_Baseline.png",as(png
 
 
 blif
