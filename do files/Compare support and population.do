@@ -29,6 +29,8 @@ label values sample sample_l
 expand 2 if sample == 1, generate(duplicates)
 replace sample = 0 if duplicates ==1 & sample==1
 
+*****Tables for dummies and categorical variables
+
 table (var) (sample), statistic(fvfrequency war neutral) statistic(fvproportion war neutral) nototals name(war) replace
 
 collect style cell result[fvfrequency],nformat (%5.0fc)
@@ -62,10 +64,21 @@ collect style header result, level(hide)
 collect style row stack, nobinder
 collect preview
 
-
-
 collect export "${output}Support_African_Precise_Geography.txt", as(txt) replace
 collect export "${output}Support_African_Precise_Geography.docx", as(docx) replace
+
+table (var) (sample), statistic(fvfrequency OUTFITTER_experience_d, captain_experience_d, either_experience_d) statistic(fvproportion  OUTFITTER_experience_d, captain_experience_d, either_experience_d) nototals name(experience) replace
+
+collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect style header result, level(hide)
+collect style row stack, nobinder
+collect preview
+
+collect export "${output}Support_Experience.txt", as(txt) replace
+collect export "${output}Support_Experience.docx", as(docx) replace
+
+
 
 blif
 
