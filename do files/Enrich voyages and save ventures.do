@@ -54,6 +54,18 @@ drop _merge
 gen pricemarkup=priceamerica/priceafrica
 label var pricemarkup "Slave price markup between America and Africa"
 
+***Give nationality (our coding) to TSTD voyages (where nationlity is coded in FlagofvesselIMP)
+codebook FlagofvesselIMP
+
+tab FlagofvesselIMP, missing
+tab nationality, missing
+
+replace nationality="French" if FlagofvesselIMP=="France" & nationality==""
+replace nationality="English" if FlagofvesselIMP=="Great Britain" & nationality==""
+replace nationality="Dutch" if FlagofvesselIMP=="Netherlands" & nationality==""
+*We only need these three for the support / population comparison
+
+
 *APPEND WARS
 merge m:1 YEARAF nationality using "${output}European wars.dta"
 drop if _merge==2
@@ -78,7 +90,7 @@ foreach var of varlist  SLAXIMP SLAMIMP length_in_days YEARAF {
 	gen test`var'=1 if `var'==.
 	replace test`var'=0 if `var'!=.
 	egen test1=max(test`var'), by(ventureid)
-	replace `var' =. if test1==1
+	replace `var' =. if test1==1 & ventureid!=""
 	drop test`var' test1	
 }
 

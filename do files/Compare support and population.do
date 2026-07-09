@@ -2,59 +2,83 @@ clear
 
 cd "$dir"
 
-use "${output}voyages.dta", clear
+use "tastdb-exp-2026_corr+own+various.dta", replace
 
-merge 1:1 VOYAGEID  using "tastdb-exp-2026_corr.dta" /*607 matches, 45 in our own but not in TSTD */
-drop _merge 
+
+gen MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP
+replace MORTALITY=Percentageofcaptiveswhodieddurin if missing(MORTALITY) | MORTALITY<=0 
+replace MORTALITY=0 if MORTALITY<0
+label var MORTALITY "Enslaved people mortality rate"
 
 
 label define data 0 "No computation possible" 1 "With estimates" 2 "Without estimates"
 
-//Here, we assume our data on outfitter is correct
-replace OWNERA= nameofoutfitter if nameofoutfitter!=""
-//Here, we assume stdt on captain is correct
-replace CAPTAINA= nameofthecaptain if missing(CAPTAINA)
-replace YEARAF = YEARAF_own if missing(YEARAF)
-
-
-
-*****Merge voyages with careers
-
-
-* MERGE WITH Career DATASET (CAPTAIN)
-generate CAPTAIN = ""
-replace CAPTAIN = CAPTAINA
-merge m:1 CAPTAIN YEARAF MAJMAJBYIMP using "${output}Captain.dta", keep(1 3)
-assert (CAPTAIN=="" | YEARAF ==.) if _merge==1
-drop _merge
-
-generate OUTFITTER = ""
-replace OUTFITTER = OWNERA if OUTFITTER==""
-replace OUTFITTER="" if OUTFITTER=="."
-merge m:1 OUTFITTER YEARAF MAJMAJBYIMP using "${output}OUTFITTER.dta", keep (1 3)
-assert (OUTFITTER=="" | YEARAF ==.) if _merge==1 
-
-
-gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
-label var either_experience_d "Not the first voyage of both the captain and the outfitter"
 
 global varlist_o  YEARAF, TONMOD, crowd, SLAXIMP, MORTALITY, pricemarkup
-global varlist_d war neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d
+global varlist_d war, neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d, MAJMAJBYIMP_num
 
-gen support=!missing($varlist_o $varlist_d) & data!=0
+
+
+keep if !missing($varlist_o, $varlist_d) & YEARAF>=1750 & YEARAF<=1795 & (FlagofvesselIMP=="France" | FlagofvesselIMP=="Great Britain" | FlagofvesselIMP=="Netherlands")
+
+gen sample =  1 if data==1 | data==2
+replace sample=0 if sample==.
+label define sample_l 0 "TSTD (restricted)" 1 "Our sample" 
+label values sample sample_l
+
+expand 2 if sample == 1, generate(duplicates)
+replace sample = 0 if duplicates ==1 & sample==1
+
+table (var) (sample), statistic(fvfrequency war neutral) statistic(fvproportion war neutral) nototals name(war) replace
+
+collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect style header result, level(hide)
+collect style row stack, nobinder
+collect preview
+
+
+collect export "${output}Support_War_Neutrality.txt", as(txt) replace
+collect export "${output}Support_War_Neutrality.docx", as(docx) replace
+
+
+table (var) (sample), statistic(fvfrequency big_port MAJMAJBYIMP_num) statistic(fvproportion big_port MAJMAJBYIMP_num) nototals name(african_geography) replace
+
+collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect style header result, level(hide)
+collect style row stack, nobinder
+collect preview
+
+
+collect export "${output}Support_African_Geography.txt", as(txt) replace
+collect export "${output}Support_African_Geography.docx", as(docx) replace
+
+table (var) (sample), statistic(fvfrequency MAJBYIMP) statistic(fvproportion  MAJBYIMP) nototals name(african_precise_geography)replace
+
+collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect style header result, level(hide)
+collect style row stack, nobinder
+collect preview
+
+
+
+collect export "${output}Support_African_Precise_Geography.txt", as(txt) replace
+collect export "${output}Support_African_Precise_Geography.docx", as(docx) replace
 
 blif
 
-table (var) (nationality_num), ///
-	statistic(mean $varlist_o)  ///
-	statistic(median $varlist_o)  ///
-	statistic(sd $varlist_o)  ///
-	statistic(max $varlist_o) ///
-	statistic(min $varlist_o) ///
-	statistic(count $varlist_o) ///
-	name(DS_others) replace
+table (var) (sample), ///
+	statistic(mean war neutral)  ///
+	statistic(median war neutral)  ///
+	statistic(sd war neutral)  ///
+	statistic(max war neutral) ///
+	statistic(min war neutral) ///
+	statistic(count war neutral) ///
+	name(DS_dummies) replace
 
-
+blif
 
 table (var) (nationality_num), ///
 	statistic(mean $varlist_d)  ///
@@ -66,40 +90,6 @@ table (var) (nationality_num), ///
 
 
 
-replace FATE4=4 if FATE4==.
-
-codebook NATINIMP
-label list labels18
-
-/*NATINIMP coding in stdt
-7     Great Britain
-8     Netherlands
-10    France
-*/
-
-
-
-
-replace NATINIMP=1 if nationality =="Spanish" & NATINIMP==.
-replace NATINIMP=7 if nationality =="English" & NATINIMP==.
-replace NATINIMP=8 if nationality =="Dutch" & NATINIMP==.
-replace NATINIMP=10 if nationality =="French" & NATINIMP==.
-replace NATINIMP=15 if nationality =="Danish" & NATINIMP==.
-
-assert NATINIMP==10 if nationality=="French"
-
-
-gen NATINIMP_tab3 = NATINIMP
-replace NATINIMP_tab3=30 if NATINIMP ==2 | NATINIMP ==3 | (NATINIMP >=12  & NATINIMP !=. & NATINIMP==12)
-replace NATINIMP_tab3=6 if NATINIMP==4 | NATINIMP==5
-replace NATINIMP_tab3=3 if NATINIMP==1 | NATINIMP==3
-replace NATINIMP_tab3=15 if NATINIMP==11 | NATINIMP==15
-label value NATINIMP_tab3 labels18
-
-gen sample =  1 if data==1 | data==2
-replace sample=0 if sample==.
-label define sample_l 0 "Whole TSTD" 1 "Our sample" 
-label values sample sample_l
 
 table (NATINIMP_tab3) (sample),  statistic (freq) statistic(percent, across(NATINIMP_tab3)) totals(sample)
 
