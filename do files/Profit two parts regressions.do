@@ -97,10 +97,16 @@ else {
 
 
 
-global proxy "ln_SLAXIMP MORTALITY ln_investment_per_slave pricemarkup ln_length_in_days i.FATEbin"
-collect, tag(model[1] reg[proxy] hyp[$hyp]):reg profit $proxy, vce(robust) 
+global proxy "ln_SLAXIMP MORTALITY ln_investment_per_slave pricemarkup "
+collect, tag(model[1] reg[proxy] hyp[$hyp]):reg profit $proxy ln_length_in_days  i.FATEbin, vce(robust) 
 
-collect, tag(model[2] reg[proxy] hyp[$hyp]):reg profit $proxy crowd, vce(robust) 
+collect, tag(model[2] reg[proxy] hyp[$hyp]):reg profit $proxy crowd ln_length_in_days i.FATEbin, vce(robust) 
+
+collect, tag(model[3] reg[proxy] hyp[$hyp]):reg profit $proxy  i.FATEbin, vce(robust) 
+
+collect, tag(model[4] reg[proxy] hyp[$hyp]):reg profit $proxy  ln_length_in_days, vce(robust) 
+
+collect, tag(model[5] reg[proxy] hyp[$hyp]):reg profit $proxy  crowd i.FATEbin, vce(robust) 
 
 collect style use "profit_regressionv2.collectstyle"
 
@@ -114,7 +120,7 @@ collect style row stack, nobinder
 collect style header result[_r_b _r_ci], level(hide)
 collect style cell cell_type[row-header], halign(left)
 
-collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[2 1]) (reg[proxy]#hyp[$hyp])
+collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[2 1 3 4 5 ]) (reg[proxy]#hyp[$hyp])
 
 if "$hyp"=="Baseline" | "$hyp"=="Baseline_BBsample" {
 	collect export "$output/regv2proxy_$hyp.txt", replace
