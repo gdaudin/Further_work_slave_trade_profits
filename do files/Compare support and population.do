@@ -52,7 +52,6 @@ collect style header result, level(hide)
 collect style row stack, nobinder
 collect preview
 
-
 collect export "${output}Support_African_Geography.txt", as(txt) replace
 collect export "${output}Support_African_Geography.docx", as(docx) replace
 
@@ -113,23 +112,21 @@ collect preview
 
 collect export "${output}Support_Fate_precise.txt", as(txt) replace
 collect export "${output}Support_Fate_precise.docx", as(docx) replace
-
+***********************
 *******Histograms for quantitative variables
-
+**********************************************
 twoway (histogram MORTALITY if sample==1, fraction width(0.05) start(-0.025) color(black%15)) ///
 	(histogram MORTALITY if sample==0, fraction width(0.05) start(-0.025) color(black%30)),  ///
-	legend(order(1 "TSDT" 2 "Sample") position(6) row(1)) name(full, replace) 
+	legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(full, replace) 
 twoway (histogram MORTALITY if sample==1 & MORTALITY<=.4, fraction width(0.025) start(-0.0125) color(black%15)) ///
 	(histogram MORTALITY if sample==0 & MORTALITY<=.4, fraction width(0.025) start(-0.0125) color(black%30)),  ///
-	legend(order(1 "TSDT" 2 "Sample") position(6) row(1)) name(zoom, replace) 
+	legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(zoom, replace) 
 
 graph combine full zoom
-graph export "$graphs/hist_mortality_.png",as(png) replace
+graph export "$graphs/Support_mortality.png",as(png) replace
 blif
 
 
-by sample : histogram YEARAF , freq scheme(s1color) start(1750) width(5) xtitle(Year departed Africa)
-graph export "$graphs/hist_voyage_by_year_Baseline.png",as(png
 
 
 blif
