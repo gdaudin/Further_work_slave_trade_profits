@@ -3,12 +3,12 @@
                                                              |  TSTD (restricted)   Our sample
 -------------------------------------------------------------+--------------------------------
 Fate of venture (4 outcomes)                                 |                                
-  Voyage completed as intended                               |              4,184          283
-                                                             |               0.85         0.92
-  Original goal thwarted before disembarking enslaved people |                188            8
-                                                             |               0.04         0.03
-  Original goal thwarted after disembarking enslaved people  |                232           12
-                                                             |               0.05         0.04
-  Unknown                                                    |                347            3
-                                                             |               0.07         0.01
+  Voyage completed as intended                               |              3,815          250
+                                                             |               0.99         0.98
+  Original goal thwarted before disembarking enslaved people |                  4            0
+                                                             |               0.00         0.00
+  Original goal thwarted after disembarking enslaved people  |                 13            5
+                                                             |               0.00         0.02
+  Unknown                                                    |                  4            0
+                                                             |               0.00         0.00
 ----------------------------------------------------------------------------------------------

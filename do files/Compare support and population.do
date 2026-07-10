@@ -14,7 +14,7 @@ label var MORTALITY "Enslaved people mortality rate"
 label define data 0 "No computation possible" 1 "With estimates" 2 "Without estimates"
 
 
-global varlist_o  YEARAF, TONMOD, crowd, SLAXIMP, MORTALITY, pricemarkup
+global varlist_o  YEARAF, TONMOD, crowd, SLAXIMP, MORTALITY, pricemarkup, length_in_days
 global varlist_d war, neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d, MAJMAJBYIMP_num, FATEbin
 
 
@@ -124,10 +124,30 @@ twoway (histogram MORTALITY if sample==1 & MORTALITY<=.4, fraction width(0.025) 
 
 graph combine full zoom
 graph export "$graphs/Support_mortality.png",as(png) replace
-blif
 
+twoway (histogram TONMOD if sample==1, fraction width(25) start(-12.5) color(black%15)) ///
+	 (histogram TONMOD if sample==0, fraction width(25) start(-12.5) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1))
 
+graph export "$graphs/Support_TONMOD.png",as(png) replace
 
+twoway (histogram length_in_days if sample==1, fraction width(25) start(-12.5) color(black%15)) ///
+	 (histogram length_in_days if sample==0, fraction width(25) start(-12.5) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1))
+
+graph export "$graphs/Support_length_in_days.png",as(png) replace
+
+twoway (histogram crowd if sample==1, fraction width(0.1) start(-0.05) color(black%15)) ///
+	 (histogram crowd if sample==0, fraction width(0.1) start(-0.05) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1))
+
+graph export "$graphs/Support_crowd.png",as(png) replace
+
+twoway (histogram pricemarkup if sample==1, fraction width(0.5) start(1.75) color(black%15)) ///
+	 (histogram pricemarkup if sample==0, fraction width(0.5) start(1.75) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1))
+
+graph export "$graphs/Support_pricemarkup.png",as(png) replace
 
 blif
 
