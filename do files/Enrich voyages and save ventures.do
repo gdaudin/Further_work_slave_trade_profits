@@ -15,7 +15,7 @@ sort ventureid VOYAGEID
 
 keep ventureid numberofvoyages voyagenumber VOYAGEID YEARAF MAJBYIMP MAJBYIMP_str MJBYPTIMP MJBYPTIMP_str MAJMAJBYIMP MAJMAJBYIMP_num   /*
 */ SLAXIMP SLAMIMP CAPTAINA OWNERA DATEEND DATEDEP FATE FATEcol FATEbin FATEdum* data nameofoutfitter/*
-*/ nameofthecaptain YEARAF_own TONMOD nationality YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP
+*/ nameofthecaptain YEARAF_own TONMOD nationality* YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP
 sort ventureid DATEDEP
 
 foreach rank of numlist 1(1)7 {
@@ -74,8 +74,11 @@ tab nationality, missing
 replace nationality="French" if FlagofvesselIMP=="France" & nationality==""
 replace nationality="English" if FlagofvesselIMP=="Great Britain" & nationality==""
 replace nationality="Dutch" if FlagofvesselIMP=="Netherlands" & nationality==""
-*We only need these three for the support / population comparison
+replace nationality="Spanish" if (FlagofvesselIMP=="Spain" | FlagofvesselIMP=="Spain / Uruguay") & nationality==""
+replace nationality="Danish" if (FlagofvesselIMP=="Denmark / Baltic") & nationality==""
+*We only need these five for the support / population comparison
 
+encode nationality, generate(nationality_num)
 
 *APPEND WARS
 merge m:1 YEARAF nationality using "${output}European wars.dta"
@@ -93,7 +96,14 @@ gen length_in_days=DATEEND-DATEDEP
 label var length_in_days "Length of voyage (Europe to Europe) in days"
 *drop DATEEND DATEDEP
 
-
+*****Periods
+gen period=1 if YEARAF<1751
+replace period=2 if YEARAF>1750 & YEARAF<1776
+replace period=3 if YEARAF>1775 & YEARAF<1801
+replace period=4 if YEARAF>1800 & !missing(YEARAF)
+label define lab_period 1 "pre-1750" 2 "1751-1775" 3 "1776-1800" 4 "post-1800"
+label values period lab_period
+label var period "Period"
 
 
 ***To get rid of values that cannot be averaged because some other one is missing (if we want to do that)
@@ -139,6 +149,13 @@ gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
 label var either_experience_d "Not the first voyage of both the captain and the outfitter"
 
 
+****Voyage-level mortality
+gen MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP
+replace MORTALITY=Percentageofcaptiveswhodieddurin if missing(MORTALITY) | MORTALITY<=0 
+replace MORTALITY=0 if MORTALITY<0
+label var MORTALITY "Enslaved people mortality rate"
+
+
 ********* save voyages with enriched data
 save "tastdb-exp-2026_corr+own+various.dta", replace
 
@@ -157,10 +174,10 @@ gsort - SLAXIMP
 sort ventureid YEARAF, stable
 
 
-
+codebook nationality_num
 
 ******move back to ventures
-collapse (first)  MAJMAJBYIMP data (mean) YEARDEP YEARAF SLAXIMP SLAMIMP length_in_days (max) numberofvoyages  FATEdum* DATEDEP* DATEEND* /*
+collapse (first)  MAJMAJBYIMP data nationality_num (mean) YEARDEP YEARAF SLAXIMP SLAMIMP length_in_days (max) numberofvoyages  FATEdum* DATEDEP* DATEEND* /*
 			*/ (min) OUTFITTER_experience* OUTFITTER_regional_experience* captain_experience* captain_regional_experience* /*
 			*/ (mean) OUTFITTER_total_career* captain_total_career* priceamerica/*
 			*/ (mean) big_port crowd pricemarkup war neutral TONMOD Percentageofcaptiveswhodieddurin/*
@@ -180,6 +197,7 @@ label var captain_total_career "Total number of voyages of the captain (mean)"
 label var OUTFITTER_experience_d "Not the first voyage of the outfitter (min)"
 label var captain_experience_d "Not the first voyage of the captain (min)"
 label var big_port "Big African slave-trading port"
+label var nationality_num "Nationality"
 
 
 
@@ -210,6 +228,15 @@ label values FATEbin fatebin
 //labels defined at tstd import
 label var FATEcol "Fate of venture (4 outcomes)"
 label var FATEbin "Fate of venture (binary)"
+
+
+///Nationality labels
+label define nation_num 1 "Danish" 2 "Dutch" 3 "English" 4 "French" 5 "Spanish" 
+label values nationality_num nation_num
+
+
+
+
 
 
 

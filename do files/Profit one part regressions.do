@@ -33,11 +33,17 @@ label var nationality_num "Nationality (English omitted)"
 label var period "Period (1751-1775 omitted)"
 label var MAJMAJBYIMP_num "African region of trade (Bight of Guinea omitted)"
 
-
+append using "${dir}/tastdb-exp-2026_corr+own+various.dta", generate(tstd_voyages)
+keep if tstd_voyages==0 | (YEARAF>=1750 & YEARAF<=1795 & (nationality == "English" | nationality == "French" | nationality == "Dutch"))
 
 
 global explaining "ib3.nationality_num war neutral ib2.period"
-collect, tag(model[1]  hyp[$hyp]): reg profit $explaining, vce(robust)
+collect, tag(model[1]  hyp[$hyp]): reg profit $explaining if tstd_voyages==0, vce(robust) 
+
+predict predicted_profit if tstd_voyages==1, xb 
+predict predicted_profit_se if tstd_voyages==1, stdp
+
+blif
 
 
 global explaining "$explaining i.MAJMAJBYIMP_num big_port"

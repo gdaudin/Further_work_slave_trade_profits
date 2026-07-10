@@ -16,10 +16,6 @@ assert completedataonoutlays =="no" | completedataonreturns =="no" if _merge==2
 *drop if completedataonoutlays =="no" | completedataonreturns =="no"
 drop _merge
 
-
-encode nationality, generate(nationality_num)
-
-
 **Mortality (weighted mean)
 gen MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP
 replace MORTALITY=Percentageofcaptiveswhodieddurin if missing(MORTALITY) | MORTALITY<=0 
@@ -55,7 +51,6 @@ label values period lab_period
 label var period "Period"
 
 encode MAJMAJBYIMP, gen(MAJMAJBYIMP_num)
-
 
 gen ln_length_in_days=ln(length_in_days)
 label var ln_length_in_days "Length of the voyage (ln)"
