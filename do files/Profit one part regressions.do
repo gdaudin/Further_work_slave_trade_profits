@@ -40,45 +40,60 @@ replace ln_length_in_days=ln(length_in_days) if tstd_voyages==1
 
 collect clear
 global explaining "ib3.nationality_num war neutral ib2.period"
-collect, tag(model[1]  hyp[$hyp] step[Regression]): reg profit $explaining if tstd_voyages==0, vce(robust) 
+collect, tag(model[0a]  hyp[$hyp] step[Regression]): reg profit $explaining if tstd_voyages==0, vce(robust) 
 
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[1]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[0a]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
 
 global explaining "$explaining i.MAJMAJBYIMP_num big_port"
-collect, tag(model[2]  hyp[$hyp] step[Regression]): reg profit $explaining if tstd_voyages==0, vce(robust)
+collect, tag(model[0b]  hyp[$hyp] step[Regression]): reg profit $explaining if tstd_voyages==0, vce(robust)
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[2]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[0b]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
-collect, tag(model[4]  hyp[$hyp] step[Regression]): reg profit $explaining lnTONMOD if tstd_voyages==0, vce(robust)
+collect, tag(model[0c]  hyp[$hyp] step[Regression]): reg profit $explaining lnTONMOD if tstd_voyages==0, vce(robust)
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[4]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[0c]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
 
 
 global explaining "$explaining lnTONMOD"
-collect, tag(model[6]  hyp[$hyp] step[Regression]): reg profit $explaining OUTFITTER_experience_d captain_experience_d either_experience_d if tstd_voyages==0, vce(robust)
+collect, tag(model[0d]  hyp[$hyp] step[Regression]): reg profit $explaining OUTFITTER_experience_d captain_experience_d either_experience_d if tstd_voyages==0, vce(robust)
 
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[6]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[0d]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
 global explaining "$explaining OUTFITTER_experience_d captain_experience_d either_experience_d"
 //The product of experiences is not significant. Regional experience drops a lot of voyages
 
-global proxy " MORTALITY pricemarkup ln_length_in_days i.FATEbin"
-collect, tag(model[7] hyp[$hyp] step[Regression]):reg profit $explaining $proxy if tstd_voyages==0, vce(robust) 
+global proxy " MORTALITY pricemarkup "
+collect, tag(model[1] hyp[$hyp] step[Regression]):reg profit $explaining $proxy ln_length_in_days i.FATEbin if tstd_voyages==0, vce(robust) 
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[7]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[1]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
-collect, tag(model[8] hyp[$hyp] step[Regression]):reg profit $explaining $proxy crowd if tstd_voyages==0, vce(robust)
+collect, tag(model[2] hyp[$hyp] step[Regression]):reg profit $explaining $proxy ln_length_in_days i.FATEbin crowd if tstd_voyages==0, vce(robust)
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[8]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[2]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
+
+collect, tag(model[3] hyp[$hyp] step[Regression]):reg profit $explaining $proxy i.FATEbin if tstd_voyages==0, vce(robust) 
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[3]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
+
+collect, tag(model[4] hyp[$hyp] step[Regression]):reg profit $explaining $proxy ln_length_in_days if tstd_voyages==0, vce(robust) 
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[4]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
+
+collect, tag(model[5] hyp[$hyp] step[Regression]):reg profit $explaining $proxy i.FATEbin crowd if tstd_voyages==0, vce(robust) 
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[5]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
 
@@ -103,13 +118,14 @@ collect style showbase off
 collect style cell result[r2_a], border(bottom, pattern(single))
 
 
-collect layout (colname#result[_r_b _r_ci] result[N]#step[Regression] result[r2 r2_a]  result[N]#step[Extrapolation] result[mean] )  (model[1 2 4 6 7 8]) (hyp[$hyp])
+collect layout (colname#result[_r_b _r_ci] result[N]#step[Regression] result[r2 r2_a]  result[N]#step[Extrapolation] result[mean] )  ///
+		(model[0a 0b 0c 0d 2 1 3 4 5]) (hyp[$hyp])
 collect preview
-blif
 
 if "$hyp"=="Baseline" | "$hyp"=="Baseline_BBsample" {
 	collect export "$output/reg-onepart_$hyp.txt", replace
 	collect export "$output/reg-onepart_$hyp.docx", replace
+	collect export "$output/reg-onepart_$hyp.pdf", replace
 }
 else {
 	collect export "$output/Robustness/reg-onepart_$hyp.txt", replace
