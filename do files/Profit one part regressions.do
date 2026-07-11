@@ -35,47 +35,77 @@ label var MAJMAJBYIMP_num "African region of trade (Bight of Guinea omitted)"
 
 append using "${dir}/tastdb-exp-2026_corr+own+various.dta", generate(tstd_voyages)
 keep if tstd_voyages==0 | (YEARAF>=1750 & YEARAF<=1795 & (nationality == "English" | nationality == "French" | nationality == "Dutch"))
+replace lnTONMOD=ln(TONMOD) if tstd_voyages==1
+replace ln_length_in_days=ln(length_in_days) if tstd_voyages==1
 
-
+collect clear
 global explaining "ib3.nationality_num war neutral ib2.period"
-collect, tag(model[1]  hyp[$hyp]): reg profit $explaining if tstd_voyages==0, vce(robust) 
+collect, tag(model[1]  hyp[$hyp] step[Regression]): reg profit $explaining if tstd_voyages==0, vce(robust) 
 
 predict predicted_profit if tstd_voyages==1, xb 
-predict predicted_profit_se if tstd_voyages==1, stdp
-
-blif
+collect, tag(model[1]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
 
 
 global explaining "$explaining i.MAJMAJBYIMP_num big_port"
-collect, tag(model[2]  hyp[$hyp]): reg profit $explaining, vce(robust)
+collect, tag(model[2]  hyp[$hyp] step[Regression]): reg profit $explaining if tstd_voyages==0, vce(robust)
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[2]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
 
-collect, tag(model[4]  hyp[$hyp]): reg profit $explaining lnTONMOD, vce(robust)
+collect, tag(model[4]  hyp[$hyp] step[Regression]): reg profit $explaining lnTONMOD if tstd_voyages==0, vce(robust)
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[4]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
+
+
 
 global explaining "$explaining lnTONMOD"
+collect, tag(model[6]  hyp[$hyp] step[Regression]): reg profit $explaining OUTFITTER_experience_d captain_experience_d either_experience_d if tstd_voyages==0, vce(robust)
 
-collect, tag(model[6]  hyp[$hyp]): reg profit $explaining OUTFITTER_experience_d captain_experience_d either_experience_d, vce(robust)
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[6]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
+
 global explaining "$explaining OUTFITTER_experience_d captain_experience_d either_experience_d"
-
 //The product of experiences is not significant. Regional experience drops a lot of voyages
 
 global proxy " MORTALITY pricemarkup ln_length_in_days i.FATEbin"
-collect, tag(model[7] hyp[$hyp]):reg profit $explaining $proxy, vce(robust) 
+collect, tag(model[7] hyp[$hyp] step[Regression]):reg profit $explaining $proxy if tstd_voyages==0, vce(robust) 
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[7]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
 
-collect, tag(model[8] hyp[$hyp]):reg profit $explaining $proxy crowd, vce(robust) 
+collect, tag(model[8] hyp[$hyp] step[Regression]):reg profit $explaining $proxy crowd if tstd_voyages==0, vce(robust)
+predict predicted_profit if tstd_voyages==1, xb 
+collect, tag(model[8]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+drop predicted_profit
 
 
 collect style cell result, nformat(%3.2fc)  halign(center)
+collect style cell result[mean], nformat(%4.3fc)  halign(center)
 collect style cell result[_r_ci], sformat("[%s]") cidelimiter(,) nformat(%3.2f)
+collect style cell result[N], nformat(%5.0fc)
 
-collect style cell result[N], nformat(%5.0f) 
+
 collect stars _r_p 0.01 "***" 0.05 "**" 0.1 "*", attach(_r_b)
 
 collect style row stack, nobinder
-collect style header result[_r_b _r_ci], level(hide)
+collect label levels step Regression  "Number of observations for regression"
+collect label levels step Extrapolation  "Number of observations for extrapolation"
+collect style header result[_r_b _r_ci N], level(hide)
+collect label levels result mean "Mean extrapolated profitability" r2 "R-squared" r2_a "Adjusted R-squared", replace
+collect style header result[mean], level(label)
+collect style header Regression, title(label)
 collect style cell cell_type[row-header], halign(left)
 collect style showbase off
 
-collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[1 2 4 6 7 8]) (hyp[$hyp])
+collect style cell result[r2_a], border(bottom, pattern(single))
+
+
+collect layout (colname#result[_r_b _r_ci] result[N]#step[Regression] result[r2 r2_a]  result[N]#step[Extrapolation] result[mean] )  (model[1 2 4 6 7 8]) (hyp[$hyp])
+collect preview
+blif
 
 if "$hyp"=="Baseline" | "$hyp"=="Baseline_BBsample" {
 	collect export "$output/reg-onepart_$hyp.txt", replace
