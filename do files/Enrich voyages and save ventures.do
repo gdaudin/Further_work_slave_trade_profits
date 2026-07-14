@@ -15,7 +15,7 @@ sort ventureid VOYAGEID
 
 keep ventureid numberofvoyages voyagenumber VOYAGEID YEARAF MAJBYIMP MAJBYIMP_str MJBYPTIMP MJBYPTIMP_str MAJMAJBYIMP MAJMAJBYIMP_num   /*
 */ SLAXIMP SLAMIMP CAPTAINA OWNERA DATEEND DATEDEP FATE FATEcol FATEbin FATEdum* data nameofoutfitter/*
-*/ nameofthecaptain YEARAF_own TONMOD nationality* YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP
+*/ nameofthecaptain YEARAF_own TONMOD nationality* YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP placeofpurchase
 sort ventureid DATEDEP
 
 foreach rank of numlist 1(1)7 {
@@ -32,6 +32,44 @@ replace OWNERA= nameofoutfitter if nameofoutfitter!=""
 replace CAPTAINA= nameofthecaptain if missing(CAPTAINA)
 replace YEARAF = YEARAF_own if missing(YEARAF)
 drop nameofoutfitter nameofthecaptain YEARAF_own
+
+
+**** Major Regions
+replace MAJMAJBYIMP="Mixed, unknown or not in Africa" if placeofpurchase=="" & MAJMAJBYIMP==""
+replace MAJMAJBYIMP_num=2   if placeofpurchase=="" & MAJMAJBYIMP_num==.
+
+replace MAJMAJBYIMP="West"  if inlist(placeofpurchase,"Sénégal") & MAJMAJBYIMP==""
+replace MAJMAJBYIMP_num=4   if inlist(placeofpurchase,"Sénégal") & MAJMAJBYIMP_num==.
+
+replace MAJMAJBYIMP="Bight of Guinea" if inlist(placeofpurchase,"Côte de Guinée","Côte d’Or","Bonny","Côte de Bénin","Whydah") & MAJMAJBYIMP==""
+replace MAJMAJBYIMP_num=1   if inlist(placeofpurchase,"Côte de Guinée","Côte d’Or","Bonny","Côte de Bénin","Whydah") & MAJMAJBYIMP_num==.
+//No Côte de Bénin nor Whydah
+
+replace MAJMAJBYIMP="South" if inlist(placeofpurchase,"Côte d’Angola","Mozambic") & MAJMAJBYIMP==""
+replace MAJMAJBYIMP_num=3   if inlist(placeofpurchase,"Côte d’Angola","Mozambic") & MAJMAJBYIMP_num==.
+
+***Smaller region
+replace MAJBYIMP=9 if (inlist(placeofpurchase,"Côte de Guinée") | placeofpurchase=="") & MAJBYIMP==. /* "Other Africa"*/
+***This is too large a region
+replace MAJBYIMP=11 if inlist(placeofpurchase,"Sénégal") & MAJBYIMP==. /* Senegambia and offshore Atlantic*/
+replace MAJBYIMP=2 if inlist(placeofpurchase,"Côte de Bénin","Whydah","Bonny") & MAJBYIMP==. /* "Bight of Benin"*/
+//Only Bonny
+replace MAJBYIMP=6 if inlist(placeofpurchase,"Côte d’Or") & MAJBYIMP==. /*Gold	Coast*/
+replace MAJBYIMP=14 if inlist(placeofpurchase,"Côte d’Angola") & MAJBYIMP==. /* West Central Africa and St Helena (includes Luanda in TSTD) */
+replace MAJBYIMP=4 if inlist(placeofpurchase,"Mozambic") & MAJBYIMP==. /* East Africa and Indian Ocean islands */
+
+****Port
+replace MJBYPTIMP=2 if inlist(placeofpurchase,"","Côte de Guinée") & MJBYPTIMP==. /* Africa, port unspecified*/
+replace MJBYPTIMP=167 if inlist(placeofpurchase,"Sénégal") & MJBYPTIMP==. /* Sénégal*/
+replace MJBYPTIMP=25 if inlist(placeofpurchase,"Côte de Bénin") & MJBYPTIMP==. /* Bight of Benin, place unspecified*/
+///There is none
+replace MJBYPTIMP=187 if inlist(placeofpurchase,"Whydah") & MJBYPTIMP==. /* Whydah, Ouidah*/
+///There is none
+replace MJBYPTIMP=33 if (inlist(placeofpurchase,"Bonny") | placeofpurchase=="") & MJBYPTIMP==. /* "Bonny"*/
+
+replace MJBYPTIMP=85 if inlist(placeofpurchase,"Côte d’Or") & MJBYPTIMP==. /*Gold Coast, Fr definition*/
+replace MJBYPTIMP=11 if inlist(placeofpurchase,"Côte d’Angola") & MJBYPTIMP==. /* Angola to Ardra */
+replace MJBYPTIMP=129 if inlist(placeofpurchase,"Mozambic") & MJBYPTIMP==. /* Mozambique */
 
 
 ***Fate
@@ -163,10 +201,10 @@ save "tastdb-exp-2026_corr+own+various.dta", replace
 ****We work only on the voyages in the profit database
 
 drop if ventureid==""
-**** only keep region if it is constant inside each ventureid
+**** replace region by mixed if it is not constant inside each ventureid
 
 foreach var of varlist MAJMAJBYIMP {
-	bys  ventureid (`var'): replace `var'="" if `var'[1]!=`var'[_N]
+	bys  ventureid (`var'): replace `var'="Mixed, unknown or not in Africa" if `var'[1]!=`var'[_N]
 }
 
 

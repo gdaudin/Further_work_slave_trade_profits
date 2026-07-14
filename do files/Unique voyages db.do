@@ -21,10 +21,12 @@ assert (numberofvoyages == test | ventureid=="KR016")
 /*KR016 is grouping of 15 Danish voyages included in table 8 in Lauring*/
 drop test
 
+
+
 *********************Transform the ventures into voyages
 keep ventureid voyageidintstd nameofoutfitter nameofthecaptain YEARAF_own /*
     */ numberofvoyages internalcrossref completedataonoutlays completedataonreturns numberofvoyages /*
-    */ nationality datedepartureportofoutfitt_str
+    */ nationality datedepartureportofoutfitt_str placeofpurchase
 
 /*
 foreach var of varlist voyageidintstd nameofthecaptain nameofoutfitter {
@@ -38,6 +40,7 @@ split voyageidintstd , generate(voy) parse("/")
 split nameofthecaptain , generate(cap) parse("/")
 split nameofoutfitter , generate(out) parse("/")
 split datedepartureportofoutfitt_str,generate(date) parse ("/")
+split placeofpurchase,generate(place) parse ("/")
 
 
 
@@ -45,11 +48,11 @@ forvalue i = 1/15 {
     capture replace voy`i' = strtrim(voy`i')
     capture replace cap`i' = strtrim(cap`i')
     capture replace out`i' = strtrim(out`i')
-
+    capture replace place`i' = strtrim(place`i')
 }
 
 
-reshape long voy cap out date, i(ventureid) j(voyagenumber)
+reshape long voy cap out date place, i(ventureid) j(voyagenumber)
 drop if voyagenumber>numberofvoyages
 
 rename voy VOYAGEID
@@ -100,6 +103,10 @@ replace nameofthecaptain=cap
 drop cap
 replace nameofoutfitter=out
 drop out
+replace datedepartureportofoutfitt_str=date
+drop date
+replace placeofpurchase=place
+drop place
 
 drop voyageidintstd completedataonoutlays completedataonreturns voyageid_num date year_dep
 

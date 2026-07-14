@@ -142,15 +142,32 @@ encode ImputedPrincipalregionofcaptivep,generate(MAJBYIMP)
 rename Imputedprincipalplaceofcaptivepu MJBYPTIMP_str
 rename ImputedPrincipalregionofcaptivep MAJBYIMP_str
 
-gen MAJMAJBYIMP = "West" if MAJBYIMP_str=="Senegambia and offshore Atlantic" | MAJBYIMP_str=="Sierra Leone" | MAJBYIMP_str=="Windward Coast"
+replace MJBYPTIMP_str = "Senegambia and offshore Atlantic" if MAJBYIMP_str=="Senegambia and offshore Atlantic" & MJBYPTIMP_str=="None"
+replace MJBYPTIMP = 168 if MAJBYIMP_str=="Senegambia and offshore Atlantic" & MJBYPTIMP==132
+***There is one such case in tsdt id 26408
+///label list MJBYPTIMP gives  168 Senegambia and offshore Atlantic, port unspecified
+
+
+
+***From MAJBYIMP
+gen MAJMAJBYIMP = "Mixed, unknown or not in Africa"
+replace MAJMAJBYIMP = "West" if MAJBYIMP_str=="Senegambia and offshore Atlantic" | MAJBYIMP_str=="Sierra Leone" | MAJBYIMP_str=="Windward Coast"
 replace MAJMAJBYIMP = "Bight of Guinea" if MAJBYIMP_str=="Gold Coast" | MAJBYIMP_str=="Bight of Benin" | MAJBYIMP_str=="Bight of Biafra and Gulf of Guinea islands"
 replace MAJMAJBYIMP = "South" if MAJBYIMP_str=="West Central Africa and St Helena" | MAJBYIMP_str=="East Africa and Indian Ocean islands"
+*****From MJBYPTIMP_str
+replace MAJMAJBYIMP = "West" if inlist(MJBYPTIMP_str, "Senegal", "Gambia", "Sierra Leone", "Windward Coast", ///
+    "Senegambia or Sierra Leone")
+replace MAJMAJBYIMP = "Bight of Guinea" if ///
+    inlist(MJBYPTIMP_str, "Gold Coast + Bight of Benin + Bight of Biafra", "Bights","Gold Coast, Fr definition", ///
+     "Princes Island and Elmina", "West of Cape Apolonia")
+
+
+
 label var MAJMAJBYIMP "African region of trade"
 encode MAJMAJBYIMP, gen(MAJMAJBYIMP_num)
 label var MAJMAJBYIMP "African region of trade"
 label var MAJMAJBYIMP_num "African region of trade"
 
-**We loose some regions with the 2026 data, but that seems justified
 
 
 
