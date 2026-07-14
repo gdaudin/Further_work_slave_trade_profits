@@ -14,7 +14,7 @@ drop _merge
 sort ventureid VOYAGEID
 
 keep ventureid numberofvoyages voyagenumber VOYAGEID YEARAF MAJBYIMP MAJBYIMP_str MJBYPTIMP MJBYPTIMP_str MAJMAJBYIMP MAJMAJBYIMP_num   /*
-*/ SLAXIMP SLAMIMP CAPTAINA OWNERA DATEEND DATEDEP FATE FATEcol FATEbin FATEdum* data nameofoutfitter/*
+*/ SLAXIMP SLAMIMP CAPTAIN* OWNER* DATEEND DATEDEP FATE FATEcol FATEbin FATEdum* data nameofoutfitter/*
 */ nameofthecaptain YEARAF_own TONMOD nationality* YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP placeofpurchase
 sort ventureid DATEDEP
 

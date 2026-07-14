@@ -101,6 +101,8 @@ foreach captainletter in A B C {
 	save "${output}Captain.dta", replace
 	restore
 }
+
+
 //THERE IS AN ISSUE IN TSDT DATAT
 use "${output}Captain.dta", clear
 duplicates drop CAPTAIN VOYAGEID, force
@@ -135,6 +137,7 @@ save "${output}OUTFITTER.dta", replace
 **COMPUTE EXPERIENCE TAKING INTO ACCOUNT HOMONYMES
 
 use "${output}Captain.dta", clear
+drop if CAPTAIN=="" | YEARAF==.
 sort CAPTAIN YEARAF
 
 sort CAPTAIN YEARAF 
