@@ -87,10 +87,7 @@ label var FATEbin "Fate of venture (binary)"
 ****add port shares
 merge m:1 YEARAF MJBYPTIMP using "${output}port_shares.dta", keep(1 3)
 drop _merge
-////Big ports
-gen big_port=0
-replace big_port=1 if port_share>0.01 & !missing(port_share)
-label var big_port "Big African slave-trading port"
+
 
 **Crowding
 gen crowd=SLAXIMP/TONMOD

@@ -2,10 +2,10 @@ clear
 
 cd "$dir"
 
-use "tastdb-exp-2026_corr+own+various.dta", replace
+use "tastdb-exp-2026_corr+own+various+careers.dta", replace
 
 
-gen MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP
+replace MORTALITY=(SLAXIMP-SLAMIMP)/SLAXIMP if missing(MORTALITY)
 replace MORTALITY=Percentageofcaptiveswhodieddurin if missing(MORTALITY) | MORTALITY<=0 
 replace MORTALITY=0 if MORTALITY<0
 label var MORTALITY "Enslaved people mortality rate"
@@ -14,12 +14,12 @@ label var MORTALITY "Enslaved people mortality rate"
 label define data 0 "No computation possible" 1 "With estimates" 2 "Without estimates"
 
 
-global varlist_o  YEARAF, TONMOD, crowd, SLAXIMP, MORTALITY, pricemarkup, length_in_days
-global varlist_d war, neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d, MAJMAJBYIMP_num, FATEbin
+*global varlist_o  YEARAF, TONMOD, crowd, SLAXIMP, MORTALITY, pricemarkup, length_in_days
+*global varlist_d war, neutral, big_port, OUTFITTER_experience_d, captain_experience_d, either_experience_d, MAJMAJBYIMP_num, FATEbin
 
 
 
-keep if !missing($varlist_o, $varlist_d) & YEARAF>=1750 & YEARAF<=1795 & (FlagofvesselIMP=="France" | FlagofvesselIMP=="Great Britain" | FlagofvesselIMP=="Netherlands")
+keep if /*!missing($varlist_o, $varlist_d) & */YEARAF>=1750 & YEARAF<=1795 & (FlagofvesselIMP=="France" | FlagofvesselIMP=="Great Britain" | FlagofvesselIMP=="Netherlands")
 
 gen sample =  1 if data==1 | data==2
 replace sample=0 if sample==.
@@ -30,30 +30,41 @@ expand 2 if sample == 1, generate(duplicates)
 replace sample = 0 if duplicates ==1 & sample==1
 
 *****Tables for dummies and categorical variables
-
-table (var) (sample), statistic(fvfrequency war neutral) statistic(fvproportion war neutral) nototals name(war) replace
+collect clear
+table (var) (sample), statistic(fvfrequency war neutral) statistic(fvproportion war neutral) ///
+	statistic(count war neutral) nototals name(war) replace
 
 collect style cell result[fvfrequency],nformat (%5.0fc)
 collect style cell result[fvproportion],nformat (%3.2fc)
 collect style header result, level(hide)
 collect style row stack, nobinder
+collect style save support_population, replace
 collect preview
-
 
 collect export "${output}Support_War_Neutrality.txt", as(txt) replace
 collect export "${output}Support_War_Neutrality.docx", as(docx) replace
 
 
-table (var) (sample), statistic(fvfrequency big_port MAJMAJBYIMP_num) statistic(fvproportion big_port MAJMAJBYIMP_num) nototals name(african_geography) replace
+table (var) (sample), statistic(fvfrequency big_port MAJMAJBYIMP_num) statistic(fvproportion big_port MAJMAJBYIMP_num) ///
+	statistic(count big_port MAJMAJBYIMP_num) nototals name(african_geography) replace
 
+
+collect style use support_population
+
+collect preview
+
+blif
+erase support_population.json
 collect style cell result[fvfrequency],nformat (%5.0fc)
 collect style cell result[fvproportion],nformat (%3.2fc)
 collect style header result, level(hide)
 collect style row stack, nobinder
+
 collect preview
 
 collect export "${output}Support_African_Geography.txt", as(txt) replace
 collect export "${output}Support_African_Geography.docx", as(docx) replace
+blif
 
 table (var) (sample), statistic(fvfrequency MAJBYIMP) statistic(fvproportion  MAJBYIMP) nototals name(african_precise_geography)replace
 
