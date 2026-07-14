@@ -6,10 +6,10 @@ clear
 
 use "${output}voyages.dta", clear
 
+
+
 merge m:1 VOYAGEID using "${tastdb}tastdb-exp-2026_corr.dta"
 drop _merge
-
-
 
 sort ventureid VOYAGEID
 
