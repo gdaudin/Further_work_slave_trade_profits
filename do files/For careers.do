@@ -4,14 +4,14 @@ clear
 
 ///////////////////////////////////////////////////////////////////////////////
 ////Captains and OUTFITTERs’ career.
-/////1. Start with tstd.
+/////1. Start with tstd enriched with our data.
 //// 2. correct names in TSTD
-//// 3. Merge with our the information in our extra voyage
-/////4. PREPARE OUTFITTERS’ AND CAPTAINS’ TRACK RECORD
+/////3. PREPARE OUTFITTERS’ AND CAPTAINS’ TRACK RECORD
+/////4. Merge track record with career data
 
-*1. Start wit tstd
+*1. Start wit tstd enrchided with our data
 
-use "${tastdb}tastdb-exp-2026.dta", clear
+use "${tastdb}tastdb-exp-2026_corr+own+various.dta", clear
 
 //2. Correct owner’s names TSTD
 
@@ -81,38 +81,12 @@ foreach letter in A B C {
 }
 
 
-save "${tastdb}tastdb-exp-2026_corr.dta", replace
+save "${tastdb}tastdb-exp-2026_corr+own+various.dta", replace
 
 
-//////3. merge with Venture all to get extra voyages
-***I assume the multiple voyages cannot help us
-use "${output}voyages.dta", clear
+// * 3. PREPARE OUTFITTERS’ AND CAPTAINS’ TRACK RECORD
 
-duplicates drop nameofthecaptain nameofoutfitter VOYAGEID, force
-//This is only useful if we know the name of the captain or the outfitter
-drop if nameofthecaptain=="" & nameofoutfitter==""
-merge 1:1 VOYAGEID  using "${tastdb}tastdb-exp-2026_corr.dta"
-drop _merge
-
-
-//Here, we assume our data on outfitter is correct
-replace OWNERA= nameofoutfitter if nameofoutfitter!=""
-//Here, we assume stdt on captain is correct
-replace CAPTAINA= nameofthecaptain if missing(CAPTAINA)
-replace YEARAF = YEARAF_own if missing(YEARAF)
-/*drop if strmatch(voyageidintstd,"*/*")==1
-**I would like to avoid that line. Issues with DR051, KR014 (and probably not KR016) */
-*"
-
-drop if YEARAF==.
-
-
-
-save "tastdb-exp-2026+own.dta", replace
-
-// * 4. PREPARE OUTFITTERS’ AND CAPTAINS’ TRACK RECORD
-
-use "tastdb-exp-2026+own.dta", clear
+use "${tastdb}tastdb-exp-2026_corr+own+various.dta", clear
 keep CAPTAINA CAPTAINB CAPTAINC YEARAF VOYAGEID MAJMAJBYIMP
 
 capture erase "${output}Captain.dta"
@@ -132,7 +106,7 @@ use "${output}Captain.dta", clear
 duplicates drop CAPTAIN VOYAGEID, force
 save "${output}Captain.dta", replace
  
-use "tastdb-exp-2026+own.dta", clear
+use "${tastdb}tastdb-exp-2026_corr+own+various.dta", clear
 
  keep OWNERA /*OWNERB OWNERC OWNERD /*
  */ OWNERE OWNERF OWNERG OWNERH OWNERI OWNERJ OWNERK OWNERL OWNERM OWNERN /* 
@@ -250,4 +224,41 @@ replace OUTFITTER_total_career_d=1 if OUTFITTER_total_career>1 & !missing(OUTFIT
 
 save "${output}OUTFITTER.dta", replace
 
-erase "tastdb-exp-2026+own.dta"
+
+/////4. Merge voyage db with career database
+
+*****Now merge voyages with careers
+
+use "${tastdb}tastdb-exp-2026_corr+own+various.dta", clear
+
+
+* MERGE WITH Career DATASET (CAPTAIN)
+generate CAPTAIN = ""
+replace CAPTAIN = CAPTAINA
+*replace CAPTAIN = nameofthecaptain if CAPTAIN==""
+replace CAPTAIN="" if CAPTAIN=="."
+merge m:1 CAPTAIN YEARAF MAJMAJBYIMP using "${output}Captain.dta"
+drop if _merge==2
+*For debugging
+*br CAPTAIN YEARAF ventureid VOYAGEID if _merge==1 & (CAPTAIN!="" & YEARAF !=.)
+assert (CAPTAIN=="" | YEARAF ==.) if _merge==1 	&  data >=1
+	
+drop _merge
+
+
+* MERGE WITH Career DATASET (OUTFITTER)
+generate OUTFITTER = ""
+replace OUTFITTER = OWNERA if OUTFITTER==""
+replace OUTFITTER="" if OUTFITTER=="."
+merge m:1 OUTFITTER YEARAF MAJMAJBYIMP using "${output}OUTFITTER.dta"
+drop if _merge==2
+*For debugging
+*br OUTFITTER YEARAF ventureid VOYAGEID if _merge==1 & (OUTFITTER!="" & YEARAF !=.)
+assert (OUTFITTER=="" | YEARAF ==.) if _merge==1 &  data >=1
+drop _merge
+
+
+gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
+label var either_experience_d "Not the first voyage of both the captain and the outfitter"
+
+save "${tastdb}tastdb-exp-2026_corr+own+various+careers.dta", replace
