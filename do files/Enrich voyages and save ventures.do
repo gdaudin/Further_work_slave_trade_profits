@@ -237,7 +237,13 @@ label var captain_experience_d "Not the first voyage of the captain (min)"
 label var big_port "Big African slave-trading port"
 label var nationality_num "Nationality"
 
+///various labels
+label define nation_num 1 "Danish" 2 "Dutch" 3 "English" 4 "French" 5 "Spanish" 
+label values nationality_num nation_num
 
+
+label values war war
+label values neutral neutral
 
 
 *make dummies out of means
@@ -267,10 +273,6 @@ label values FATEbin fatebin
 label var FATEcol "Fate of venture (4 outcomes)"
 label var FATEbin "Fate of venture (binary)"
 
-
-///Nationality labels
-label define nation_num 1 "Danish" 2 "Dutch" 3 "English" 4 "French" 5 "Spanish" 
-label values nationality_num nation_num
 
 
 

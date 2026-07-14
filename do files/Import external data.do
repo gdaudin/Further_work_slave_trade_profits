@@ -15,6 +15,9 @@ rename country nationality
 rename year YEARAF
 rename wars war
 label var war "War involving own nationality"
+label define war 0 "Nation at peace" 1 "Nation at war"
+label values war war
+
 
 
 save "${output}European wars.dta", replace
@@ -43,6 +46,8 @@ replace country= "Spanish" if country=="sp"
 rename country nationality
 rename year YEARAF
 label var neutral "Neutrality of own nation"
+label define neutral 0 "No major European war or nation at war" 1 "Nation neutral during a major European war"
+label values neutral neutral
 
 save "${output}Neutrality.dta", replace
 
