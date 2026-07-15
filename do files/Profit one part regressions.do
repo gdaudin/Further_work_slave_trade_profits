@@ -61,14 +61,14 @@ drop predicted_profit
 
 
 global explaining "$explaining lnTONMOD"
-collect, tag(model[0d]  hyp[$hyp] step[Regression]): reg profit $explaining OUTFITTER_experience_d captain_experience_d ib(freq).either_experience_d if tstd_voyages==0, vce(robust)
+collect, tag(model[0d]  hyp[$hyp] step[Regression]): reg profit $explaining OUTFITTER_experience_d captain_experience_d 1.either_experience_d if tstd_voyages==0, vce(robust)
 
 predict predicted_profit if tstd_voyages==1, xb 
 collect, tag(model[0d]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
 
-global explaining "$explaining OUTFITTER_experience_d captain_experience_d ib(freq).either_experience_d"
+global explaining "$explaining OUTFITTER_experience_d captain_experience_d 1.either_experience_d"
 
 global proxy " MORTALITY pricemarkup "
 collect, tag(model[1] hyp[$hyp] step[Regression]):reg profit $explaining $proxy ln_length_in_days i.FATEbin if tstd_voyages==0, vce(robust) 

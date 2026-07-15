@@ -52,7 +52,7 @@ collect, tag(model[5] reg[main] hyp[$hyp]): reg profit $explaining, vce(robust)
 
 *collect, tag(model[6] reg[main] hyp[$hyp]): reg profit $explaining OUTFITTER_experience_d captain_experience_d, vce(robust)
 
-collect, tag(model[6] reg[main] hyp[$hyp]): reg profit $explaining OUTFITTER_experience_d captain_experience_d ib(freq).either_experience_d, vce(robust)
+collect, tag(model[6] reg[main] hyp[$hyp]): reg profit $explaining OUTFITTER_experience_d captain_experience_d 1.either_experience_d, vce(robust)
 
 //The product of experiences is not significant. Regional experience is too limitative
 
