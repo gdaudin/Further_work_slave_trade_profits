@@ -50,40 +50,34 @@ table (var) (sample), statistic(fvfrequency big_port MAJMAJBYIMP_num) statistic(
 
 
 collect style use support_population
-
-collect preview
-
-blif
-erase support_population.json
-collect style cell result[fvfrequency],nformat (%5.0fc)
 collect style cell result[fvproportion],nformat (%3.2fc)
-collect style header result, level(hide)
-collect style row stack, nobinder
 
 collect preview
 
 collect export "${output}Support_African_Geography.txt", as(txt) replace
 collect export "${output}Support_African_Geography.docx", as(docx) replace
-blif
 
-table (var) (sample), statistic(fvfrequency MAJBYIMP) statistic(fvproportion  MAJBYIMP) nototals name(african_precise_geography)replace
 
-collect style cell result[fvfrequency],nformat (%5.0fc)
+table (var) (sample), statistic(fvfrequency MAJBYIMP) statistic(fvproportion MAJBYIMP) nototals ////
+	statistic(count MAJBYIMP) name(african_precise_geography)replace
+
+collect style use support_population
 collect style cell result[fvproportion],nformat (%3.2fc)
-collect style header result, level(hide)
-collect style row stack, nobinder
 collect preview
+
 
 collect export "${output}Support_African_Precise_Geography.txt", as(txt) replace
 collect export "${output}Support_African_Precise_Geography.docx", as(docx) replace
 
-table (var) (sample), statistic(fvfrequency OUTFITTER_experience_d captain_experience_d either_experience_d) statistic(fvproportion  OUTFITTER_experience_d captain_experience_d either_experience_d) nototals name(experience) replace
+table (var) (sample), statistic(fvfrequency OUTFITTER_experience_d captain_experience_d either_experience_d) ///
+	statistic(fvproportion  OUTFITTER_experience_d captain_experience_d either_experience_d) ///
+	statistic(count OUTFITTER_experience_d captain_experience_d either_experience_d) ///
+	nototals name(experience) replace
 
-collect style cell result[fvfrequency],nformat (%5.0fc)
+collect style use support_population
 collect style cell result[fvproportion],nformat (%3.2fc)
-collect style header result, level(hide)
-collect style row stack, nobinder
 collect preview
+blif
 
 collect export "${output}Support_Experience.txt", as(txt) replace
 collect export "${output}Support_Experience.docx", as(docx) replace
@@ -123,6 +117,10 @@ collect preview
 
 collect export "${output}Support_Fate_precise.txt", as(txt) replace
 collect export "${output}Support_Fate_precise.docx", as(docx) replace
+
+
+erase support_population.json
+
 ***********************
 *******Histograms for quantitative variables
 **********************************************

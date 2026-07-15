@@ -14,7 +14,7 @@
 
 
 
-	do "${dir}/do files/Import tstd.do"
+	*do "${dir}/do files/Import tstd.do"
 
 	
 

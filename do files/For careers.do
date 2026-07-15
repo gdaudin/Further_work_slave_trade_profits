@@ -166,16 +166,17 @@ replace captain_experience=temp_captain_experience if captain_experience!=temp_c
 drop temp_captain_experience
 
 **Dummy creation
-gen captain_experience_d=0 if !missing(captain_experience)
-replace captain_experience_d=1 if captain_experience>0 & !missing(captain_experience)
-label var captain_experience_d "Not the first voyage of the captain"
+gen captain_experience_d=1 
+replace captain_experience_d=0 if captain_experience>0 
+label var captain_experience_d "First voyage of the captain"
 
-gen captain_regional_experience_d=0 if !missing(captain_regional_experience)
-replace captain_regional_experience_d=1 if captain_regional_experience>0 & !missing(captain_regional_experience)
-label var captain_regional_experience_d "Not the first voyage of the captain in the region"
+gen captain_regional_experience_d=1 
+replace captain_regional_experience_d=0 if captain_regional_experience>0 
+label var captain_regional_experience_d "First voyage of the captain in the region"
 
-gen captain_total_career_d=0 if !missing(captain_total_career)
-replace captain_total_career_d=1 if captain_total_career>1 & !missing(captain_total_career)
+gen captain_total_career_d=1 
+replace captain_total_career_d=0 if captain_total_career>1
+label var captain_total_career_d "Only voyage of the captain"
 
 save "${output}Captain.dta", replace
 
@@ -214,16 +215,17 @@ drop temp_OUTFITTER_experience
 
 
 **Dummy creation
-gen OUTFITTER_experience_d=0 if !missing(OUTFITTER_experience)
-replace OUTFITTER_experience_d=1 if OUTFITTER_experience>0 & !missing(OUTFITTER_experience)
-label var OUTFITTER_experience_d "Not the first voyage of the outfitter"
+gen OUTFITTER_experience_d=1 
+replace OUTFITTER_experience_d=0 if OUTFITTER_experience>0 
+label var OUTFITTER_experience_d "First voyage of the outfitter"
 
-gen OUTFITTER_regional_experience_d=0 if !missing(OUTFITTER_regional_experience)
-replace OUTFITTER_regional_experience_d=1 if OUTFITTER_regional_experience>0 & !missing(OUTFITTER_regional_experience)
-label var OUTFITTER_regional_experience_d "Not the first voyage of the outfitter in the region"
+gen OUTFITTER_regional_experience_d=1 
+replace OUTFITTER_regional_experience_d=0 if OUTFITTER_regional_experience>0 
+label var OUTFITTER_regional_experience_d "First voyage of the outfitter in the region"
 
-gen OUTFITTER_total_career_d=0 if !missing(OUTFITTER_total_career)
-replace OUTFITTER_total_career_d=1 if OUTFITTER_total_career>1 & !missing(OUTFITTER_total_career)
+gen OUTFITTER_total_career_d=1
+replace OUTFITTER_total_career_d=0 if OUTFITTER_total_career>1 
+label var OUTFITTER_total_career_d "Only voyage of the outfitter"
 
 save "${output}OUTFITTER.dta", replace
 
@@ -244,9 +246,9 @@ merge m:1 CAPTAIN YEARAF MAJMAJBYIMP using "${output}Captain.dta"
 drop if _merge==2
 *For debugging
 *br CAPTAIN YEARAF ventureid VOYAGEID if _merge==1 & (CAPTAIN!="" & YEARAF !=.)
-assert (CAPTAIN=="" | YEARAF ==.) if _merge==1 	&  data >=1
-	
+assert (CAPTAIN=="" | YEARAF ==.) if _merge==1 
 drop _merge
+
 
 
 * MERGE WITH Career DATASET (OUTFITTER)
@@ -257,11 +259,28 @@ merge m:1 OUTFITTER YEARAF MAJMAJBYIMP using "${output}OUTFITTER.dta"
 drop if _merge==2
 *For debugging
 *br OUTFITTER YEARAF ventureid VOYAGEID if _merge==1 & (OUTFITTER!="" & YEARAF !=.)
-assert (OUTFITTER=="" | YEARAF ==.) if _merge==1 &  data >=1
+assert (OUTFITTER=="" | YEARAF ==.) if _merge==1
 drop _merge
 
 
-gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
-label var either_experience_d "Not the first voyage of both the captain and the outfitter"
+replace captain_experience_d=1 if captain_experience_d==.
+replace OUTFITTER_experience_d=1 if OUTFITTER_experience_d==.
+label define exp_dum 0 "Not first voyage or unknown" 1 "First voyage", replace
+label value captain_experience_d exp_dum 
+label value OUTFITTER_experience_d exp_dum 
+
+
+
+
+gen either_experience_d = 2 if OUTFITTER_experience_d==1 & captain_experience_d==1
+replace either_experience_d = 1 if (OUTFITTER_experience_d==1 | captain_experience_d==1) & either_experience_d==.
+replace either_experience_d = 0  if (OUTFITTER_experience_d==0 |OUTFITTER_experience_d==.) & (captain_experience_d==0 |captain_experience_d==.) 
+label var either_experience_d "First voyage of the captain and the outfitter"
+label  define exp_dum_square 0 "Not the first voyage (or unknown) of both the captain and the outfitter" ///
+		1 "First voyage of either the captain or the outfitter" ///
+		2 "First voyage of both the captain and the outfitter"
+label value either_experience_d exp_dum_square
+
+
 
 save "${tastdb}tastdb-exp-2026_corr+own+various+careers.dta", replace
