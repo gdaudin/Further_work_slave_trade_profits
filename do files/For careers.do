@@ -262,7 +262,7 @@ drop if _merge==2
 assert (OUTFITTER=="" | YEARAF ==.) if _merge==1
 drop _merge
 
-
+////de base
 replace captain_experience_d=1 if captain_experience_d==.
 replace OUTFITTER_experience_d=1 if OUTFITTER_experience_d==.
 label define exp_dum 0 "Not first voyage or unknown" 1 "First voyage", replace
@@ -270,17 +270,30 @@ label value captain_experience_d exp_dum
 label value OUTFITTER_experience_d exp_dum 
 
 
-
-
 gen either_experience_d = 2 if OUTFITTER_experience_d==1 & captain_experience_d==1
 replace either_experience_d = 1 if (OUTFITTER_experience_d==1 | captain_experience_d==1) & either_experience_d==.
 replace either_experience_d = 0  if (OUTFITTER_experience_d==0 |OUTFITTER_experience_d==.) & (captain_experience_d==0 |captain_experience_d==.) 
 label var either_experience_d "First voyage of the captain and the outfitter"
 label  define exp_dum_square 0 "Not the first voyage (or unknown) of both the captain and the outfitter" ///
-		1 "First voyage of either the captain or the outfitter" ///
-		2 "First voyage of both the captain and the outfitter"
+		1 "First voyage of only one of the captain or the outfitter" ///
+		2 "First voyage of both the captain and the outfitter", replace
 label value either_experience_d exp_dum_square
 
+////idem, regional
+replace captain_regional_experience_d=1 if captain_regional_experience_d==.
+replace OUTFITTER_regional_experience_d=1 if OUTFITTER_regional_experience_d==.
+label define exp_regional_dum 0 "Not first voyage in the region or unknown" 1 "First voyage in the region", replace
+label value captain_regional_experience_d exp_regional_dum 
+label value OUTFITTER_regional_experience_d exp_regional_dum 
 
+
+gen either_regional_experience_d = 2 if OUTFITTER_regional_experience_d==1 & captain_regional_experience_d==1
+replace either_regional_experience_d = 1 if (OUTFITTER_regional_experience_d==1 | captain_regional_experience_d==1) & either_regional_experience_d==.
+replace either_regional_experience_d = 0  if (OUTFITTER_regional_experience_d==0 |OUTFITTER_regional_experience_d==.) & (captain_regional_experience_d==0 |captain_regional_experience_d==.) 
+label var either_regional_experience_d "First voyage in the region of the captain and the outfitter"
+label  define exp_regional_dum_square 0 "Not the first voyage in the region (or unknown) of both the captain and the outfitter " ///
+		1 "First voyage in the region of only one of the captain or the outfitter" ///
+		2 "First voyage in the region of both the captain and the outfitter", replace
+label value either_regional_experience_d exp_dum_square
 
 save "${tastdb}tastdb-exp-2026_corr+own+various+careers.dta", replace
