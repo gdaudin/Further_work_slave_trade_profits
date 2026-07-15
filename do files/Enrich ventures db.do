@@ -31,11 +31,6 @@ gen lnTONMOD=ln(TONMOD)
 label var lnTONMOD "Tonnage standardized on British measured tons, 1773-1835 (ln)"
 
 
-gen either_experience_d = max(OUTFITTER_experience_d, captain_experience_d)
-label var either_experience_d "Not the first voyage of both the captain and the outfitter"
-
-gen either_regional_experience_d = max(OUTFITTER_regional_experience_d, captain_regional_experience_d)
-label var either_regional_experience_d "Not the first voyage of both the captain and the outfitter"
 
 encode perspectiveofsource, generate(perspective)
 
