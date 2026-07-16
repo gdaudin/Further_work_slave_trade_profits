@@ -19,11 +19,11 @@
 	
 
 	*Creating datasets
-	do "${dir}/do files/Port shares computation.do"
 	do "${dir}/do files/Import external data.do" 
 	do "${dir}/do files/Import data python_merge.do" /*606 ventures 685 voyages*/
 	do "${dir}/do files/Unique voyages db.do" /*This creates a db of voyages in the data*/
 	do "${dir}/do files/Enrich tstd voyages.do" /*Saves  "tastdb-exp-2026_corr+own+various.dta"*/
+	do "${dir}/do files/Port shares computation.do"
 	do "${dir}/do files/For careers.do" /*Work on tsdt, enriched when possible with our data*/ /*saves "${tastdb}tastdb-exp-2026_corr+own+various+careers.dta"*/
 	
 

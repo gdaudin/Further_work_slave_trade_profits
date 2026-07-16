@@ -13,18 +13,17 @@ and SLAXIMP (imputed total slaves embarked)
 */
 
 
-use "${tastdb}tastdb-exp-2026.dta", clear
+use "${tastdb}tastdb-exp-2026_corr+own+various.dta", clear
 
-keep YEARAF  MJBYPTIMP SLAXIMP MAJMAJBYIMP
-collapse (sum) SLAXIMP, by(MJBYPTIMP YEARAF MAJMAJBYIMP)
+keep YEARAF  MJBYPTIMP SLAXIMP 
+collapse (sum) SLAXIMP, by(MJBYPTIMP YEARAF )
 xtset MJBYPTIMP YEARAF
 decode MJBYPTIMP, generate(MJBYPTIMP_str)
 rangestat (sum) totalslaves15y=SLAXIMP, interval(YEARAF -7 7)
 label var totalslaves15y "Total slaves embarked (15 y. window)"
 rangestat (sum) portslaves15y=SLAXIMP, interval(YEARAF -7 7) by(MJBYPTIMP)
 label var portslaves15y "Total slaves embarked (15 y. window)"
-gen port_share = portslaves15y/totalslaves15y if MAJMAJBYIMP!="Mixed, unknown or not in Africa" ////
-        & strmatch(MJBYPTIMP_str,"*unspecified*")!=1
+gen port_share = portslaves15y/totalslaves15y if strmatch(MJBYPTIMP_str,"*unspecified*")!=1
 label var port_share "Share of slaves embarked (15 y. window)"
 
 
@@ -36,8 +35,9 @@ gen big_port=0
 replace big_port=1 if port_share>0.01 & !missing(port_share)
 label var big_port "Big African slave-trading port"
 ///For places that are too large
-replace big_port=0 if inlist(MJBYPTIMP_str,"São Tomé or Princes Island", "Gold Coast, Fr definition","Gold Coast + Bight of Benin + Bight of Biafra")
-label define big_port 0 "Less that 1% of total trade +/- 7 years" 1 "s. more that 1% of total trade +/- 7 years"
+replace big_port=0 if inlist(MJBYPTIMP_str,"São Tomé or Princes Island", "Gold Coast, Fr definition","Gold Coast + Bight of Benin + Bight of Biafra", ///
+                        "Windward + Ivory + Gold + Benin","Windward Coast (Nunez - Assini)")
+label define big_port 0 "Less that 1% of total trade +/- 7 years (or unknown)" 1 "s. more that 1% of total trade +/- 7 years", replace
 label value big_port big_port
 
 twoway (line  totalslaves15y YEARAF)
@@ -55,5 +55,13 @@ twoway line  port_share YEARAF if MJBYPTIMP_str=="Calabar", title("Share of Cala
 twoway line  port_share YEARAF if MJBYPTIMP_str=="Benguela", title("Share of Benguela")
 twoway line  port_share YEARAF if MJBYPTIMP_str=="Cabinda", title("Share of Cabinda")
 twoway line  port_share YEARAF if MJBYPTIMP_str=="Mozambique", title("Share of Mozambique")
+*/
+****add port shares
+use "${tastdb}tastdb-exp-2026_corr+own+various.dta", clear
+merge m:1 YEARAF MJBYPTIMP using "${output}port_shares.dta", keep(1 3)
+drop _merge
+save "${tastdb}tastdb-exp-2026_corr+own+various.dta", replace
+
+
 
 

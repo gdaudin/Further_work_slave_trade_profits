@@ -81,6 +81,7 @@ if "`hyp'"!="Baseline"  {
 if "`hyp'"=="Baseline" {
 	collect export "${output}DS_proxy_var_`hyp'.txt", as(txt) replace
 	collect style putdocx, layout(autofitcontents) title ("`hyp'")
+	collect export "${output}/DS_proxy_var_`hyp'.docx", as(docx) replace
 }
 
 collect clear

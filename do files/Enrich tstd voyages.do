@@ -83,12 +83,6 @@ label values FATEbin fatebin
 label var FATEcol "Fate of venture (4 outcomes)"
 label var FATEbin "Fate of venture (binary)"
 
-
-****add port shares
-merge m:1 YEARAF MJBYPTIMP using "${output}port_shares.dta", keep(1 3)
-drop _merge
-
-
 **Crowding
 gen crowd=SLAXIMP/TONMOD
 label var crowd "Number of embarked enslaved persons per ton"
