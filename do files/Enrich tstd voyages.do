@@ -8,7 +8,7 @@ use "${output}voyages.dta", clear
 
 
 
-merge m:1 VOYAGEID using "${tastdb}tastdb-exp-2026_corr.dta"
+merge m:1 VOYAGEID using "${tastdb}tastdb-exp-2026.dta"
 drop _merge
 
 sort ventureid VOYAGEID
@@ -41,7 +41,7 @@ replace MAJMAJBYIMP_num=2   if placeofpurchase=="" & MAJMAJBYIMP_num==.
 replace MAJMAJBYIMP="West"  if inlist(placeofpurchase,"Sénégal") & MAJMAJBYIMP==""
 replace MAJMAJBYIMP_num=4   if inlist(placeofpurchase,"Sénégal") & MAJMAJBYIMP_num==.
 
-replace MAJMAJBYIMP="Bight of Guinea" if inlist(placeofpurchase,"Côte de Guinée","Côte d’Or","Bonny","Côte de Bénin","Whydah") & MAJMAJBYIMP==""
+replace MAJMAJBYIMP="Gulf of Guinea" if inlist(placeofpurchase,"Côte de Guinée","Côte d’Or","Bonny","Côte de Bénin","Whydah") & MAJMAJBYIMP==""
 replace MAJMAJBYIMP_num=1   if inlist(placeofpurchase,"Côte de Guinée","Côte d’Or","Bonny","Côte de Bénin","Whydah") & MAJMAJBYIMP_num==.
 //No Côte de Bénin nor Whydah
 

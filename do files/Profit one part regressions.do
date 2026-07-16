@@ -31,7 +31,7 @@ drop if profit ==.
 
 label var nationality_num "Nationality (English omitted)"
 label var period "Period (1751-1775 omitted)"
-label var MAJMAJBYIMP_num "African region of trade (Bight of Guinea omitted)"
+label var MAJMAJBYIMP_num "African region of trade (Gulf of Guinea omitted)"
 
 append using "${dir}/tastdb-exp-2026_corr+own+various+careers.dta", generate(tstd_voyages)
 keep if tstd_voyages==0 | (YEARAF>=1750 & YEARAF<=1795 & (nationality == "English" | nationality == "French" | nationality == "Dutch"))

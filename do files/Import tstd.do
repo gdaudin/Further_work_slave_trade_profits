@@ -152,12 +152,12 @@ replace MJBYPTIMP = 168 if MAJBYIMP_str=="Senegambia and offshore Atlantic" & MJ
 ***From MAJBYIMP
 gen MAJMAJBYIMP = "Mixed, unknown or not in Africa"
 replace MAJMAJBYIMP = "West" if MAJBYIMP_str=="Senegambia and offshore Atlantic" | MAJBYIMP_str=="Sierra Leone" | MAJBYIMP_str=="Windward Coast"
-replace MAJMAJBYIMP = "Bight of Guinea" if MAJBYIMP_str=="Gold Coast" | MAJBYIMP_str=="Bight of Benin" | MAJBYIMP_str=="Bight of Biafra and Gulf of Guinea islands"
+replace MAJMAJBYIMP = "Gulf of Guinea" if MAJBYIMP_str=="Gold Coast" | MAJBYIMP_str=="Bight of Benin" | MAJBYIMP_str=="Bight of Biafra and Gulf of Guinea islands"
 replace MAJMAJBYIMP = "South" if MAJBYIMP_str=="West Central Africa and St Helena" | MAJBYIMP_str=="East Africa and Indian Ocean islands"
 *****From MJBYPTIMP_str
 replace MAJMAJBYIMP = "West" if inlist(MJBYPTIMP_str, "Senegal", "Gambia", "Sierra Leone", "Windward Coast", ///
     "Senegambia or Sierra Leone")
-replace MAJMAJBYIMP = "Bight of Guinea" if ///
+replace MAJMAJBYIMP = "Gulf of Guinea" if ///
     inlist(MJBYPTIMP_str, "Gold Coast + Bight of Benin + Bight of Biafra", "Bights","Gold Coast, Fr definition", ///
      "Princes Island and Elmina", "West of Cape Apolonia")
 
@@ -167,8 +167,6 @@ label var MAJMAJBYIMP "African region of trade"
 encode MAJMAJBYIMP, gen(MAJMAJBYIMP_num)
 label var MAJMAJBYIMP "African region of trade"
 label var MAJMAJBYIMP_num "African region of trade"
-
-
 
 
 
