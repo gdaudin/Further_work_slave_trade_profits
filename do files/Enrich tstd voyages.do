@@ -84,7 +84,7 @@ label var FATEcol "Fate of venture (4 outcomes)"
 label var FATEbin "Fate of venture (binary)"
 
 **Crowding
-gen crowd=SLAXIMP/TONMOD
+gen crowd=SLAXIMP/TONMOD if SLAXIMP!=0
 label var crowd "Number of embarked enslaved persons per ton"
 
 * APPEND SLAVE PRICES

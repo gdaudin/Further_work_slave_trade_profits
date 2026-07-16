@@ -3,20 +3,25 @@
                                              |  TSTD (restricted)   Our sample
 ---------------------------------------------+--------------------------------
 Imputed Principal region of captive purchase |                                
-  Bight of Benin                             |                386           31
-                                             |               0.10         0.12
-  Bight of Biafra and Gulf of Guinea islands |              1,174           94
-                                             |               0.31         0.37
-  East Africa and Indian Ocean islands       |                  4            0
-                                             |               0.00         0.00
-  Gold Coast                                 |                511           11
-                                             |               0.13         0.04
-  Senegambia and offshore Atlantic           |                271           14
-                                             |               0.07         0.05
-  Sierra Leone                               |                286           10
-                                             |               0.07         0.04
-  West Central Africa and St Helena          |                748           44
-                                             |               0.19         0.17
-  Windward Coast                             |                464           51
-                                             |               0.12         0.20
+  Bight of Benin                             |                612           42
+                                             |               0.07         0.11
+  Bight of Biafra and Gulf of Guinea islands |              1,581          131
+                                             |               0.19         0.35
+  East Africa and Indian Ocean islands       |                 98            1
+                                             |               0.01         0.00
+  Gold Coast                                 |                920           13
+                                             |               0.11         0.03
+  None                                       |                297            5
+                                             |               0.04         0.01
+  Other Africa                               |              1,357           22
+                                             |               0.16         0.06
+  Senegambia and offshore Atlantic           |                757           21
+                                             |               0.09         0.06
+  Sierra Leone                               |                549           13
+                                             |               0.07         0.03
+  West Central Africa and St Helena          |              1,387           65
+                                             |               0.17         0.17
+  Windward Coast                             |                667           59
+                                             |               0.08         0.16
+Imputed Principal region of captive purchase |              8,225          372
 ------------------------------------------------------------------------------

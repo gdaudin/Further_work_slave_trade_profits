@@ -1,15 +1,17 @@
----------------------------------------------------------------
-                              |              sample            
-                              |  TSTD (restricted)   Our sample
-------------------------------+--------------------------------
-War involving own nationality |                                
-  0                           |              2,852          215
-                              |               0.74         0.84
-  1                           |                992           40
-                              |               0.26         0.16
-Neutrality of own nation      |                                
-  0                           |              2,910          197
-                              |               0.76         0.77
-  1                           |                934           58
-                              |               0.24         0.23
----------------------------------------------------------------
+------------------------------------------------------------------------------
+                                             |              sample            
+                                             |  TSTD (restricted)   Our sample
+---------------------------------------------+--------------------------------
+War involving own nationality                |                                
+  Nation at peace                            |              5,989          305
+                                             |               0.73         0.82
+  Nation at war                              |              2,236           67
+                                             |               0.27         0.18
+Neutrality of own nation                     |                                
+  No major European war or nation at war     |              5,752          272
+                                             |               0.70         0.73
+  Nation neutral during a major European war |              2,473          100
+                                             |               0.30         0.27
+War involving own nationality                |              8,225          372
+Neutrality of own nation                     |              8,225          372
+------------------------------------------------------------------------------

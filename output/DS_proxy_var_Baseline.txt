@@ -9,6 +9,13 @@ Imputed number of enslaved people embarked                |
   Minimum value                                           |     304       46         0      129       235        0
   Maximum value                                           |     475      479       980      691       739      980
   Number of nonmissing values                             |       5      101       203       41        17      367
+Number of embarked enslaved people per ton                |                                                       
+  Mean                                                    |       .     0.88      1.54     1.58         .     1.35
+  Median                                                  |             0.82      1.49     1.53               1.26
+  Standard deviation                                      |       .     0.31      0.53     0.53         .     0.57
+  Minimum value                                           |       .     0.17      0.42     0.87         .     0.17
+  Maximum value                                           |       .     1.66      3.19     3.19         .     3.19
+  Number of nonmissing values                             |       0       95       198       28         0      321
 Enslaved people mortality rate                            |                                                       
   Mean                                                    |    0.16     0.08      0.14     0.16      0.13     0.12
   Median                                                  |    0.14     0.05      0.13     0.13      0.12     0.11

@@ -55,7 +55,7 @@ collect style cell var[$varlist_count]#result[max min], nformat(%12.0fc)
 
 
 collect layout (var[war neutral big_port] # result[mean median sd count] ///
-	var[totalnetexp_silver_ship TONMOD crowd] # result[mean median sd min max count] ///
+	var[totalnetexp_silver_ship TONMOD] # result[mean median sd min max count] ///
 	var[OUTFITTER_experience_d captain_experience_d] # result[mean median sd count]) (nationality_num) 
 
 if "`hyp'"!="Baseline"  {
@@ -70,7 +70,7 @@ if "`hyp'"=="Baseline"  {
 	collect export "${output}DS_input_var_`hyp'.docx", as(docx) replace
 }
 
-collect layout (var[SLAXIMP MORTALITY investment_per_slave pricemarkup] # result[mean median sd min max count]) (nationality_num) 
+collect layout (var[SLAXIMP crowd MORTALITY investment_per_slave pricemarkup] # result[mean median sd min max count]) (nationality_num) 
 
 if "`hyp'"!="Baseline"  {
 	collect export "${output}/Robustness/DS_proxy_var_`hyp'.txt", as(txt) replace

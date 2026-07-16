@@ -9,10 +9,11 @@ Period                                                       |
   post-1800                                                  |                         6        1        17      24
   Total                                                      |       5     101       214       50        17     387
 African region of trade                                      |                                                     
-  Bight of Guinea                                            |       5      16       128       19         2     170
-  South                                                      |              28        20       13         1      62
-  West                                                       |              53        39        1         1      94
-  Total                                                      |       5      97       187       33         4     326
+  Bight of Guinea                                            |       5      16       128       28         2     179
+  Mixed, unknown or not in Africa                            |               4        27        4        13      48
+  South                                                      |              28        20       15         1      64
+  West                                                       |              53        39        3         1      96
+  Total                                                      |       5     101       214       50        17     387
 Fate of venture (4 outcomes)                                 |                                                     
   Voyage completed as intended                               |              97       181       37         6     321
   Original goal thwarted before disembarking enslaved people |                        12        2                14
