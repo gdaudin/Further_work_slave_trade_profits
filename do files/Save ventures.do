@@ -12,9 +12,15 @@ use  "${tastdb}tastdb-exp-2026_corr+own+various+careers.dta", clear
 drop if ventureid==""
 **** replace region by mixed if it is not constant inside each ventureid
 
-foreach var of varlist MAJMAJBYIMP {
-	bys  ventureid (`var'): replace `var'="Mixed, unknown or not in Africa" if `var'[1]!=`var'[_N]
+
+
+foreach var of varlist MAJMAJBYIMP  {
+	sort ventureid MAJMAJBYIMP
+	by ventureid: gen byte is_constant = 1 if (`var'[1] == `var'[_N])
+	replace `var'="Mixed, unknown or not in Africa" if is_constant !=1
+	drop is_constant
 }
+
 
 gsort - SLAXIMP
 sort ventureid YEARAF, stable
