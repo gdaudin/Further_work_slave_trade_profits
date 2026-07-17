@@ -69,6 +69,18 @@ collect preview
 collect export "${output}Support_African_Precise_Geography.txt", as(txt) replace
 collect export "${output}Support_African_Precise_Geography.docx", as(docx) replace
 
+
+table (var) (sample), statistic(fvfrequency MJBYPTIMP) statistic(fvproportion MJBYPTIMP) nototals ////
+	statistic(count MJBYPTIMP) name(african_port)replace
+
+collect style use support_population
+collect style cell result[fvproportion],nformat (%3.2fc)
+collect preview
+
+
+collect export "${output}Support_African_Port.txt", as(txt) replace
+collect export "${output}Support_African_Port.docx", as(docx) replace
+
 table (var) (sample), statistic(fvfrequency OUTFITTER_experience_d captain_experience_d either_experience_d) ///
 	statistic(fvproportion  OUTFITTER_experience_d captain_experience_d either_experience_d) ///
 	statistic(count OUTFITTER_experience_d captain_experience_d either_experience_d) ///
@@ -133,9 +145,19 @@ quietly summarize TONMOD if sample==0
 local nbr_0=`r(N)'
 twoway (histogram TONMOD if sample==1, fraction width(25) start(-12.5) color(black%15)) ///
 	 (histogram TONMOD if sample==0, fraction width(25) start(-12.5) color(black%30)),  ///
-	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs" )
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(full, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs" )
 
 
+quietly summarize TONMOD if sample==1 & TONMOD <= 500 
+local nbr_1=`r(N)'
+quietly summarize TONMOD if sample==0 & TONMOD <= 500
+local nbr_0=`r(N)'
+twoway (histogram TONMOD if sample==1 & TONMOD <= 500 , fraction width(25) start(-12.5) color(black%15)) ///
+	 (histogram TONMOD if sample==0 & TONMOD <= 500 , fraction width(25) start(-12.5) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(zoom, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs" )
+
+
+graph combine full zoom
 graph export "$graphs/Support_TONMOD.png",as(png) replace
 
 
@@ -145,8 +167,17 @@ quietly summarize length_in_days if sample==0
 local nbr_0=`r(N)'
 twoway (histogram length_in_days if sample==1, fraction width(25) start(-12.5) color(black%15)) ///
 	 (histogram length_in_days if sample==0, fraction width(25) start(-12.5) color(black%30)),  ///
-	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs")
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(full, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs")
 
+quietly summarize length_in_days if sample==1 & length_in_days<=1000
+local nbr_1=`r(N)'
+quietly summarize length_in_days if sample==0 & length_in_days<=1000
+local nbr_0=`r(N)'
+twoway (histogram length_in_days if sample==1 & length_in_days<=1000, fraction width(25) start(-12.5) color(black%15)) ///
+	 (histogram length_in_days if sample==0& length_in_days<=1000, fraction width(25) start(-12.5) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(zoom, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs")
+
+graph combine full zoom
 graph export "$graphs/Support_length_in_days.png",as(png) replace
 
 

@@ -1,0 +1,237 @@
+------------------------------------------------------------------------------------------------
+                                                               |              sample            
+                                                               |  TSTD (restricted)   Our sample
+---------------------------------------------------------------+--------------------------------
+Imputed principal place of captive purchase                    |                                
+  Accra                                                        |                 17            0
+                                                               |               0.00         0.00
+  Africa, port unspecified                                     |                977            6
+                                                               |               0.12         0.02
+  Albreda                                                      |                  2            0
+                                                               |               0.00         0.00
+  Ambriz                                                       |                 35            2
+                                                               |               0.00         0.01
+  Andony                                                       |                  1            0
+                                                               |               0.00         0.00
+  Anomabu                                                      |                329            2
+                                                               |               0.04         0.01
+  Apammin                                                      |                  2            1
+                                                               |               0.00         0.00
+  Apollonia                                                    |                  1            0
+                                                               |               0.00         0.00
+  Ardra                                                        |                  6            2
+                                                               |               0.00         0.01
+  Axim                                                         |                  2            1
+                                                               |               0.00         0.00
+  Badagry/Apa                                                  |                 51            3
+                                                               |               0.01         0.01
+  Banana Islands                                               |                 25            3
+                                                               |               0.00         0.01
+  Bance/Bunce Island                                           |                 42            0
+                                                               |               0.01         0.00
+  Bassa                                                        |                 90            3
+                                                               |               0.01         0.01
+  Benguela                                                     |                  1            0
+                                                               |               0.00         0.00
+  Benin                                                        |                 97            5
+                                                               |               0.01         0.01
+  Bight of Benin, place unspecified                            |                 64            4
+                                                               |               0.01         0.01
+  Bight of Biafra and Gulf of Guinea Islands, port unspecified |                123            5
+                                                               |               0.01         0.01
+  Bights                                                       |                  1            0
+                                                               |               0.00         0.00
+  Bilbay                                                       |                  1            0
+                                                               |               0.00         0.00
+  Bimbia                                                       |                  6            0
+                                                               |               0.00         0.00
+  Bissagos                                                     |                  2            0
+                                                               |               0.00         0.00
+  Bissau                                                       |                  5            0
+                                                               |               0.00         0.00
+  Boary                                                        |                  6            2
+                                                               |               0.00         0.01
+  Bonny                                                        |                655           17
+                                                               |               0.08         0.05
+  Bundy                                                        |                  1            0
+                                                               |               0.00         0.00
+  CC Castle and Windward                                       |                  1            1
+                                                               |               0.00         0.00
+  Cabinda                                                      |                119            3
+                                                               |               0.01         0.01
+  Cacheu                                                       |                  7            0
+                                                               |               0.00         0.00
+  Calabar                                                      |                427           63
+                                                               |               0.05         0.17
+  Cameroons                                                    |                 95           32
+                                                               |               0.01         0.09
+  Cameroons River                                              |                  9            6
+                                                               |               0.00         0.02
+  Cap Lopez                                                    |                 10            1
+                                                               |               0.00         0.00
+  Cape Coast Castle                                            |                161            0
+                                                               |               0.02         0.00
+  Cape Lahou                                                   |                 77           39
+                                                               |               0.01         0.10
+  Cape Mount (Cape Grand Mount)                                |                120            1
+                                                               |               0.01         0.00
+  Casamance                                                    |                  3            0
+                                                               |               0.00         0.00
+  Casnasonis (location undetermined)                           |                  1            0
+                                                               |               0.00         0.00
+  Cess                                                         |                  1            0
+                                                               |               0.00         0.00
+  Christiansborg                                               |                  1            0
+                                                               |               0.00         0.00
+  Congo North                                                  |                 90            2
+                                                               |               0.01         0.01
+  Congo River                                                  |                 30            0
+                                                               |               0.00         0.00
+  Danish Gold Coast                                            |                  1            0
+                                                               |               0.00         0.00
+  Delagoa                                                      |                  3            0
+                                                               |               0.00         0.00
+  Dembia                                                       |                  1            0
+                                                               |               0.00         0.00
+  Elmina                                                       |                 77            2
+                                                               |               0.01         0.01
+  Epe                                                          |                 21            0
+                                                               |               0.00         0.00
+  Gabon                                                        |                 83            4
+                                                               |               0.01         0.01
+  Galam                                                        |                  3            0
+                                                               |               0.00         0.00
+  Gallinhas                                                    |                  6            0
+                                                               |               0.00         0.00
+  Gambia                                                       |                374           17
+                                                               |               0.05         0.05
+  Gold Coast + Bight of Benin + Bight of Biafra                |                  1            0
+                                                               |               0.00         0.00
+  Gold Coast, Fr definition                                    |                172           12
+                                                               |               0.02         0.03
+  Gold Coast, port unspecified                                 |                317            7
+                                                               |               0.04         0.02
+  Gorée                                                        |                 56            0
+                                                               |               0.01         0.00
+  Grand Bassam                                                 |                  1            0
+                                                               |               0.00         0.00
+  Grand Mesurado                                               |                  9            0
+                                                               |               0.00         0.00
+  Grand Popo                                                   |                  1            0
+                                                               |               0.00         0.00
+  Grand Sestos                                                 |                  4            0
+                                                               |               0.00         0.00
+  Grenada Point                                                |                  1            0
+                                                               |               0.00         0.00
+  Ibo                                                          |                  2            0
+                                                               |               0.00         0.00
+  Ile de France, Mauritius                                     |                  2            0
+                                                               |               0.00         0.00
+  Iles Plantain                                                |                  2            0
+                                                               |               0.00         0.00
+  Iles de Los                                                  |                139            1
+                                                               |               0.02         0.00
+  Ivory Coast                                                  |                  2            0
+                                                               |               0.00         0.00
+  Joal, or Saloum River                                        |                  1            0
+                                                               |               0.00         0.00
+  Keta                                                         |                  1            0
+                                                               |               0.00         0.00
+  Kilwa                                                        |                 12            0
+                                                               |               0.00         0.00
+  Kormantine                                                   |                 12            0
+                                                               |               0.00         0.00
+  Lagos, Onim                                                  |                 28            4
+                                                               |               0.00         0.01
+  Legas                                                        |                  1            0
+                                                               |               0.00         0.00
+  Little Junk                                                  |                  3            0
+                                                               |               0.00         0.00
+  Little Popo                                                  |                 11            2
+                                                               |               0.00         0.01
+  Liverpool River                                              |                  1            0
+                                                               |               0.00         0.00
+  Loango                                                       |                129            6
+                                                               |               0.02         0.02
+  Lourenço Marques                                             |                  1            0
+                                                               |               0.00         0.00
+  Luanda                                                       |                  1            0
+                                                               |               0.00         0.00
+  Malembo                                                      |                249           26
+                                                               |               0.03         0.07
+  Mano                                                         |                  5            0
+                                                               |               0.00         0.00
+  Mascarene Islands                                            |                  2            0
+                                                               |               0.00         0.00
+  Mayumba                                                      |                  5            0
+                                                               |               0.00         0.00
+  Momboza or Zanzibar                                          |                  1            0
+                                                               |               0.00         0.00
+  Mozambique                                                   |                 66            0
+                                                               |               0.01         0.00
+  New Calabar                                                  |                158            3
+                                                               |               0.02         0.01
+  None                                                         |                297            5
+                                                               |               0.04         0.01
+  Petit Mesurado                                               |                  2            0
+                                                               |               0.00         0.00
+  Popo                                                         |                 39            0
+                                                               |               0.00         0.00
+  Porto Novo                                                   |                 78            6
+                                                               |               0.01         0.02
+  Princes Island                                               |                  7            0
+                                                               |               0.00         0.00
+  Quaqua                                                       |                  2            0
+                                                               |               0.00         0.00
+  Quirimba                                                     |                  2            0
+                                                               |               0.00         0.00
+  Rio Dande (N of Luanda)                                      |                  1            0
+                                                               |               0.00         0.00
+  Rio Forcados/Formosa/Benin                                   |                  1            0
+                                                               |               0.00         0.00
+  Rio Nazareth                                                 |                  1            0
+                                                               |               0.00         0.00
+  Rio Nunez                                                    |                  1            0
+                                                               |               0.00         0.00
+  River Kissey                                                 |                  5            0
+                                                               |               0.00         0.00
+  River del Rey                                                |                  1            0
+                                                               |               0.00         0.00
+  Rock Sestos                                                  |                  1            0
+                                                               |               0.00         0.00
+  Saint-Louis                                                  |                243            4
+                                                               |               0.03         0.01
+  Scarcies                                                     |                  2            0
+                                                               |               0.00         0.00
+  Senegambia and offshore Atlantic, port unspecified           |                 61            0
+                                                               |               0.01         0.00
+  Settra Kru                                                   |                  2            0
+                                                               |               0.00         0.00
+  Sherbro                                                      |                 20            0
+                                                               |               0.00         0.00
+  Sierra Leone estuary                                         |                288            8
+                                                               |               0.04         0.02
+  Sierra Leone, port unspecified                               |                 10            1
+                                                               |               0.00         0.00
+  Sofala                                                       |                  1            0
+                                                               |               0.00         0.00
+  Southeast Africa and Indian Ocean islands, port unspecified  |                  9            1
+                                                               |               0.00         0.00
+  St Paul                                                      |                  1            0
+                                                               |               0.00         0.00
+  Sugary (Siekere)                                             |                  1            0
+                                                               |               0.00         0.00
+  Tabou                                                        |                  1            0
+                                                               |               0.00         0.00
+  West Central Africa and St Helena, port unspecified          |                720           24
+                                                               |               0.09         0.06
+  Whydah, Ouidah                                               |                213           16
+                                                               |               0.03         0.04
+  Windward + Ivory + Gold + Benin                              |                141            2
+                                                               |               0.02         0.01
+  Windward Coast (Nunez - Assini)                              |                 63            1
+                                                               |               0.01         0.00
+  Windward Coast, place unspecified                            |                352           16
+                                                               |               0.04         0.04
+Imputed principal place of captive purchase                    |              8,225          372
+------------------------------------------------------------------------------------------------
