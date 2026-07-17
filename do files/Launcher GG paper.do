@@ -42,7 +42,7 @@
 
 	do "${dir}/do files/Profit two parts regressions.do"
 	
-	*do "${dir}/do files/Profit two parts regressions--various hypothesis.do" //a bit long : out for testing//
+	do "${dir}/do files/Profit two parts regressions--various hypothesis.do" //a bit long : out for testing//
 	
 
 	do "${dir}/do files/Profit one part regressions.do"
