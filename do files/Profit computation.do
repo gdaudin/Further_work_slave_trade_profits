@@ -8,14 +8,20 @@ clear
 
 capture program drop profit_computation
 program define profit_computation
-args OR VSDO VSDR VSDT VSRV VSRT INV INT IMP
+args OR VSDO VSDR VSDT VSRV VSRT INV INT
 
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0" ///
-	local hyp="Baseline"
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 0 IMP" ///
-	local hyp="Imputed"
 
-use "${output}Database for profit computation_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.dta", clear
+local hyp "OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'"
+if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'"=="0.5 1 1 0 1 0 1 0" ///
+	local hyp="Baseline"	
+	
+if "`hyp'"=="Baseline" {
+	use "${output}Database for profit computation_`hyp'.dta", replace
+}
+else {
+	use "${output}/Robustness/Database for profit computation_`hyp'.dta", replace
+}
+
 
 keep if (completedataonoutlays=="yes" | completedataonoutlays=="with estimates") ///
 	& (completedataonreturns=="yes" | completedataonreturns=="with estimates" | completedataonreturns=="imputed")
@@ -34,13 +40,15 @@ label var profit "(Net returns over net outlays) -1"
 *erase "${output}Database for profit computation.dta"
 sort ventureid
 
-
-save "${output}Ventures&profit_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`IMP'.dta", replace
-
-if "`hyp'"=="Baseline"  | "`hyp'"=="Imputed" ///
+if "`hyp'"=="Baseline" {
 	save "${output}Ventures&profit_`hyp'.dta", replace
+	export delimited "${output}Ventures&profit_`hyp'.csv", replace
+}
+else {
+	save "${output}/Robustness/Ventures&profit_`hyp'.dta", replace
+}
 
-if "`hyp'"=="Baseline"  export delimited "${output}Ventures&profit_`hyp'.csv", replace
+
 
 codebook ventureid
 quietly summarize numberofvoyages

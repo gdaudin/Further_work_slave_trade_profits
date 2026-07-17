@@ -12,15 +12,18 @@ args OR VSDO VSDR VSDT VSRV VSRT INV INT sample
 
 global hyp "OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`sample'"
 
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0" ///
+if "$hyp"=="0.5 1 1 0 1 0 1 0" ///
 	global hyp="Baseline"
-if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0BB" {
+if "$hyp"=="0.5 1 1 0 1 0 1 0BB" {
 	global hyp="Baseline_BBsample"
 	local sample=""
 }
 
 
-use "${output}/Ventures&profit_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'`sample'.dta", clear
+if "$hyp"=="Baseline" | "$hyp"=="Baseline_BBsample" use "${output}/Ventures&profit_Baseline.dta", clear
+else use "${output}/Robustness/Ventures&profit_Ba.dta", clea
+
+
 if "$hyp"=="Baseline_BBsample" {
 	keep if nationality == "English" | nationality == "French" | nationality == "Dutch" 
 	keep if YEARAF>=1750 & YEARAF<=1795

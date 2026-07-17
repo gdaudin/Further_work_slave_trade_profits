@@ -6,7 +6,14 @@ capture program drop profit_computation_db
 program define profit_computation_db
 args OR VSDO VSDR VSDT VSRV VSRT INV INT
 *eg profit_computation 0.5 1 1 0 1 0 1 0 for the baseline
-**you can put a dot when you want to exclude ventures depending on a particular hypothesis
+**you can put a dot when you want to exclude ventures depending on a particular 
+
+global hyp "OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'"
+
+if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0" {
+	global hyp="Baseline"
+}
+
 
 
 use "${output}Cash flow all.dta", clear
@@ -56,9 +63,6 @@ drop if value==.
 
 drop if nationality==""
 drop if intermediarytradingoperation==1
-
-
-save "${output}Database for IRR computation_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'.dta", replace
 
 *Assign a transaction year when absent and assignement is possible
 **Beginning of the voyage
@@ -197,14 +201,20 @@ drop transactionid typeofcashflow-nbr_INT conv_in_silver-costonreturn_silver
 by ventureid: keep if _n==1
 
 
-save "${output}Database for profit computation_OR`OR'_VSDO`VSDO'_VSDR`VSDR'_VSDT`VSDT'_VSRV`VSRV'_VSRT`VSRT'_INV`INV'_INT`INT'.dta", replace
+if "$hyp"=="Baseline" {
+	save "${output}Database for profit computation_$hyp.dta", replace
+}
+else {
+	save "${output}/Robustness/Database for profit computation_$hyp.dta", replace
+}
 
 end
 
 
 * order of the profit hypotheses: OR VSDO VSDR VSDT VSRV VSRT INV INT
 
-profit_computation_db 0.5 1 1 0 1 0 1 0 /*Baseline, right ?*/
+profit_computation_db 0.5 1 1 0 1 0 1 0  
+/*Baseline, right ?*/
 
 
 
