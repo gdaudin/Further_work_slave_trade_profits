@@ -63,7 +63,7 @@ drop predicted_profit
 global explaining "$explaining lnTONMOD"
 collect, tag(model[0d]  hyp[$hyp] step[Regression]): reg profit $explaining OUTFITTER_experience_d captain_experience_d 1.either_experience_d if tstd_voyages==0, vce(robust)
 
-predict predicted_profit if tstd_voyages==1, xb 
+predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500), xb 
 collect, tag(model[0d]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
@@ -72,28 +72,28 @@ global explaining "$explaining OUTFITTER_experience_d captain_experience_d 1.eit
 
 global proxy " MORTALITY pricemarkup "
 collect, tag(model[1] hyp[$hyp] step[Regression]):reg profit $explaining $proxy ln_length_in_days i.FATEbin if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1, xb 
+predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & ln_length_in_days<=ln(1000), xb 
 collect, tag(model[1]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
 drop predicted_profit
 
 collect, tag(model[2] hyp[$hyp] step[Regression]):reg profit $explaining $proxy ln_length_in_days i.FATEbin crowd if tstd_voyages==0, vce(robust)
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[2]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[2]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & ln_length_in_days<=ln(1000) & crowd<=4
 drop predicted_profit
 
 collect, tag(model[3] hyp[$hyp] step[Regression]):reg profit $explaining $proxy i.FATEbin if tstd_voyages==0, vce(robust) 
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[3]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[3]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500)
 drop predicted_profit
 
 collect, tag(model[4] hyp[$hyp] step[Regression]):reg profit $explaining $proxy ln_length_in_days if tstd_voyages==0, vce(robust) 
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[4]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[4]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & ln_length_in_days<=ln(1000)
 drop predicted_profit
 
 collect, tag(model[5] hyp[$hyp] step[Regression]):reg profit $explaining $proxy i.FATEbin crowd if tstd_voyages==0, vce(robust) 
 predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[5]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
+collect, tag(model[5]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & crowd<=4
 drop predicted_profit
 
 
