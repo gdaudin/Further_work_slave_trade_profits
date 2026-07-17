@@ -16,15 +16,8 @@ if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0
 	global hyp="Baseline"
 if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`sample'"=="0.5 1 1 0 1 0 1 0BB" {
 	global hyp="Baseline_BBsample"
-	local sample=""
 }
 
-if "$hyp"=="0.5 1 1 0 1 0 1 0" ///
-	global hyp="Baseline"
-if "$hyp"=="0.5 1 1 0 1 0 1 0BB" {
-	global hyp="Baseline_BBsample"
-	local sample=""
-}
 
 if "$hyp"=="Baseline" | "$hyp"=="Baseline_BBsample" use "${output}/Ventures&profit_Baseline.dta", clear
 else use "${output}/Robustness/Ventures&profit_$hyp.dta", clear
