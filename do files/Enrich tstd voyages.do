@@ -15,7 +15,8 @@ sort ventureid VOYAGEID
 
 keep ventureid numberofvoyages voyagenumber VOYAGEID YEARAF MAJBYIMP MAJBYIMP_str MJBYPTIMP MJBYPTIMP_str MAJMAJBYIMP MAJMAJBYIMP_num   /*
 */ SLAXIMP SLAMIMP CAPTAIN* OWNER* DATEEND DATEDEP FATE FATEcol FATEbin FATEdum* data nameofoutfitter/*
-*/ nameofthecaptain YEARAF_own TONMOD nationality* YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP placeofpurchase
+*/ nameofthecaptain YEARAF_own TONMOD nationality* YEARDEP Percentageofcaptiveswhodieddurin FlagofvesselIMP placeofpurchase /*
+*/ duration_africa crew_per_ton Crewatvoyageoutset
 sort ventureid DATEDEP
 
 foreach rank of numlist 1(1)7 {

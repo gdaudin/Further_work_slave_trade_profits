@@ -16,7 +16,7 @@
 
 	do "${dir}/do files/Import tstd.do"
 
-	
+
 
 	*Creating datasets
 	do "${dir}/do files/Import external data.do" 
@@ -39,16 +39,19 @@
 	
 
 	do "${dir}/do files/Descriptive statistics of explaining variables.do"
+	
 
 	do "${dir}/do files/Profit two parts regressions.do"
 	
-	do "${dir}/do files/Profit two parts regressions--various hypothesis.do" //a bit long : out for testing//
+	
+	*do "${dir}/do files/Profit two parts regressions--various hypothesis.do" //a bit long : out for testing//
 	
 
-	do "${dir}/do files/Profit one part regressions.do"
+	do "${dir}/do files/Profit one part regressions and extrapolation.do"
+	blif
 
 	do "${dir}/do files/Compare support and population.do"
-	blif
+	
 
 
 	**Descriptive statistics, comparing different hypothesis

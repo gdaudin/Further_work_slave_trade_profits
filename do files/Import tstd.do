@@ -6,9 +6,9 @@ clear all
 
 *import delimited "$dir/2026 06 10 tstd from Mulligansbuild.csv", varnames(1) case(preserve) bindquote(strict)
 
-import delimited "$dir/2026 06 15 tstd from www.slavevoyages.org:voyage:trans-atlantic#voyages.csv", varnames(1) case(preserve) bindquote(strict)
+import delimited "$dir/2026 06 15 tstd from www.slavevoyages.org_voyage_trans-atlantic#voyages.csv", varnames(1) case(preserve) bindquote(strict)
 
-
+**********Year in Africa
 /*///Here are the indications I have about the coding of YEARAF in the original databese
 Below is the syntax section related to the imputation of YEARAF along with a note by the creators of the impute script (David Eltis and Paul Lachance):
 
@@ -36,7 +36,25 @@ replace YEARAF = real(substr(Datefirstdisembarkationofcaptive, 1, 4)) if missing
 replace YEARAF = real(substr(Datedepartedlastplaceoflanding, 1, 4)) if missing(YEARAF)
 replace YEARAF = real(substr(Datevoyagecompleted, 1, 4)) if missing(YEARAF)
 
+************************Duration at the coast
 
+generate Datepurchaseofcaptivesbegan_num = date(Datepurchaseofcaptivesbegan, "YMD")
+format Datepurchaseofcaptivesbegan_num %td
+
+generate DatevesseldepartedAfrica_num = date(DatevesseldepartedAfrica, "YMD")
+format  DatevesseldepartedAfrica_num %td
+
+generate duration_africa = DatevesseldepartedAfrica_num-Datepurchaseofcaptivesbegan_num
+
+drop Datepurchaseofcaptivesbegan DatevesseldepartedAfrica
+
+
+****Crew
+replace  Crewatvoyageoutset=. if Crewatvoyageoutset==0
+
+
+
+***************Outcome
 /*Information on " Outcome of voyage for owner
 RECODE fate
 (1, 49, 68, 77, 79, 88, 92, 135, 203, 205, 206, 207, 208=1)
@@ -135,6 +153,8 @@ rename TotaldisembarkedIMP SLAMIMP
 rename TotalembarkedIMP SLAXIMP
 rename StandardizedTonnageIMP TONMOD
 replace TONMOD = . if TONMOD==0
+generate crew_per_ton = Crewatvoyageoutset/TONMOD
+
 
 
 encode Imputedprincipalplaceofcaptivepu,generate(MJBYPTIMP)
