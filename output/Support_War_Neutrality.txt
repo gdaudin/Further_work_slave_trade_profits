@@ -5,13 +5,13 @@
 War involving own nationality                |                                
   Nation at peace                            |              5,989          305
                                              |               0.73         0.82
-  Nation at war                              |              2,236           67
+  Nation at war                              |              2,236           68
                                              |               0.27         0.18
 Neutrality of own nation                     |                                
-  No major European war or nation at war     |              5,752          272
+  No major European war or nation at war     |              5,752          273
                                              |               0.70         0.73
   Nation neutral during a major European war |              2,473          100
                                              |               0.30         0.27
-War involving own nationality                |              8,225          372
-Neutrality of own nation                     |              8,225          372
+War involving own nationality                |              8,225          373
+Neutrality of own nation                     |              8,225          373
 ------------------------------------------------------------------------------

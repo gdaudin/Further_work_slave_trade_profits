@@ -171,8 +171,8 @@ Imputed principal place of captive purchase                    |
                                                                |               0.01         0.00
   New Calabar                                                  |                158            3
                                                                |               0.02         0.01
-  None                                                         |                297            5
-                                                               |               0.04         0.01
+  None                                                         |                297            6
+                                                               |               0.04         0.02
   Petit Mesurado                                               |                  2            0
                                                                |               0.00         0.00
   Popo                                                         |                 39            0
@@ -233,5 +233,5 @@ Imputed principal place of captive purchase                    |
                                                                |               0.01         0.00
   Windward Coast, place unspecified                            |                352           16
                                                                |               0.04         0.04
-Imputed principal place of captive purchase                    |              8,225          372
+Imputed principal place of captive purchase                    |              8,225          373
 ------------------------------------------------------------------------------------------------

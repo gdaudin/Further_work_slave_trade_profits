@@ -3,9 +3,9 @@
                                     |  TSTD (restricted)   Our sample
 ------------------------------------+--------------------------------
 Fate of venture (binary)            |                                
-  Original goal thwarted or unknown |              2,307           36
+  Original goal thwarted or unknown |              2,307           37
                                     |               0.28         0.10
   Voyage completed as intended      |              5,918          336
                                     |               0.72         0.90
-Fate of venture (binary)            |              8,225          372
+Fate of venture (binary)            |              8,225          373
 ---------------------------------------------------------------------

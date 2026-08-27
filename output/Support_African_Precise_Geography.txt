@@ -11,8 +11,8 @@ Imputed Principal region of captive purchase |
                                              |               0.01         0.00
   Gold Coast                                 |                920           13
                                              |               0.11         0.03
-  None                                       |                297            5
-                                             |               0.04         0.01
+  None                                       |                297            6
+                                             |               0.04         0.02
   Other Africa                               |              1,357           22
                                              |               0.16         0.06
   Senegambia and offshore Atlantic           |                757           21
@@ -23,5 +23,5 @@ Imputed Principal region of captive purchase |
                                              |               0.17         0.17
   Windward Coast                             |                667           59
                                              |               0.08         0.16
-Imputed Principal region of captive purchase |              8,225          372
+Imputed Principal region of captive purchase |              8,225          373
 ------------------------------------------------------------------------------

@@ -3,23 +3,23 @@
                                                                           |  TSTD (restricted)   Our sample
 --------------------------------------------------------------------------+--------------------------------
 First voyage of the outfitter                                             |                                
-  Not first voyage or unknown                                             |              5,542          330
+  Not first voyage or unknown                                             |              5,540          332
                                                                           |               0.67         0.89
-  First voyage                                                            |              2,683           42
+  First voyage                                                            |              2,685           41
                                                                           |               0.33         0.11
 First voyage of the captain                                               |                                
-  Not first voyage or unknown                                             |              5,384          290
+  Not first voyage or unknown                                             |              5,384          291
                                                                           |               0.65         0.78
   First voyage                                                            |              2,841           82
                                                                           |               0.35         0.22
 First voyage of the captain and the outfitter                             |                                
-  Not the first voyage (or unknown) of both the captain and the outfitter |              4,299          266
+  Not the first voyage (or unknown) of both the captain and the outfitter |              4,299          267
                                                                           |               0.52         0.72
-  First voyage of only one of the captain or the outfitter                |              2,328           88
+  First voyage of only one of the captain or the outfitter                |              2,326           89
                                                                           |               0.28         0.24
-  First voyage of both the captain and the outfitter                      |              1,598           18
+  First voyage of both the captain and the outfitter                      |              1,600           17
                                                                           |               0.19         0.05
-First voyage of the outfitter                                             |              8,225          372
-First voyage of the captain                                               |              8,225          372
-First voyage of the captain and the outfitter                             |              8,225          372
+First voyage of the outfitter                                             |              8,225          373
+First voyage of the captain                                               |              8,225          373
+First voyage of the captain and the outfitter                             |              8,225          373
 -----------------------------------------------------------------------------------------------------------
