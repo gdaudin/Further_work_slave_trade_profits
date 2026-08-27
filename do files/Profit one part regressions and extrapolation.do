@@ -4,6 +4,29 @@ clear
 *ssc install outreg2, replace
 
 
+*******Creating the estimation program that will be bootstrapped
+
+capture program drop one_part
+	program define one_part, rclass
+	args explicatives model collect
+	
+	if "`collect'"=="yes" local collect_txt_reg = "collect, tag(model[`model']  hyp[$hyp] step[Regression]):"
+	if "`collect'"=="no" local collect_txt_reg = ""
+
+	if "`collect'"=="yes" local collect_txt_extra = "collect, tag(model[`model']  hyp[$hyp] step[Extrapolation]):"
+	if "`collect'"=="no" local collect_txt_extra = ""
+	else local collect_txt = ""
+
+	`collect_txt_reg' reg profit `explicatives' if tstd_voyages==0, vce(robust) 
+	frame population {
+		predict predicted_profit, xb
+		`collect_txt_extra' summarize predicted_profit
+		return scalar mean_pred = r(mean)
+		drop predicted_profit
+	}
+end
+
+
 capture program drop profit_reg_onepart
 program define profit_reg_onepart
 args OR VSDO VSDR VSDT VSRV VSRT INV INT sample
@@ -36,6 +59,8 @@ label var period "Period (1751-1775 omitted)"
 label var MAJMAJBYIMP_num "African region of trade (Gulf of Guinea omitted)"
 
 append using "${dir}/tastdb-exp-2026_corr+own+various+careers.dta", generate(tstd_voyages)
+
+
 keep if tstd_voyages==0 | (YEARAF>=1750 & YEARAF<=1795 & (nationality == "English" | nationality == "French" | nationality == "Dutch"))
 keep if (nationality == "English" | nationality == "French" | nationality == "Dutch")
 replace lnTONMOD=ln(TONMOD) if tstd_voyages==1
@@ -43,90 +68,42 @@ replace ln_length_in_days=ln(length_in_days) if tstd_voyages==1
 generate Crewatvoyageoutset_ln = ln(Crewatvoyageoutset)
 label var Crewatvoyageoutset_ln "Crew at voyage outset (ln)"
 
+gen oos_prediction_sample =0
+replace oos_prediction_sample=1 if tstd_voyages==1 & (lnTONMOD<=ln(500) | lnTONMOD==.) & (ln_length_in_days<=ln(1000) | ln_length_in_days==.) ///
+		& (Crewatvoyageoutset_ln<=ln(70) | Crewatvoyageoutset_ln==.) & (crowd<=4 | crowd==.)
+
+gen prediction_sample =1 if profit !=.
+
+capture frame drop population
+frame put * if oos_prediction_sample ==1, into(population) 
+
+
+///////Begining of collect
 collect clear
-global explaining "ib3.nationality_num war neutral ib2.period"
-/*collect, tag(model[0a]  hyp[$hyp] step[Regression]): */reg profit $explaining if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1, xb 
-/*collect, tag(model[0a]  hyp[$hyp] step[Extrapolation]): */summarize predicted_profit if tstd_voyages==1
-drop predicted_profit
 
+local var_mod_0a ib3.nationality_num war neutral ib2.period i.MAJMAJBYIMP_num big_port OUTFITTER_experience_d captain_experience_d 1.either_experience_d
+one_part "`var_mod_0a'" 0a yes
+collect, tag(model[0a]  hyp[$hyp] step[Boot]): bootstrap r(mean_pred), noisily trace reps(1000) seed(12345) strata(oos_prediction_sample): one_part "ib3.nationality_num war neutral ib2.period i.MAJMAJBYIMP_num big_port OUTFITTER_experience_d captain_experience_d 1.either_experience_d" 0a no
 
-global explaining "$explaining i.MAJMAJBYIMP_num big_port"
-/*collect, tag(model[0a]  hyp[$hyp] step[Regression]):*/ reg profit $explaining if tstd_voyages==0, vce(robust)
-predict predicted_profit if tstd_voyages==1, xb 
-/*collect, tag(model[0a]  hyp[$hyp] step[Extrapolation]):*/ summarize predicted_profit if tstd_voyages==1
-drop predicted_profit
+local var_mod_0b `var_mod_0a' lnTONMOD Crewatvoyageoutset_ln
+one_part "`var_mod_0b'" 0b yes
+collect, tag(model[0b]  hyp[$hyp] step[Boot]): bootstrap r(mean_pred), noisily trace reps(1000) seed(12345) strata(oos_prediction_sample): one_part "`var_mod_0b'" 0b no
 
-collect, tag(model[0a]  hyp[$hyp] step[Regression]): reg profit $explaining OUTFITTER_experience_d captain_experience_d 1.either_experience_d if tstd_voyages==0, vce(robust)
-predict predicted_profit if tstd_voyages==1 , xb 
-collect, tag(model[0a]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit if tstd_voyages==1
-drop predicted_profit
+local var_mod_0y pricemarkup i.FATEbin 
+one_part "`var_mod_0y'" 0y yes
+collect, tag(model[0y]  hyp[$hyp] step[Boot]): bootstrap r(mean_pred), noisily trace reps(1000) seed(12345) strata(oos_prediction_sample): one_part "`var_mod_0y'" 0y no
 
-global explaining "$explaining OUTFITTER_experience_d captain_experience_d 1.either_experience_d"
+local var_mod_0z `var_mod_0z' MORTALITY crowd ln_length_in_days 
+one_part "`var_mod_0z'" 0z yes
+collect, tag(model[0z]  hyp[$hyp] step[Boot]): bootstrap r(mean_pred), noisily trace reps(1000) seed(12345) strata(oos_prediction_sample): one_part "`var_mod_0z'" 0z no
 
-/*collect, tag(model[0b]  hyp[$hyp] step[Regression]):*/ reg profit $explaining lnTONMOD if tstd_voyages==0, vce(robust)
-predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500), xb 
-/*collect, tag(model[0b]  hyp[$hyp] step[Extrapolation]):*/ summarize predicted_profit
-drop predicted_profit
+local var_mod_1 `var_mod_0a' `var_mod_0y'
+one_part "`var_mod_1'" 1 yes
+collect, tag(model[1]  hyp[$hyp] step[Boot]): bootstrap r(mean_pred), noisily trace reps(1000) seed(12345) strata(oos_prediction_sample): one_part "`var_mod_1'" 1 no
 
-/*collect, tag(model[0c]  hyp[$hyp] step[Regression]):*/ reg profit $explaining Crewatvoyageoutset_ln if tstd_voyages==0, vce(robust)
-predict predicted_profit if tstd_voyages==1 & Crewatvoyageoutset_ln<=ln(70), xb 
-/*collect, tag(model[0c]  hyp[$hyp] step[Extrapolation]):*/ summarize predicted_profit
-drop predicted_profit
-
-collect, tag(model[0b]  hyp[$hyp] step[Regression]): reg profit $explaining lnTONMOD Crewatvoyageoutset_ln if tstd_voyages==0, vce(robust)
-predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & Crewatvoyageoutset_ln<=ln(70), xb 
-collect, tag(model[0b]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit
-drop predicted_profit
-
-
-global explaining "$explaining lnTONMOD Crewatvoyageoutset_ln"
-
-
-global proxy "pricemarkup i.FATEbin "
-
-collect, tag(model[0y] hyp[$hyp] step[Regression]):reg profit  $proxy if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1, xb 
-collect, tag(model[0y]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit
-drop predicted_profit
-
-collect, tag(model[0z] hyp[$hyp] step[Regression]):reg profit  $proxy MORTALITY crowd ln_length_in_days if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1 & ln_length_in_days<=ln(1000) & crowd<=4, xb 
-collect, tag(model[0z]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit
-drop predicted_profit
-
-global proxy "pricemarkup i.FATEbin MORTALITY crowd ln_length_in_days"
-
-/*collect, tag(model[1] hyp[$hyp] step[Regression]):*/reg profit $explaining $proxy  if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & Crewatvoyageoutset_ln<=ln(70), xb 
-/*collect, tag(model[1]  hyp[$hyp] step[Extrapolation]):*/ summarize predicted_profit
-drop predicted_profit
-
-
-
-collect, tag(model[1] hyp[$hyp] step[Regression]):reg profit $explaining $proxy if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & Crewatvoyageoutset_ln<=ln(70) & crowd<=4 & ln_length_in_days<=ln(1000), xb 
-collect, tag(model[1]  hyp[$hyp] step[Extrapolation]): summarize predicted_profit
-drop predicted_profit
-
-/*collect, tag(model[2] hyp[$hyp] step[Regression]):*/reg profit $explaining $proxy ln_length_in_days crowd if tstd_voyages==0, vce(robust)
-predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & ln_length_in_days<=ln(1000) & Crewatvoyageoutset_ln<=ln(70) & crowd<=4, xb 
-/*collect, tag(model[2]  hyp[$hyp] step[Extrapolation]): */ summarize predicted_profit
-drop predicted_profit
-
-
-***These do not increase the number of observations for regression
-/*collect, tag(model[1] hyp[$hyp] step[Regression]):*/reg profit $explaining $proxy ln_length_in_days if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1 & lnTONMOD<=ln(500) & ln_length_in_days<=ln(1000), xb 
-/*collect, tag(model[1]  hyp[$hyp] step[Extrapolation]): */summarize predicted_profit
-drop predicted_profit
-
-
-/*collect, tag(model[4] hyp[$hyp] step[Regression]):*/reg profit $explaining $proxy ln_length_in_days if tstd_voyages==0, vce(robust) 
-predict predicted_profit if tstd_voyages==1 & ln_length_in_days<=ln(1000) & Crewatvoyageoutset_ln<=ln(70), xb 
-/*collect, tag(model[4]  hyp[$hyp] step[Extrapolation]): */ summarize predicted_profit
-drop predicted_profit
-
+local var_mod_2 `var_mod_0b' `var_mod_0z'
+one_part "`var_mod_2'" 2 yes
+collect, tag(model[2]  hyp[$hyp] step[Boot]): bootstrap r(mean_pred), noisily trace reps(1000) seed(12345) strata(oos_prediction_sample): one_part "`var_mod_2'" 2 no
 
 
 
@@ -141,8 +118,9 @@ collect stars _r_p 0.01 "***" 0.05 "**" 0.1 "*", attach(_r_b)
 collect style row stack, nobinder
 collect label levels step Regression  "Number of observations for regression"
 collect label levels step Extrapolation  "Number of observations for extrapolation"
+collect label levels result _r_ci  "95% confidence interval (bootstrapped)", modify
 collect style header result[_r_b _r_ci N], level(hide)
-collect label levels result mean "Mean extrapolated profitability" r2 "R-squared" r2_a "Adjusted R-squared", replace
+collect label levels result mean "Mean extrapolated profitability (bootstrapped confidence interval)" r2 "R-squared" r2_a "Adjusted R-squared", replace
 collect style header result[mean], level(label)
 collect style header Regression, title(label)
 collect style cell cell_type[row-header], halign(left)
@@ -151,8 +129,12 @@ collect style showbase off
 collect style cell result[r2_a], border(bottom, pattern(single))
 
 
-collect layout (colname#result[_r_b _r_ci] result[N]#step[Regression] result[r2 r2_a]  result[N]#step[Extrapolation] result[mean] )  ///
-		(model[0a 0b 0y 0z 1]) (hyp[$hyp])
+collect layout (colname[2.nationality_num 3.nationality_num 4.nationality_num war neutral 1.period 2.period 3.period 4.period ///
+			1.MAJMAJBYIMP_num 2.MAJMAJBYIMP_num 3.MAJMAJBYIMP_num 4.MAJMAJBYIMP_num big_port OUTFITTER_experience_d ///
+			captain_experience_d 1.either_experience_d lnTONMOD Crewatvoyageoutset_ln ///
+            pricemarkup 0.FATEbin 1.FATEbin MORTALITY crowd ln_length_in_days _cons]#result[_r_b _r_ci] ///
+			result[N]#step[Regression] result[r2 r2_a]  result[N]#step[Extrapolation] result[mean _r_ci] )  ///
+			(model[0a 0b 0y 0z 1 2]) (hyp[$hyp])
 collect preview
 
 if "$hyp"=="Baseline" | "$hyp"=="Baseline_BBsample" {
