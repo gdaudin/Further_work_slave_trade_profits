@@ -16,8 +16,8 @@ African region of trade                                      |
   Total                                                      |       5     101       214       50        17     387
 Fate of venture (4 outcomes)                                 |                                                     
   Voyage completed as intended                               |              97       181       37         6     321
-  Original goal thwarted before disembarking enslaved people |                        12        2                14
+  Original goal thwarted before disembarking enslaved people |                        13        2                15
   Original goal thwarted after disembarking enslaved people  |               4         7        1         1      13
-  Unknown                                                    |       5                14       10        10      39
+  Unknown                                                    |       5                13       10        10      38
   Total                                                      |       5     101       214       50        17     387
 -------------------------------------------------------------------------------------------------------------------
