@@ -71,13 +71,13 @@ macro list
 collect label levels hyp "`hyp1'" "`1'" "`hyp2'" "`2'" "`hyp3'" "`3'" "`hyp4'" "`4'" "`hyp5'" "`5'" "`hyp6'" "`6'" "`hyp7'" "`7'" "`hyp8'" "`8'" "`hyp9'" "`9'" "`hyp10'" "`10'", modify
 
 collect style header hyp, level(label)
-collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[6]#hyp) (reg[main])
+collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[4]#hyp) (reg[main])
 
 	
 collect export "$output/regv2main_appendix.txt", replace
 collect export "$output/regv2main_appendix.docx", replace
 
-collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[1]#hyp) (reg[proxy])
+collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[4]#hyp) (reg[proxy])
 	
 collect export "$output/regv2proxy_appendix.txt", replace
 collect export "$output/regv2proxy_appendix.docx", replace
