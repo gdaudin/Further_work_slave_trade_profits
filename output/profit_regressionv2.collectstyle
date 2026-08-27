@@ -2,7 +2,7 @@
   "Layout": {
     "columns": "model",
     "rows": "colname#result[_r_b _r_ci] result[N r2 r2_a]",
-    "tables": ""
+    "tables": "reg[main]#hyp[Baseline]"
   },
   "Styles": {
     "ItemStyles": {
@@ -162,7 +162,7 @@
           }
         ],
         [
-          "result[_r_b]#colname[TONMOD]",
+          "result[_r_b]#colname[lnTONMOD]",
           {
             "nformat": "%5.4fc"
           }
