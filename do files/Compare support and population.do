@@ -143,8 +143,8 @@ quietly summarize TONMOD if sample==1
 local nbr_1=`r(N)'
 quietly summarize TONMOD if sample==0
 local nbr_0=`r(N)'
-twoway (histogram TONMOD if sample==1, fraction width(25) start(-12.5) color(black%15)) ///
-	 (histogram TONMOD if sample==0, fraction width(25) start(-12.5) color(black%30)),  ///
+twoway (histogram TONMOD if sample==1, fraction width(50) start(-25) color(black%15)) ///
+	 (histogram TONMOD if sample==0, fraction width(50) start(-25) color(black%30)),  ///
 	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(full, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs" )
 
 
@@ -161,12 +161,38 @@ graph combine full zoom
 graph export "$graphs/Support_TONMOD.png",as(png) replace
 
 
+
+
+
+quietly summarize Crewatvoyageoutset if sample==1
+local nbr_1=`r(N)'
+quietly summarize Crewatvoyageoutset if sample==0
+local nbr_0=`r(N)'
+twoway (histogram Crewatvoyageoutset if sample==1, fraction width(10) start(-5) color(black%15)) ///
+	 (histogram Crewatvoyageoutset if sample==0, fraction width(10) start(-5) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(full, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs" )
+
+
+quietly summarize Crewatvoyageoutset if sample==1 & Crewatvoyageoutset <= 67 
+local nbr_1=`r(N)'
+quietly summarize Crewatvoyageoutset if sample==0 & Crewatvoyageoutset <= 67
+local nbr_0=`r(N)'
+twoway (histogram Crewatvoyageoutset if sample==1 & Crewatvoyageoutset <= 67 , fraction width(5) start(-2.5) color(black%15)) ///
+	 (histogram Crewatvoyageoutset if sample==0 & Crewatvoyageoutset <= 67 , fraction width(5) start(-2.5) color(black%30)),  ///
+	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(zoom, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs" )
+
+
+graph combine full zoom
+graph export "$graphs/Support_Crewatvoyageoutset.png",as(png) replace
+
+blif
+
 quietly summarize length_in_days if sample==1
 local nbr_1=`r(N)'
 quietly summarize length_in_days if sample==0
 local nbr_0=`r(N)'
-twoway (histogram length_in_days if sample==1, fraction width(25) start(-12.5) color(black%15)) ///
-	 (histogram length_in_days if sample==0, fraction width(25) start(-12.5) color(black%30)),  ///
+twoway (histogram length_in_days if sample==1, fraction width(50) start(-25) color(black%15)) ///
+	 (histogram length_in_days if sample==0, fraction width(50) start(-25) color(black%30)),  ///
 	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) name(full, replace) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs")
 
 quietly summarize length_in_days if sample==1 & length_in_days<=1000
@@ -193,8 +219,8 @@ quietly summarize crowd if sample==1 & crowd<=4
 local nbr_1=`r(N)'
 quietly summarize crowd if sample==0 & crowd<=4
 local nbr_0=`r(N)'
-twoway (histogram crowd if sample==1 & crowd<=4, fraction width(0.1) start(-0.05) color(black%15)) ///
-	 (histogram crowd if sample==0 & crowd<=4, fraction width(0.1) start(-0.05) color(black%30)),  ///
+twoway (histogram crowd if sample==1 & crowd<=4, fraction width(0.1) start(-0.025) color(black%15)) ///
+	 (histogram crowd if sample==0 & crowd<=4, fraction width(0.1) start(-0.025) color(black%30)),  ///
 	 legend(order(1 "TSDT (restricted)" 2 "Sample") position(6) row(1)) note("TSTD: `nbr_0' obs; Sample: `nbr_1' obs") name(zoom, replace)
 
 graph combine full zoom

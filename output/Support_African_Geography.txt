@@ -3,19 +3,19 @@
                                                        |  TSTD (restricted)   Our sample
 -------------------------------------------------------+--------------------------------
 Big African slave-trading port                         |                                
-  Less that 1% of total trade +/- 7 years (or unknown) |              4,411          194
+  Less that 1% of total trade +/- 7 years (or unknown) |              4,411          195
                                                        |               0.54         0.52
   s. more that 1% of total trade +/- 7 years           |              3,814          178
                                                        |               0.46         0.48
 African region of trade                                |                                
   Gulf of Guinea                                       |              3,287          198
                                                        |               0.40         0.53
-  Mixed, unknown or not in Africa                      |              1,480           15
+  Mixed, unknown or not in Africa                      |              1,480           16
                                                        |               0.18         0.04
   South                                                |              1,485           66
                                                        |               0.18         0.18
   West                                                 |              1,973           93
                                                        |               0.24         0.25
-Big African slave-trading port                         |              8,225          372
-African region of trade                                |              8,225          372
+Big African slave-trading port                         |              8,225          373
+African region of trade                                |              8,225          373
 ----------------------------------------------------------------------------------------

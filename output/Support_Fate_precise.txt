@@ -5,11 +5,11 @@
 Fate of venture (4 outcomes)                                 |                                
   Voyage completed as intended                               |              5,918          336
                                                              |               0.74         0.90
-  Original goal thwarted before disembarking enslaved people |                518           14
+  Original goal thwarted before disembarking enslaved people |                518           15
                                                              |               0.06         0.04
   Original goal thwarted after disembarking enslaved people  |                336           13
                                                              |               0.04         0.03
   Unknown                                                    |              1,231            9
                                                              |               0.15         0.02
-Fate of venture (4 outcomes)                                 |              8,003          372
+Fate of venture (4 outcomes)                                 |              8,003          373
 ----------------------------------------------------------------------------------------------

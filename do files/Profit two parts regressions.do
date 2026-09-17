@@ -30,6 +30,9 @@ if "$hyp"=="Baseline_BBsample" {
 drop if completedataonoutlays=="no" & completedataonreturns=="no"
 drop if profit ==.
 
+generate Crewatvoyageoutset_ln = ln(Crewatvoyageoutset)
+label var Crewatvoyageoutset_ln "Crew at voyage outset (ln)"
+
 label var nationality_num "Nationality (English omitted)"
 label var period "Period (1751-1775 omitted)"
 label var MAJMAJBYIMP_num "African region of trade (Gulf of Guinea omitted)"
@@ -37,30 +40,25 @@ label var MAJMAJBYIMP_num "African region of trade (Gulf of Guinea omitted)"
 
 
 
-global explaining "ib3.nationality_num war neutral ib2.period"
-collect, tag(model[1] reg[main] hyp[$hyp]): reg profit $explaining, vce(robust)
+global context "ib3.nationality_num war neutral ib2.period i.MAJMAJBYIMP_num big_port"
+global inputs "ln_totalnetexp_silver_ship"
+global enslavers "OUTFITTER_experience_d captain_experience_d 1.either_experience_d"
+collect, tag(model[1] reg[main] hyp[$hyp]): reg profit $context $enslavers $inputs , vce(robust)
 
 
-global explaining "$explaining i.MAJMAJBYIMP_num big_port"
-collect, tag(model[2] reg[main] hyp[$hyp]): reg profit $explaining, vce(robust)
+global inputs "ln_totalnetexp_silver_ship lnTONMOD"
+collect, tag(model[2] reg[main] hyp[$hyp]): reg profit $context $enslavers $inputs , vce(robust)
+global inputs "ln_totalnetexp_silver_ship Crewatvoyageoutset_ln"
+collect, tag(model[3] reg[main] hyp[$hyp]): reg profit $context $enslavers $inputs, vce(robust)
+global inputs "ln_totalnetexp_silver_ship lnTONMOD Crewatvoyageoutset_ln"
+collect, tag(model[4] reg[main] hyp[$hyp]): reg profit $context $enslavers $inputs, vce(robust)
 
-collect, tag(model[3] reg[main] hyp[$hyp]): reg profit $explaining ln_totalnetexp_silver_ship, vce(robust)
-
-collect, tag(model[4] reg[main] hyp[$hyp]): reg profit $explaining lnTONMOD, vce(robust)
-
-global explaining "$explaining ln_totalnetexp_silver_ship lnTONMOD"
-collect, tag(model[5] reg[main] hyp[$hyp]): reg profit $explaining, vce(robust)
-
-*collect, tag(model[6] reg[main] hyp[$hyp]): reg profit $explaining OUTFITTER_experience_d captain_experience_d, vce(robust)
-
-collect, tag(model[6] reg[main] hyp[$hyp]): reg profit $explaining OUTFITTER_experience_d captain_experience_d 1.either_experience_d, vce(robust)
-
-//The product of experiences is not significant. Regional experience is too limitative
+//Regional experience is too limitative
 
 
 collect style cell result, nformat(%3.2fc)  halign(center)
 collect style cell result[_r_ci], sformat("[%s]") cidelimiter(,) nformat(%3.2f)
-collect style cell result[_r_b]#colname[lnTONMOD], nformat(%5.4fc)
+collect style cell result[_r_b]#colname[lnTONMOD], nformat(%5.2fc)
 
 collect style cell result[N], nformat(%5.0f) 
 collect stars _r_p 0.01 "***" 0.05 "**" 0.1 "*", attach(_r_b)
@@ -87,6 +85,7 @@ else {
 	collect export "$output/Robustness/regv2_$hyp.docx", replace
 }
 
+
 *if "$hyp"=="Baseline" blif
 
 *test OUTFITTER_experience_d  OUTFITTER_regional_experience_d OUTFITTER_total_career
@@ -98,16 +97,23 @@ else {
 
 
 
+global proxy "ln_SLAXIMP ln_investment_per_slave pricemarkup "
+/*collect, tag(model[1] reg[proxy] hyp[$hyp]):*/reg profit $proxy  i.FATEbin, vce(robust) 
+///We have no observations with the number of slaves embarked and no mortality rate
+
 global proxy "ln_SLAXIMP MORTALITY ln_investment_per_slave pricemarkup "
-collect, tag(model[1] reg[proxy] hyp[$hyp]):reg profit $proxy ln_length_in_days  i.FATEbin, vce(robust) 
+collect, tag(model[1] reg[proxy] hyp[$hyp]):reg profit $proxy  i.FATEbin, vce(robust) 
 
-collect, tag(model[2] reg[proxy] hyp[$hyp]):reg profit $proxy crowd ln_length_in_days i.FATEbin, vce(robust) 
+collect, tag(model[2] reg[proxy] hyp[$hyp]):reg profit $proxy  crowd i.FATEbin, vce(robust) 
 
-collect, tag(model[3] reg[proxy] hyp[$hyp]):reg profit $proxy  i.FATEbin, vce(robust) 
+/*collect, tag(model[3] reg[proxy] hyp[$hyp]):*/reg profit $proxy  ln_length_in_days, vce(robust) 
 
-collect, tag(model[4] reg[proxy] hyp[$hyp]):reg profit $proxy  ln_length_in_days, vce(robust) 
+collect, tag(model[3] reg[proxy] hyp[$hyp]):reg profit $proxy ln_length_in_days  i.FATEbin, vce(robust) 
 
-collect, tag(model[5] reg[proxy] hyp[$hyp]):reg profit $proxy  crowd i.FATEbin, vce(robust) 
+collect, tag(model[4] reg[proxy] hyp[$hyp]):reg profit $proxy crowd ln_length_in_days i.FATEbin, vce(robust) 
+
+
+
 
 collect style use "profit_regressionv2.collectstyle"
 
@@ -121,7 +127,7 @@ collect style row stack, nobinder
 collect style header result[_r_b _r_ci], level(hide)
 collect style cell cell_type[row-header], halign(left)
 
-collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[2 1 3 4 5 ]) (reg[proxy]#hyp[$hyp])
+collect layout (colname#result[_r_b _r_ci] result[N r2 r2_a]) (model[1 2 3 4]) (reg[proxy]#hyp[$hyp])
 
 if "$hyp"=="Baseline" | "$hyp"=="Baseline_BBsample" {
 	collect export "$output/regv2proxy_$hyp.txt", replace

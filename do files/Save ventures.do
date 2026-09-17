@@ -34,6 +34,7 @@ collapse (first)  MAJMAJBYIMP data nationality_num (mean) YEARDEP YEARAF SLAXIMP
 			*/ (max) OUTFITTER_experience_d captain_experience_d either_experience_d captain_regional_experience_d OUTFITTER_regional_experience_d either_regional_experience_d/*
 			*/ (mean) OUTFITTER_total_career* captain_total_career* priceamerica/*
 			*/ (mean) big_port crowd pricemarkup war neutral TONMOD Percentageofcaptiveswhodieddurin/*
+			*/ (mean) duration_africa crew_per_ton Crewatvoyageoutset/*
 			*/, by(ventureid)
 
 
@@ -53,6 +54,10 @@ label var either_experience_d "At least one first voyage of the captain and the 
 label var big_port "Big African slave-trading port"
 label var nationality_num "Nationality"
 label var either_regional_experience_d "First voyage of both the captain and the outfitter in region"
+label var duration_africa "Length of stay in Africa in days"
+label var crew_per_ton "Crew at voyage outset per ton"
+label var Crewatvoyageoutset "Crew at voyage outset"
+label var YEARAF "Year in Africa (first voyage)"
 
 
 ////

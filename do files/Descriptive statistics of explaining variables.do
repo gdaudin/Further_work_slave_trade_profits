@@ -22,7 +22,8 @@ if "`OR' `VSDO' `VSDR' `VSDT' `VSRV' `VSRT' `INV' `INT'`IMP'"=="0.5 1 1 0 1 0 1 
 use "${output}Ventures&profit_`hyp'", clear
 
 
-global varlist_o  YEARAF totalnetexp_silver_ship TONMOD crowd SLAXIMP MORTALITY investment_per_slave pricemarkup
+global varlist_o  YEARAF totalnetexp_silver_ship TONMOD crowd SLAXIMP MORTALITY investment_per_slave pricemarkup Crewatvoyageoutset
+//not used : crew_per_ton and duration_africa
 
 table (var) (nationality_num), ///
 	statistic(mean $varlist_o)  ///
@@ -32,6 +33,8 @@ table (var) (nationality_num), ///
 	statistic(min $varlist_o) ///
 	statistic(count $varlist_o) ///
 	name(DS_others) replace
+
+
 
 global varlist_d war neutral big_port OUTFITTER_experience_d captain_experience_d either_experience_d /*
 	*/ either_regional_experience_d 
@@ -46,7 +49,8 @@ table (var) (nationality_num), ///
 
 collect combine DS= DS_others DS_dummies, replace
 
-global varlist_count  SLAXIMP totalnetexp_silver_ship investment_per_slave TONMOD
+global varlist_count  SLAXIMP totalnetexp_silver_ship investment_per_slave TONMOD Crewatvoyageoutset
+//not used : crew_per_ton and duration_africa
 
 collect style cell var, nformat(%5.2fc)
 collect style cell var[profit], nformat(%5.3f)
@@ -56,9 +60,13 @@ collect style cell result[count], nformat(%5.0f)
 collect style cell var[$varlist_count]#result[max min], nformat(%12.0fc)
 
 
+
+
 collect layout (var[war neutral big_port] # result[mean median sd count] ///
-	var[totalnetexp_silver_ship TONMOD] # result[mean median sd min max count] ///
+	var[totalnetexp_silver_ship TONMOD Crewatvoyageoutset] # result[mean median sd min max count] ///
 	var[OUTFITTER_experience_d captain_experience_d] # result[mean median sd count]) (nationality_num) 
+
+
 
 if "`hyp'"!="Baseline"  {
 	collect export "${output}/Robustness/DS_input_var_`hyp'.txt", as(txt) replace
