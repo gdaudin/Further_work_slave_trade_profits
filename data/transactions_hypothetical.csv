@@ -4,13 +4,13 @@ DR002_H001,DR002,Expenditure,Ship Out,40.0843,nan,0,VSDT*VSDO,nan,Outfitting,Pou
 DR002_H002,DR002,Return,Ship In,30.063225,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
 DR003_H001,DR003,Expenditure,Ship Out,250.5528,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR003_H002,DR003,Return,Ship In,187.9146,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR004_H001,DR004,Expenditure,Insurance,58.2,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR004_H001,DR004,Expenditure,Insurance,58,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR004_H002,DR004,Expenditure,Ship Out,99.8223,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR004_H003,DR004,Return,Ship In,74.866725,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR005_H001,DR005,Expenditure,Insurance,40.91,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR005_H001,DR005,Expenditure,Insurance,41,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR005_H002,DR005,Expenditure,Ship Out,70.1828,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR005_H003,DR005,Return,Ship In,52.6371,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR006_H001,DR006,Expenditure,Insurance,86.66,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR006_H001,DR006,Expenditure,Insurance,87,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR006_H002,DR006,Expenditure,Ship Out,148.6633,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR006_H003,DR006,Return,Ship In,111.497475,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
 DR007_H001,DR007,Expenditure,Ship Out,317.4767,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
@@ -159,94 +159,94 @@ DR069_H001,DR069,Expenditure,Insurance,601.04,nan,0,INV,nan,Outfitting,Pound ste
 DR069_H002,DR069,Return,Ship In,660.93,nan,0,VSRV,nan,Return,Pound sterling,,Ship
 DR070_H001,DR070,Expenditure,Ship Out,1600,nan,0,VSDR,nan,Outfitting,Pound sterling,Estimated based on residual value of 75% after voyage from this voyage,Ship
 DR070_H002,DR070,Expenditure,Insurance,566,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
-DR071_H001,DR071,Expenditure,Insurance,367,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR071_H001,DR071,Expenditure,Insurance,367,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR071_H002,DR071,Expenditure,Ship Out,629.51,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR071_H003,DR071,Return,Ship In,472.1325,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR072_H001,DR072,Expenditure,Insurance,281.05,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR072_H001,DR072,Expenditure,Insurance,281,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR072_H002,DR072,Expenditure,Ship Out,434.35,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR072_H003,DR072,Return,Ship In,325.7625,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR073_H001,DR073,Expenditure,Insurance,358.16,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR073_H001,DR073,Expenditure,Insurance,358,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR073_H002,DR073,Expenditure,Ship Out,553.52,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR073_H003,DR073,Return,Ship In,415.14,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR074_H001,DR074,Expenditure,Insurance,749.76,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR074_H001,DR074,Expenditure,Insurance,750,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR074_H002,DR074,Expenditure,Ship Out,1158.72,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR074_H003,DR074,Return,Ship In,869.04,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR075_H001,DR075,Expenditure,Insurance,390.17,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR075_H001,DR075,Expenditure,Insurance,390,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR075_H002,DR075,Expenditure,Ship Out,602.99,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR075_H003,DR075,Return,Ship In,452.2425,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR076_H001,DR076,Expenditure,Insurance,633,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR076_H001,DR076,Expenditure,Insurance,633,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR076_H002,DR076,Expenditure,Ship Out,977.84,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR076_H003,DR076,Return,Ship In,733.38,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR077_H001,DR077,Expenditure,Insurance,349,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR077_H001,DR077,Expenditure,Insurance,195,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR077_H002,DR077,Expenditure,Ship Out,301.92,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR077_H003,DR077,Return,Ship In,226.44,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR078_H001,DR078,Expenditure,Insurance,195,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR078_H001,DR078,Expenditure,Insurance,172,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR078_H002,DR078,Expenditure,Ship Out,265.2,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR078_H003,DR078,Return,Ship In,198.9,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR079_H001,DR079,Expenditure,Insurance,173,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR079_H001,DR079,Expenditure,Insurance,175,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR079_H002,DR079,Expenditure,Ship Out,269.96,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR079_H003,DR079,Return,Ship In,202.47,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR080_H001,DR080,Expenditure,Insurance,172,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR080_H001,DR080,Expenditure,Insurance,207,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR080_H002,DR080,Expenditure,Ship Out,320.28,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR080_H003,DR080,Return,Ship In,240.21,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR081_H001,DR081,Expenditure,Insurance,150,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR081_H001,DR081,Expenditure,Insurance,121,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR081_H002,DR081,Expenditure,Ship Out,187.68,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR081_H003,DR081,Return,Ship In,140.76,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR082_H001,DR082,Expenditure,Insurance,413,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR082_H001,DR082,Expenditure,Insurance,1518,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR082_H002,DR082,Expenditure,Ship Out,992.8,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR082_H003,DR082,Return,Ship In,744.6,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR083_H001,DR083,Expenditure,Insurance,138,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR083_H001,DR083,Expenditure,Insurance,785,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR083_H002,DR083,Expenditure,Ship Out,1213.12,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR083_H003,DR083,Return,Ship In,909.84,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR084_H001,DR084,Expenditure,Insurance,207,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR084_H001,DR084,Expenditure,Insurance,665,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR084_H002,DR084,Expenditure,Ship Out,1028.16,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR084_H003,DR084,Return,Ship In,771.12,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR085_H001,DR085,Expenditure,Insurance,128,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR085_H001,DR085,Expenditure,Insurance,722,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR085_H002,DR085,Expenditure,Ship Out,1116.56,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR085_H003,DR085,Return,Ship In,837.42,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR086_H001,DR086,Expenditure,Insurance,121,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR086_H001,DR086,Expenditure,Insurance,675,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR086_H002,DR086,Expenditure,Ship Out,1043.12,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR086_H003,DR086,Return,Ship In,782.34,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR087_H001,DR087,Expenditure,Insurance,212,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR087_H001,DR087,Expenditure,Insurance,725,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR087_H002,DR087,Expenditure,Ship Out,1120.64,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR087_H003,DR087,Return,Ship In,840.48,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR088_H001,DR088,Expenditure,Insurance,1518,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR088_H001,DR088,Expenditure,Insurance,940,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR088_H002,DR088,Expenditure,Ship Out,614.72,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR088_H003,DR088,Return,Ship In,461.04,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR089_H001,DR089,Expenditure,Insurance,1074,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR089_H001,DR089,Expenditure,Insurance,426,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR089_H002,DR089,Expenditure,Ship Out,658.24,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR089_H003,DR089,Return,Ship In,493.68,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR090_H001,DR090,Expenditure,Insurance,785,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR090_H001,DR090,Expenditure,Insurance,294,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR090_H002,DR090,Expenditure,Ship Out,453.73,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR090_H003,DR090,Return,Ship In,340.2975,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR091_H001,DR091,Expenditure,Insurance,886,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR091_H001,DR091,Expenditure,Insurance,286,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR091_H002,DR091,Expenditure,Ship Out,441.49,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR091_H003,DR091,Return,Ship In,331.1175,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR092_H001,DR092,Expenditure,Insurance,665,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR092_H001,DR092,Expenditure,Insurance,304,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR092_H002,DR092,Expenditure,Ship Out,470.05,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR092_H003,DR092,Return,Ship In,352.5375,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR093_H001,DR093,Expenditure,Insurance,915,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR093_H001,DR093,Expenditure,Insurance,465,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR093_H002,DR093,Expenditure,Ship Out,718.59,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR093_H003,DR093,Return,Ship In,538.9425,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR094_H001,DR094,Expenditure,Insurance,722,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR094_H001,DR094,Expenditure,Insurance,427,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR094_H002,DR094,Expenditure,Ship Out,660.45,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR094_H003,DR094,Return,Ship In,495.3375,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR095_H001,DR095,Expenditure,Insurance,750,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR095_H001,DR095,Expenditure,Insurance,894,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR095_H002,DR095,Expenditure,Ship Out,1381.08,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR095_H003,DR095,Return,Ship In,1035.81,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR096_H001,DR096,Expenditure,Insurance,675,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR096_H001,DR096,Expenditure,Insurance,829,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR096_H002,DR096,Expenditure,Ship Out,1281.12,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR096_H003,DR096,Return,Ship In,960.84,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR097_H001,DR097,Expenditure,Insurance,832,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR097_H001,DR097,Expenditure,Insurance,266,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR097_H002,DR097,Expenditure,Ship Out,411.57,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR097_H003,DR097,Return,Ship In,308.6775,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR098_H001,DR098,Expenditure,Insurance,725,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR098_H001,DR098,Expenditure,Insurance,475,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR098_H002,DR098,Expenditure,Ship Out,733.89,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR098_H003,DR098,Return,Ship In,550.4175,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR099_H001,DR099,Expenditure,Insurance,648,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR099_H001,DR099,Expenditure,Insurance,296,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR099_H002,DR099,Expenditure,Ship Out,456.96,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR099_H003,DR099,Return,Ship In,342.72,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
-DR100_H001,DR100,Expenditure,Insurance,398,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR100_H001,DR100,Expenditure,Insurance,941,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR100_H002,DR100,Expenditure,Ship Out,1454.52,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR100_H003,DR100,Return,Ship In,1090.89,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
 DR102_H001,DR102,Expenditure,Insurance,830,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
@@ -343,56 +343,56 @@ DR146_H002,DR146,Expenditure,Ship Out,1076,nan,0,VSDO,nan,Outfitting,Pound sterl
 DR147_H001,DR147,Expenditure,Insurance,682,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
 DR147_H002,DR147,Expenditure,Ship Out,1170,nan,0,VSDO,nan,Outfitting,Pound sterling,,Ship
 DR148_H001,DR148,Expenditure,Insurance,2075,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
-DR149_H001,DR149,Expenditure,Insurance,133,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR149_H001,DR149,Expenditure,Insurance,133,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR149_H002,DR149,Expenditure,Ship Out,228,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR150_H001,DR150,Expenditure,Insurance,273,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
 DR150_H002,DR150,Expenditure,Ship Out,468,nan,0,VSDO,nan,Outfitting,Pound sterling,,Ship
 DR160_H001,DR160,Expenditure,Insurance,89,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
 DR160_H002,DR160,Expenditure,Ship Out,153,nan,0,VSDO,nan,Outfitting,Pound sterling,,Ship
 DR164_H001,DR164,Expenditure,Insurance,38,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
-DR166_H001,DR166,Expenditure,Insurance,105,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR166_H001,DR166,Expenditure,Insurance,105,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR166_H002,DR166,Expenditure,Ship Out,180,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR167_H001,DR167,Expenditure,Insurance,469,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
 DR172_H001,DR172,Expenditure,Insurance,1190,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
 DR172_H002,DR172,Expenditure,Ship Out,2041,nan,0,VSDO,nan,Outfitting,Pound sterling,,Ship
-DR173_H001,DR173,Expenditure,Insurance,1172,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR173_H001,DR173,Expenditure,Insurance,1172,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR173_H002,DR173,Expenditure,Ship Out,2010,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR174_H001,DR174,Expenditure,Insurance,1174,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR174_H001,DR174,Expenditure,Insurance,1174,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR174_H002,DR174,Expenditure,Ship Out,2013,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR177_H001,DR177,Expenditure,Insurance,578,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR177_H001,DR177,Expenditure,Insurance,578,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR177_H002,DR177,Expenditure,Ship Out,992,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 DR177_H003,DR177,Return,Ship in,744,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,
-DR178_H001,DR178,Expenditure,Insurance,1773,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR178_H001,DR178,Expenditure,Insurance,1773,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR178_H002,DR178,Expenditure,Ship Out,3042,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR179_H001,DR179,Expenditure,Insurance,584,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR179_H001,DR179,Expenditure,Insurance,584,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR179_H002,DR179,Expenditure,Ship Out,1003,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR180_H001,DR180,Expenditure,Insurance,2112,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR180_H001,DR180,Expenditure,Insurance,2112,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR180_H002,DR180,Expenditure,Ship Out,3624,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR181_H001,DR181,Expenditure,Insurance,956,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR181_H001,DR181,Expenditure,Insurance,956,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR181_H002,DR181,Expenditure,Ship Out,1640,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR182_H001,DR182,Expenditure,Insurance,751,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR182_H001,DR182,Expenditure,Insurance,751,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR182_H002,DR182,Expenditure,Ship Out,1288,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR183_H001,DR183,Expenditure,Insurance,798,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR183_H001,DR183,Expenditure,Insurance,798,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 DR183_H002,DR183,Expenditure,Ship Out,1370,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
-DR189_H001,DR189,Expenditure,Insurance,385,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR190_H001,DR190,Expenditure,Insurance,550,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR191_H001,DR191,Expenditure,Insurance,1100,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR192_H001,DR192,Expenditure,Insurance,1100,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR193_H001,DR193,Expenditure,Insurance,990,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR195_H001,DR195,Expenditure,Insurance,715,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR196_H001,DR196,Expenditure,Insurance,176,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR197_H001,DR197,Expenditure,Insurance,770,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR198_H001,DR198,Expenditure,Insurance,440,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR199_H001,DR199,Expenditure,Insurance,660,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR200_H001,DR200,Expenditure,Insurance,660,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR201_H001,DR201,Expenditure,Insurance,1100,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR202_H001,DR202,Expenditure,Insurance,990,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR203_H001,DR203,Expenditure,Insurance,495,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR206_H001,DR206,Expenditure,Insurance,1100,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR208_H001,DR208,Expenditure,Insurance,1320,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR210_H001,DR210,Expenditure,Insurance,1100,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR211_H001,DR211,Expenditure,Insurance,400,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
-DR212_H001,DR212,Expenditure,Insurance,1100,nan,0,INT,nan,Outfitting,Pound sterling,,Insurance
+DR189_H001,DR189,Expenditure,Insurance,385,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR190_H001,DR190,Expenditure,Insurance,550,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR191_H001,DR191,Expenditure,Insurance,1100,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR192_H001,DR192,Expenditure,Insurance,1100,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR193_H001,DR193,Expenditure,Insurance,990,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR195_H001,DR195,Expenditure,Insurance,715,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR196_H001,DR196,Expenditure,Insurance,176,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR197_H001,DR197,Expenditure,Insurance,770,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR198_H001,DR198,Expenditure,Insurance,440,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR199_H001,DR199,Expenditure,Insurance,660,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR200_H001,DR200,Expenditure,Insurance,660,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR201_H001,DR201,Expenditure,Insurance,1100,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR202_H001,DR202,Expenditure,Insurance,990,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR203_H001,DR203,Expenditure,Insurance,495,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR206_H001,DR206,Expenditure,Insurance,1100,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR208_H001,DR208,Expenditure,Insurance,1320,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR210_H001,DR210,Expenditure,Insurance,1100,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR211_H001,DR211,Expenditure,Insurance,400,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
+DR212_H001,DR212,Expenditure,Insurance,1100,nan,0,INT*INV,nan,Outfitting,Pound sterling,Insurance rate during year of venture based on Pearson & Richardson 2019,Insurance
 KR001_H001,KR001,Expenditure,Crew costs,5440,nan,0,Other,nan,Outfitting,Danish rigsdaler,"Estimates based on monthly hiring costs, mulitplied by an assumed number of months of hire (based on the length of an average venture, 20 months).",Wages
 KR001_H002,KR001,Expenditure,Trade cargo costs,35658,nan,0,Other,nan,Outfitting,Danish rigsdaler,Estimate based on average figure for other ventures by the Bargum Trading society.,Trade cargo
 KR001_H003,KR001,Return,Insurance loss reimbursement,418,nan,0,Other,nan,Return,Danish rigsdaler,Estimated based on assumptions about what might have been insured.,Insurance
@@ -431,20 +431,20 @@ KR015_H001,KR015,Expenditure,Crew bonus,747,nan,0,Other,nan,Return,Danish rigsda
 KR015_H002,KR015,Expenditure,Extraordinary expenses,2181,nan,0,Other,nan,Outfitting,Danish rigsdaler,Estimate based on average figure for other ventures by the Bargum Trading society.,Various
 KR015_H003,KR015,Return,Remitted sale of slaves in America,15092,nan,0,Other,nan,Return,Danish rigsdaler,Estimate based on number of slaves sold and assumption of average price of slaves sold by Bargum.,Cash
 KR016_H001,KR016,Expenditure,Insurance,50474,nan,0,Other,nan,Unknown,Danish rigsdaler,Refers to all venture KR001-KR015 in total,Insurance
-KR017_H001,KR017,Expenditure,Ship out,8603,nan,0,VSDO*VSDT,nan,Outfitting,Danish rigsdaler,,Ship
+KR017_H001,KR017,Expenditure,Ship out,8603,nan,0,VSDT*VSDO,nan,Outfitting,Danish rigsdaler,,Ship
 KR017_H002,KR017,Return,Ship in,6453,nan,0,VSDO*VSRV*VSRT,nan,Return,Danish rigsdaler,,
-KR017_H003,KR017,Expenditure,Insurance,12652,nan,0,INT,nan,Outfitting,Danish rigsdaler,,Insurance
-KR018_H001,KR018,Expenditure,Ship out,9103,nan,0,VSDO*VSDT,nan,Outfitting,Danish rigsdaler,,Ship
-KR018_H002,KR018,Expenditure,Insurance,13386,nan,0,INT,nan,Outfitting,Danish rigsdaler,,Insurance
+KR017_H003,KR017,Expenditure,Insurance,12652,nan,0,INT*INV,nan,Outfitting,Danish rigsdaler,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
+KR018_H001,KR018,Expenditure,Ship out,9103,nan,0,VSDT*VSDO,nan,Outfitting,Danish rigsdaler,,Ship
+KR018_H002,KR018,Expenditure,Insurance,13386,nan,0,INT*INV,nan,Outfitting,Danish rigsdaler,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR018_H003,KR018,Return,Ship in,6827,nan,0,VSDO*VSRV*VSRT,nan,Return,Danish rigsdaler,,
-KR019_H001,KR019,Expenditure,Ship out,7476,nan,0,VSDO*VSDT,nan,Outfitting,Danish rigsdaler,,Ship
-KR019_H002,KR019,Expenditure,Insurance,10994,nan,0,INT,nan,Outfitting,Danish rigsdaler,,Insurance
+KR019_H001,KR019,Expenditure,Ship out,7476,nan,0,VSDT*VSDO,nan,Outfitting,Danish rigsdaler,,Ship
+KR019_H002,KR019,Expenditure,Insurance,10994,nan,0,INT*INV,nan,Outfitting,Danish rigsdaler,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR019_H003,KR019,Return,Ship in,5607,nan,0,VSDO*VSRV*VSRT,nan,Return,Danish rigsdaler,,
-KR020_H001,KR020,Expenditure,Ship out,12991,nan,0,VSDO*VSDT,nan,Outfitting,Danish rigsdaler,,Ship
-KR020_H002,KR020,Expenditure,Insurance,19104,nan,0,INT,nan,Outfitting,Danish rigsdaler,,Insurance
+KR020_H001,KR020,Expenditure,Ship out,12991,nan,0,VSDT*VSDO,nan,Outfitting,Danish rigsdaler,,Ship
+KR020_H002,KR020,Expenditure,Insurance,19104,nan,0,INT*INV,nan,Outfitting,Danish rigsdaler,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR020_H003,KR020,Return,Ship in,9743,nan,0,VSDO*VSRV*VSRT,nan,Return,Danish rigsdaler,,
-KR021_H001,KR021,Expenditure,Ship out,12990,nan,0,VSDO*VSDT,nan,Outfitting,Danish rigsdaler,,Ship
-KR021_H002,KR021,Expenditure,Insurance,19102,nan,0,INT,nan,Outfitting,Danish rigsdaler,,Insurance
+KR021_H001,KR021,Expenditure,Ship out,12990,nan,0,VSDT*VSDO,nan,Outfitting,Danish rigsdaler,,Ship
+KR021_H002,KR021,Expenditure,Insurance,19102,nan,0,INT*INV,nan,Outfitting,Danish rigsdaler,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR021_H003,KR021,Return,Ship in,9742,nan,0,VSDO*VSRV*VSRT,nan,Return,Danish rigsdaler,,
 KR022_H001,KR022,Expenditure,Ship Out,731.8347,nan,0,VSDT*VSDO,nan,Outfitting,Pound sterling,,Ship
 KR022_H002,KR022,Return,Ship In,548.876025,nan,0,VSDT*VSDO*VSRV,nan,Return,Pound sterling,,Ship
@@ -519,50 +519,50 @@ KR053_H001,KR053,Expenditure,Ship Out,2410.66,nan,0,VSDO,nan,Outfitting,Pound st
 KR053_H002,KR053,Expenditure,Insurance,3598,nan,0,INV,nan,Outfitting,Pound sterling,,Insurance
 KR053_H003,KR053,Return,Ship In,1808,nan,0,VSDO*VSRV,nan,Return,Pound sterling,,Ship
 KR054_H001,KR054,Return,Value of ship upon return,4687.75,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR054_H002,KR054,Expenditure,Insurance,10754.25,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 25% (year of war),Insurance
+KR054_H002,KR054,Expenditure,Insurance,10754.25,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR055_H001,KR055,Return,Value of ship upon return,6828.00641026,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR055_H002,KR055,Expenditure,Insurance,6892.27,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR055_H002,KR055,Expenditure,Insurance,6892.27,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR056_H001,KR056,Return,Value of ship upon return,8196.07051282,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR056_H002,KR056,Expenditure,Insurance,8273.21,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR056_H002,KR056,Expenditure,Insurance,8273.21,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR057_H001,KR057,Return,Value of ship upon return,6686.44871795,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR057_H002,KR057,Expenditure,Insurance,6749.38,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR057_H002,KR057,Expenditure,Insurance,6749.38,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR058_H001,KR058,Return,Value of ship upon return,5060.55128205,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR058_H002,KR058,Expenditure,Insurance,5108.18,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR058_H002,KR058,Expenditure,Insurance,5108.18,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR059_H001,KR059,Return,Value of ship upon return,10033.26923077,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR059_H002,KR059,Expenditure,Insurance,10127.7,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR059_H002,KR059,Expenditure,Insurance,10127.7,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR060_H001,KR060,Return,Value of ship upon return,10025.42307692,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR060_H002,KR060,Expenditure,Insurance,10119.78,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR060_H002,KR060,Expenditure,Insurance,10119.78,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR061_H001,KR061,Return,Value of ship upon return,8595.67948718,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR061_H002,KR061,Expenditure,Insurance,8676.58,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR061_H002,KR061,Expenditure,Insurance,8676.58,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR062_H001,KR062,Return,Value of ship upon return,10656.92948718,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR062_H002,KR062,Expenditure,Insurance,10757.23,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR062_H002,KR062,Expenditure,Insurance,10757.23,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR063_H001,KR063,Return,Value of ship upon return,8514.6025641,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR063_H002,KR063,Expenditure,Insurance,8594.74,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR063_H002,KR063,Expenditure,Insurance,8594.74,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR064_H001,KR064,Return,Value of ship upon return,8681.44230769,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR064_H002,KR064,Expenditure,Insurance,8763.15,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR064_H002,KR064,Expenditure,Insurance,8763.15,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR065_H001,KR065,Expenditure,Investment,43719,nan,0,Other,nan,Outfitting,Peso fuerte,"Imputed by original authors, unknown exactly how",
 KR065_H002,KR065,Return,Value of ship upon return,4764.25,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR065_H003,KR065,Expenditure,Insurance,10929.75,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 11% (year of peace),Insurance
+KR065_H003,KR065,Expenditure,Insurance,10929.75,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 11% (year of peace), based on British data from Pearson & Richardson 2019",Insurance
 KR066_H001,KR066,Expenditure,Investment,40911,nan,0,Other,nan,Outfitting,Peso fuerte,"Imputed by original authors, unknown exactly how",
 KR066_H002,KR066,Return,Returns from slaves sales,74366,nan,0,Other,nan,Return,Peso fuerte,"Estimated based on known number of slaves sold, and average price of slaves prevalent the year in question.",
 KR066_H003,KR066,Return,Value of ship upon return,4458.25,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR066_H004,KR066,Expenditure,Insurance,10227.75,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 25% (year of war),Insurance
+KR066_H004,KR066,Expenditure,Insurance,10227.75,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR067_H001,KR067,Expenditure,Investment,67093,nan,0,Other,nan,Outfitting,Peso fuerte,"Imputed by original authors, unknown exactly how",
 KR067_H002,KR067,Return,Returns from slaves sales,151981,nan,0,Other,nan,Return,Peso fuerte,"Estimated based on known number of slaves sold, and average price of slaves prevalent the year in question.",
 KR067_H003,KR067,Return,Value of ship upon return,7311.41666667,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR067_H004,KR067,Expenditure,Insurance,16773.25,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 25% (year of war),Insurance
+KR067_H004,KR067,Expenditure,Insurance,16773.25,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR068_H001,KR068,Expenditure,Investment,53400,nan,0,Other,nan,Outfitting,Peso fuerte,"Imputed by original authors, unknown exactly how",
 KR068_H002,KR068,Return,Returns from slaves sales,108300,nan,0,Other,nan,Return,Peso fuerte,"Estimated based on known number of slaves sold, and average price of slaves prevalent the year in question.",
 KR068_H003,KR068,Return,Value of ship upon return,5819.23076923,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR068_H004,KR068,Expenditure,Insurance,13350,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 25% (year of war),Insurance
+KR068_H004,KR068,Expenditure,Insurance,13350,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR069_H001,KR069,Expenditure,Investment,95655,nan,0,Other,nan,Outfitting,Peso fuerte,"Imputed by original authors, unknown exactly how",
 KR069_H002,KR069,Return,Returns from slaves sales,162060,nan,0,Other,nan,Return,Peso fuerte,"Estimated based on known number of slaves sold, and average price of slaves prevalent the year in question.",
 KR069_H003,KR069,Return,Value of ship upon return,10423.94230769,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR069_H004,KR069,Expenditure,Insurance,23913.75,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 25% (year of war),Insurance
+KR069_H004,KR069,Expenditure,Insurance,23913.75,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 KR070_H001,KR070,Expenditure,Investment,62120,nan,0,Other,nan,Outfitting,Peso fuerte,"Imputed by original authors, unknown exactly how",
 KR070_H002,KR070,Return,Returns from slaves sales,134685,nan,0,Other,nan,Return,Peso fuerte,"Estimated based on known number of slaves sold, and average price of slaves prevalent the year in question.",
 KR070_H003,KR070,Return,Value of ship upon return,6769.48717949,nan,,VSDO*VSRV*VSRT,nan,Return,Peso fuerte,,
-KR070_H004,KR070,Expenditure,Insurance,15530,nan,,INV*INT,nan,Outfitting,Peso fuerte,Insurance rate assumed to be 25% (year of war),Insurance
+KR070_H004,KR070,Expenditure,Insurance,15530,nan,,INT*INV,nan,Outfitting,Peso fuerte,"Insurance rate assumed to be 25% (year of war), based on British data from Pearson & Richardson 2019",Insurance
 NR007_H001,NR007,Expenditure,Ship Out,156,nan,0,VSRV,nan,Outfitting,Pound sterling,,Ship
 NR008_H001,NR008,Expenditure,Ship Out,184,nan,0,VSRV,nan,Outfitting,Pound sterling,,Ship
 NR015_H001,NR015,Expenditure,Ship Out,86.36,nan,0,VSDO,nan,Outfitting,Pound sterling,,Ship
